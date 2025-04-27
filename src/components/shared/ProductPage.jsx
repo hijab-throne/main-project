@@ -17,6 +17,7 @@ export default function ProductPage(props) {
     featuresTitle,
     showMainImage,
       imagePosition,
+      hideColorCircle,
     arrayWithPalettes = [],
   } = props;
 
@@ -60,6 +61,7 @@ export default function ProductPage(props) {
         <ProductGrid
             products={filteredProducts}
             imagePosition={imagePosition}
+            hideColorCircle={hideColorCircle}
         />
       </div>
     </div>

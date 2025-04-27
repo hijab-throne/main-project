@@ -40,6 +40,7 @@ export default function KapucTub() {
     title="Kapuc Tub"
     description="Kapuçet janë aksesorë esencialë për çdo stil modest veshjeje, duke ofruar rehati, qëndrueshmëri dhe pamje të pastër."
     mainAlt="KapucTub"
+    hideColorCircle={true}
     showMainImage={false}
     featuresTitle="Karakteristikat e Kapucit Tub"
   />

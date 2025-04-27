@@ -8,6 +8,7 @@ export default {
     extend: {
        backgroundImage: {
         'main-bg': "url('/assets/landing_page/lulu/DSCF6700.jpg')",
+        'main-bg-mobile': "url('/assets/landing_page/lulu/DSCF6700-mobile.jpg')",
       },
     },
   },

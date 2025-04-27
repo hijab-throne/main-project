@@ -26,6 +26,22 @@ import PraktikeHazirTurban from "./pages/praktike/PraktikeHazirTurban.jsx";
 import PraktikeTesettur from "./pages/praktike/PraktikeTesettur.jsx";
 import PraktikeSport from "./pages/praktike/PraktikeSport.jsx";
 import PraktikeFemije from "./pages/praktike/PraktikeFemije.jsx";
+import { useEffect } from 'react'
+import { useLocation } from 'wouter'
+import ZharsMeDredha from "./pages/jersey/ZharsMeDredha.jsx";
+import PraktikePenye from "./pages/praktike/PraktikePenye.jsx";
+import KapucTub from "./pages/kapuc/KapucTub.jsx";
+import KapucCeneli from "./pages/kapuc/KapucCeneli.jsx";
+import KapucEcardinAspirim from "./pages/kapuc/KapucEcardinAspirim.jsx";
+import KapucEcardinClassic from "./pages/kapuc/KapucEcardinClassic.jsx";
+import KapucSilikon400 from "./pages/kapuc/KapucSilikon400.jsx";
+import KapucSilikon500 from "./pages/kapuc/KapucSilikon500.jsx";
+import KapucKlimatik from "./pages/kapuc/KapucKlimatik.jsx";
+import KapucSedef from "./pages/kapuc/KapucSedef.jsx";
+import KapucTylTjeter from "./pages/kapuc/KapucTylTjeter.jsx";
+import KapucTylLehte from "./pages/kapuc/KapucTylLehte.jsx";
+import KapucXhElastik from "./pages/kapuc/KapucXhElastik.jsx";
+import KapucXhPambuk from "./pages/kapuc/KapucXhPambuk.jsx";
 
 const navItems = [
   {
@@ -50,7 +66,7 @@ const navItems = [
     isClickable: false,
     dropdown: [
       {label: 'Shall 180:70 cm', href: '/jersey/shall-jr-180'},
-      {label: 'Shami 200:100 cm', href: '/jersey/shami-jr-150'},
+      {label: 'Shami 200:100 cm', href: '/jersey/shami-jr-200'},
       {label: 'Shall me gur 180:70 cm', href: '/jersey/shall-jr-gur'},
       {label: 'Zhars me dredha', href: '/jersey/dredha'},
     ],
@@ -100,7 +116,7 @@ const navItems = [
     isClickable: false,
     dropdown: [
       {label: 'Kapuc tub', href: '/kapuc/tub'},
-      {label: 'Kapuc me aspirim (klimatik)', href: '/kapuc/aspirim'},
+      {label: 'Kapuc me aspirim (klimatik)', href: '/kapuc/klimatik'},
       {
         label: 'Kapuc me silikon (kaymaz)',
         href: '/kapuc/me-silikon',
@@ -113,21 +129,21 @@ const navItems = [
         label: 'Kapuc xhufke',
         href: '/kapuc/xhufke',
         subdropdown: [
-          {label: 'Kapuc me pambuk lidhese xhufke', href: '/kapuc/xhufke/1'},
-          {label: 'Kapuc me elastik xhufke', href: '/kapuc/xhufke/2'},
+          {label: 'Kapuc me pambuk lidhese xhufke', href: '/kapuc/pambuk'},
+          {label: 'Kapuc elastik xhufke', href: '/kapuc/elastik'},
         ]
       },
       {
         label: 'Kapuc tyl',
         href: '/kapuc/tyl',
         subdropdown: [
-          {label: 'Kapuc tyl tjeter', href: '/kapuc/tyl/1'},
-          {label: 'Kapuc i lehte', href: '/kapuc/tyl/2'},
+          {label: 'Kapuc tyl tjeter', href: '/kapuc/tyl-tjeter'},
+          {label: 'Kapuc i lehte', href: '/kapuc/tyl-i-lehte'},
         ]
       },
       {label: 'Kapuc ceneli', href: '/kapuc/ceneli'},
       {label: 'Ninxha pambuk sedef', href: '/kapuc/sedef'},
-      {label: 'Ninxha climatic ecardin', href: '/kapuc/climatic'},
+      {label: 'Ninxha climatic ecardin', href: '/kapuc/aspirim'},
       {label: 'Ninxha classic ecardin', href: '/kapuc/classic'},
     ],
   },
@@ -161,7 +177,7 @@ function App() {
             <Route path="/chiffon/shami-ch-150" component={() => <ChiffonShall150/>}/>
             <Route path="/chiffon/shall-ch-gur" component={() => <ChiffonShallGur/>}/>
             <Route path="/jersey/shall-jr-180" component={() => <Jersey180/>}/>
-            <Route path="/jersey/shami-jr-150" component={() => <Jersey200/>}/>
+            <Route path="/jersey/shami-jr-200" component={() => <Jersey200/>}/>
             <Route path="/jersey/shall-jr-gur" component={() => <JerseyGur/>}/>
             <Route path="/jersey/dredha" component={() => <ZharsMeDredha />}/>
             <Route path="/jazz/shall-jazz-200" component={() => <JazzShall200/>}/>
@@ -180,7 +196,18 @@ function App() {
             <Route path="/praktike/sportiv" component={() => <PraktikeSport/>}/>
             <Route path="/praktike/femije" component={() => <PraktikeFemije/>}/>
             <Route path="/praktike/penye" component={() => <PraktikePenye/>}/>
+            <Route path="/kapuc/ceneli" component={() => <KapucCeneli/>}/>
+            <Route path="/kapuc/aspirim" component={() => <KapucEcardinAspirim/>}/>
+            <Route path="/kapuc/classic" component={() => <KapucEcardinClassic/>}/>
+            <Route path="/kapuc/silikon400" component={() => <KapucSilikon400/>}/>
+            <Route path="/kapuc/silikon500" component={() => <KapucSilikon500/>}/>
+            <Route path="/kapuc/klimatik" component={() => <KapucKlimatik/>}/>
+            <Route path="/kapuc/sedef" component={() => <KapucSedef/>}/>
             <Route path="/kapuc/tub" component={() => <KapucTub/>}/>
+            <Route path="/kapuc/tyl-tjeter" component={() => <KapucTylTjeter/>}/>
+            <Route path="/kapuc/tyl-i-lehte" component={() => <KapucTylLehte/>}/>
+            <Route path="/kapuc/elastik" component={() => <KapucXhElastik/>}/>
+            <Route path="/kapuc/pambuk" component={() => <KapucXhPambuk/>}/>
             {navItems.map(({href, Component}) => <Route key={href} path={href} component={Component}/>)}
           </Switch>
         </BasicLayout>
@@ -189,13 +216,6 @@ function App() {
 }
 
 export default App;
-
-
-import { useEffect } from 'react'
-import { useLocation } from 'wouter'
-import ZharsMeDredha from "./pages/jersey/ZharsMeDredha.jsx";
-import PraktikePenye from "./pages/praktike/PraktikePenye.jsx";
-import KapucTub from "./pages/kapuc/KapucTub.jsx";
 
 export function ScrollToTop() {
   const [location] = useLocation()

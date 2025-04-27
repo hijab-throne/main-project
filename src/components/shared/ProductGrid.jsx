@@ -43,7 +43,7 @@ const ProductItem = memo((props) => {
           <div className="absolute inset-0 bg-gray-100 rounded-lg animate-pulse" />
         )}
         <div
-          className="w-4 h-4 rounded-full border absolute bottom-2 right-2"
+          className={`w-4 h-4 rounded-full border absolute bottom-2 right-2 ${props.hideColorCircle ? "hidden" : ""}`}
           style={{ backgroundColor: color }}
         />
       </div>
@@ -51,10 +51,10 @@ const ProductItem = memo((props) => {
   );
 });
 
-const ProductGrid = ({ products, imagePosition }) => (
+const ProductGrid = ({ products, imagePosition, hideColorCircle }) => (
   <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
     {products.map((product) => (
-      <ProductItem key={product.id} product={product} imagePosition={imagePosition} />
+      <ProductItem key={product.id} product={product} imagePosition={imagePosition} hideColorCircle={hideColorCircle}/>
     ))}
   </div>
 );

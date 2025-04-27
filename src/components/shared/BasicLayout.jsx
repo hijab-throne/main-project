@@ -18,7 +18,7 @@ const isMobile = window.innerWidth < 768
   return (
     <div className="h-full flex flex-col items-center">
       {/* Header */}
-      <header className="w-full flex justify-between items-center px-4 py-3 bg-[#847DA1] bg-opacity-5">
+      <header className="sticky top-0 z-50 w-full flex justify-between items-center px-4 py-3 bg-[#F3F1FA]">
         {/* Logo */}
         <a href="/" className="flex flex-col items-center cursor-pointer">
           <img className="w-auto h-8" alt="logo" src={main} />
@@ -65,19 +65,26 @@ const isMobile = window.innerWidth < 768
                 >
                   {item.dropdown.map((dropdownItem) => (
                     <div key={dropdownItem.href} className="relative group">
-                      <a
-                        href={dropdownItem.href}
-                        className="block px-4 py-2 text-sm text-[#6F678E] hover:bg-[#8F89A9] hover:text-white whitespace-nowrap transition-all"
-                      >
-                        {dropdownItem.label}
-                        {dropdownItem.subdropdown && <span className="ml-2">‹</span>}
-                      </a>
-
-                      {/* Subdropdown */}
-                      {dropdownItem.subdropdown && (
-                        <div className="absolute right-full top-0 bg-white shadow-lg rounded-md z-20 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
-                          {dropdownItem.subdropdown.map((subItem) => (
+                        {dropdownItem.subdropdown ? <div
+                                className="cursor-pointer block px-4 py-2 text-sm text-[#6F678E] hover:bg-[#8F89A9] hover:text-white whitespace-nowrap transition-all"
+                            >
+                                {dropdownItem.label}
+                                {dropdownItem.subdropdown && <span className="ml-2">‹</span>}
+                            </div> :
                             <a
+                                href={dropdownItem.href}
+                                className="block px-4 py-2 text-sm text-[#6F678E] hover:bg-[#8F89A9] hover:text-white whitespace-nowrap transition-all"
+                            >
+                                {dropdownItem.label}
+                                {dropdownItem.subdropdown && <span className="ml-2">‹</span>}
+                            </a>}
+
+                        {/* Subdropdown */}
+                        {dropdownItem.subdropdown && (
+                            <div
+                                className="absolute right-full top-0 bg-white shadow-lg rounded-md z-20 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+                                {dropdownItem.subdropdown.map((subItem) => (
+                                    <a
                               key={subItem.href}
                               href={subItem.href}
                               className="block px-4 py-2 text-xs text-[#6F678E] hover:bg-[#8F89A9] hover:text-white whitespace-nowrap transition-all"

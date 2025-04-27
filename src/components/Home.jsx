@@ -67,7 +67,7 @@ export default function Home() {
       <div
           className="flex flex-col w-[100vw] md:w-full items-center text-center">
                 <PodcastPopup />
-          <div className="flex bg-main-bg bg-cover md:bg-right-top bg-center-top bg-no-repeat w-full h-auto aspect-[1.5] md:aspect-auto md:h-[46rem] flex-col md:flex-row items-center space-x-6">
+          <div className="flex bg-main-bg-mobile md:bg-main-bg bg-cover md:bg-right-top bg-center-top bg-no-repeat w-full h-auto aspect-[1.5] md:aspect-auto md:h-[46rem] flex-col md:flex-row items-center space-x-6">
               <div className="w-full flex justify-end relative">
                   <div className="md:w-1/2 md:py-0 py-6 w-full z-10">
                       <h1 className="hidden md:flex w-full justify-center md:text-4xl font-bold text-[#111827] mb-6">
