@@ -4,26 +4,26 @@ const products = [
 
   {
     id: 2,
-    image: "../src/assets/fustane-namazi/femije/2.jpg",
+    image: "../assets/fustane-namazi/femije/2.jpg",
   },
   {
     id: 3,
-    image: "../src/assets/fustane-namazi/femije/3.jpg",
+    image: "../assets/fustane-namazi/femije/3.jpg",
   },
   {
     id: 4,
-    image: "../src/assets/fustane-namazi/femije/4.jpg",
+    image: "../assets/fustane-namazi/femije/4.jpg",
   },
       {
     id: 5,
-    image: "../src/assets/fustane-namazi/femije/6.jpeg",
+    image: "../assets/fustane-namazi/femije/6.jpeg",
   },      {
     id: 7,
-    image: "../src/assets/fustane-namazi/femije/7.jpeg",
+    image: "../assets/fustane-namazi/femije/7.jpeg",
   },
       {
     id: 8,
-    image: "../src/assets/fustane-namazi/femije/8.jpeg",
+    image: "../assets/fustane-namazi/femije/8.jpeg",
   },
 ];
 

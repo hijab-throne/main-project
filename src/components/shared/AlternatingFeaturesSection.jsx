@@ -1,7 +1,7 @@
 export default function AlternatingFeaturesSection() {
   const features = [
     {
-      image: '../src/assets/personalizime/buqet1.jpeg',
+      image: '../assets/personalizime/buqet1.jpeg',
       title: 'Buqetë me Hijabe, Dhuratë Plot Stil',
       description: (
         <>
@@ -12,7 +12,7 @@ export default function AlternatingFeaturesSection() {
       reverse: false,
     },
     {
-      image: '../src/assets/personalizime/shami.jpg',
+      image: '../assets/personalizime/shami.jpg',
       title: 'Hijabe të Personalizuara',
       description: (
         <>

@@ -35,10 +35,10 @@ const details = [
 ];
 
 const paletteImages = {
-  palette1: "../src/assets/shall_chiffon/paletat/1.png",
-  palette2: "../src/assets/shall_chiffon/paletat/2.png",
-  palette3: "../src/assets/shall_chiffon/paletat/3.png",
-  palette4: "../src/assets/shall_chiffon/paletat/4.png",
+  palette1: "../assets/shall_chiffon/paletat/1.png",
+  palette2: "../assets/shall_chiffon/paletat/2.png",
+  palette3: "../assets/shall_chiffon/paletat/3.png",
+  palette4: "../assets/shall_chiffon/paletat/4.png",
 };
 
 export default function ChiffonShall180() {
@@ -47,7 +47,7 @@ export default function ChiffonShall180() {
     details={details}
     title="Shalli Chiffon"
     description="Shalli Chiffon është i njohur për lehtësinë dhe elegancën e tij, duke qenë një nga materialet më të preferuara për veshjet e vajzave me shami."
-    mainImage="../src/assets/shall_chiffon/main.png"
+    mainImage="../assets/shall_chiffon/main.png"
     mainAlt="Chiffon Hijab"
     featuresTitle="Karakteristikat e Shall-it Chiffon"
     arrayWithPalettes={paletteImages}

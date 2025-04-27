@@ -1,10 +1,10 @@
 import React from "react";
 
 const photos = [
-  { id: 1, image: "../src/assets/aktivitetet/politikat/img1.jpeg" },
-  { id: 2, image: "../src/assets/aktivitetet/politikat/img3.jpeg" },
-  { id: 3, image: "../src/assets/aktivitetet/politikat/img4.jpeg" },
-  { id: 4, image: "../src/assets/aktivitetet/politikat/img5.jpeg" },
+  { id: 1, image: "../assets/aktivitetet/politikat/img1.jpeg" },
+  { id: 2, image: "../assets/aktivitetet/politikat/img3.jpeg" },
+  { id: 3, image: "../assets/aktivitetet/politikat/img4.jpeg" },
+  { id: 4, image: "../assets/aktivitetet/politikat/img5.jpeg" },
 ];
 
 export default function PolitikatEDhurimit() {

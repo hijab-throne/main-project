@@ -40,7 +40,7 @@ export default function PraktikePenye() {
     details={details}
     title="Shami Praktike Penye Sal"
     description="Zbulo koleksionin tonë të shamive praktike – të lehta për t’u veshur, të rehatshme për përdorim ditor dhe të disponueshme në lloje të ndryshme për çdo stil dhe nevojë."
-    mainImage="../src/assets/shall_chiffon/main_img.png"
+    mainImage="../assets/shall_chiffon/main_img.png"
     mainAlt="Hijab"
     showMainImage={false}
     featuresTitle="Karakteristikat e Shamise Praktike"

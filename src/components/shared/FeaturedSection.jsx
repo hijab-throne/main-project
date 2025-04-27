@@ -7,17 +7,17 @@ export default function FeaturedSection() {
 
   const products = [
     {
-      src: '../src/assets/landing_page/lulu/DSCF6753.jpg',
+      src: '../assets/landing_page/lulu/DSCF6753.jpg',
       title: 'Chiffon me gurë',
       price: '1100 Lekë',
     },
     {
-      src: '../src/assets/landing_page/lulu/DSCF6736.jpg',
+      src: '../assets/landing_page/lulu/DSCF6736.jpg',
       title: 'Shami me shkëlqim',
       price: '1000 Lekë',
     },
     {
-      src: '../src/assets/landing_page/lulu/DSCF6812.jpg',
+      src: '../assets/landing_page/lulu/DSCF6812.jpg',
       title: 'Saten',
       price: '900 Lekë',
     },

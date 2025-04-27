@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import main from "../../assets/icons/main-logo.svg";
+import main from "../../../public/assets/icons/main-logo.svg";
 import { Menu, X } from "lucide-react";
 import { useLocation } from "wouter";
 
@@ -240,7 +240,7 @@ const isMobile = window.innerWidth < 768
                       target="_blank"
                       className="hover:scale-110 hover:text-blue-500 transition-all duration-300"
                   >
-                      <img src="../src/assets/landing_page/location-30.png"></img>
+                      <img src="../assets/landing_page/location-30.png"></img>
                   </a>
               </div>
           </footer>

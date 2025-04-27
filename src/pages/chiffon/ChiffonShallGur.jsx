@@ -35,8 +35,8 @@ const details = [
 ];
 
 const paletteImages = {
-  palette1: "../src/assets/chiffon_me_gura/paletat/1.png",
-  palette2: "../src/assets/chiffon_me_gura/paletat/2.png",
+  palette1: "../assets/chiffon_me_gura/paletat/1.png",
+  palette2: "../assets/chiffon_me_gura/paletat/2.png",
 };
 
 export default function ChiffonShallGur() {
@@ -45,7 +45,7 @@ export default function ChiffonShallGur() {
     details={details}
     title="Shalli Chiffon"
     description="Shalli Chiffon është i njohur për lehtësinë dhe elegancën e tij, duke qenë një nga materialet më të preferuara për veshjet e vajzave me shami."
-    mainImage="../src/assets/chiffon_me_gura/main.png"
+    mainImage="../assets/chiffon_me_gura/main.png"
     mainAlt="Chiffon Hijab"
     featuresTitle="Karakteristikat e Shall-it Chiffon"
     arrayWithPalettes={paletteImages}

@@ -1,15 +1,15 @@
 import React from "react";
 
 const panair_photos = [
-      { id: 1, image: "../src/assets/aktivitetet/panairet/2025/panair1.jpg" },
-      { id: 1, image: "../src/assets/aktivitetet/panairet/2025/panair2.jpg" },
-      { id: 1, image: "../src/assets/aktivitetet/panairet/2025/panair4.jpeg" },
-      { id: 1, image: "../src/assets/aktivitetet/panairet/2025/panair5.jpg" },
-      { id: 1, image: "../src/assets/aktivitetet/panairet/2025/panair6.jpg" },
-      { id: 1, image: "../src/assets/aktivitetet/panairet/2025/panair7.jpg" },
-      { id: 1, image: "../src/assets/aktivitetet/panairet/2025/panair8.jpg" },
-      { id: 1, image: "../src/assets/aktivitetet/panairet/2025/panair9.jpg" },
-      { id: 1, image: "../src/assets/aktivitetet/panairet/2025/panair10.jpg" },
+      { id: 1, image: "../assets/aktivitetet/panairet/2025/panair1.jpg" },
+      { id: 1, image: "../assets/aktivitetet/panairet/2025/panair2.jpg" },
+      { id: 1, image: "../assets/aktivitetet/panairet/2025/panair4.jpeg" },
+      { id: 1, image: "../assets/aktivitetet/panairet/2025/panair5.jpg" },
+      { id: 1, image: "../assets/aktivitetet/panairet/2025/panair6.jpg" },
+      { id: 1, image: "../assets/aktivitetet/panairet/2025/panair7.jpg" },
+      { id: 1, image: "../assets/aktivitetet/panairet/2025/panair8.jpg" },
+      { id: 1, image: "../assets/aktivitetet/panairet/2025/panair9.jpg" },
+      { id: 1, image: "../assets/aktivitetet/panairet/2025/panair10.jpg" },
     ]
 const Panairet = () => {
   return (

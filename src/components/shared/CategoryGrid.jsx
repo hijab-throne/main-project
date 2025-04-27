@@ -3,46 +3,46 @@ import { Link } from 'wouter'
 const categories = [
   {
     title: 'Chiffon',
-    image: '../src/assets/landing_page/lulu/DSCF6803.jpg',
+    image: '../assets/landing_page/lulu/DSCF6803.jpg',
     link: '/chiffon/shall-ch-gur',
   },
   {
     title: 'Jersey',
-    image: '../src/assets/landing_page/image00048.jpeg',
+    image: '../assets/landing_page/image00048.jpeg',
     link: '/jersey/shall-jr-180',
   },
   {
     title: 'Jazz',
-    image: '../src/assets/landing_page/image00054.jpeg',
+    image: '../assets/landing_page/image00054.jpeg',
     link: '/jazz/shall-jazz-200',
   },
   {
     title: 'Saten',
-    image: '../src/assets/landing_page/lulu/DSCF6812.jpg',
+    image: '../assets/landing_page/lulu/DSCF6812.jpg',
     link: '/saten',
   },
   {
     title: 'Fustan Namazi',
-    image: '../src/assets/fustane-namazi/femije/2.jpg',
+    image: '../assets/fustane-namazi/femije/2.jpg',
     link: '/fustan-namazi/per-femije',
   },
   {
     title: 'Sfilatat',
-    image: '../src/assets/aktivitetet/sfilatat/2022/image00007.jpeg',
+    image: '../assets/aktivitetet/sfilatat/2022/image00007.jpeg',
     link: '/aktivitete/sfiltata',
   },
   {
     title: 'Panairet',
-    image: '../src/assets/aktivitetet/panairet/2025/panair1.jpg',
+    image: '../assets/aktivitetet/panairet/2025/panair1.jpg',
     link: '/aktivitete/panaire',
   },
   {
     title: 'Politikat e dhurimit',
-    image: '../src/assets/aktivitetet/politikat/img5.jpeg',
+    image: '../assets/aktivitetet/politikat/img5.jpeg',
     link: '/aktivitete/politikat-e-dhurimit',
   }, {
     title: 'Aksesor',
-    image: '../src/assets/aksesor/1.jpeg',
+    image: '../assets/aksesor/1.jpeg',
     link: '/aksesor',
   },
 ]

@@ -38,7 +38,7 @@ export default function ZharsMeDredha() {
     details={details}
     title="Jersey"
     description="Hijabi i materialit ZHARS (jersey) është shumë i preferuar për shkak të disa karakteristikave kryesore që e bëjnë të rehatshëm dhe praktik për përdorim të përditshëm."
-    mainImage="../src/assets/shall_jersey/main.png"
+    mainImage="../assets/shall_jersey/main.png"
     mainAlt="Jersey Hijab"
     featuresTitle="Karakteristikat e Shall-it Jersey"
   />

@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
-import review1 from '../../assets/reviews/1.png'
-import review2 from '../../assets/reviews/2.png'
-import review3 from '../../assets/reviews/3.png'
+import review1 from '../../../public/assets/reviews/1.png'
+import review2 from '../../../public/assets/reviews/2.png'
+import review3 from '../../../public/assets/reviews/3.png'
 
 export default function NewsLetterSignup() {
   const photos = [review1, review2, review3]

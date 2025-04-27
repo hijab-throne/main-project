@@ -7,7 +7,7 @@ export default {
   theme: {
     extend: {
        backgroundImage: {
-        'main-bg': "url('/src/assets/landing_page/lulu/DSCF6700.jpg')",
+        'main-bg': "url('/assets/landing_page/lulu/DSCF6700.jpg')",
       },
     },
   },
