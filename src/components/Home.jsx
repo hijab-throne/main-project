@@ -4,6 +4,7 @@ import NewsLetterSignup from "./shared/NewsLetterSignup.jsx";
 import React, { useState, useEffect } from 'react';
 import AlternatingFeaturesSection from "./shared/AlternatingFeaturesSection.jsx";
 import CategoryGrid from "./shared/CategoryGrid.jsx";
+import BackgroundImage from "./BackgroundImage.jsx";
 
 const PodcastPopup = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -67,7 +68,13 @@ export default function Home() {
       <div
           className="flex flex-col w-[100vw] md:w-full items-center text-center">
                 <PodcastPopup />
-          <div className="flex bg-main-bg-mobile md:bg-main-bg bg-cover md:bg-right-top bg-center-top bg-no-repeat w-full h-auto aspect-[1.5] md:aspect-auto md:h-[46rem] flex-col md:flex-row items-center space-x-6">
+          <BackgroundImage
+  desktopJpg="/assets/modal/landing_page/lulu/DSCF6700.jpg"
+  mobileJpg="/assets/mobile/landing_page/lulu/DSCF6700.jpg"
+  desktopWebp="/assets/modal/landing_page/lulu/DSCF6700.webp"
+  mobileWebp="/assets/mobile/landing_page/lulu/DSCF6700.webp"
+ className="flex bg-cover md:bg-right-top bg-center-top bg-no-repeat w-full h-auto aspect-[1.5] md:aspect-auto md:h-[46rem] flex-col md:flex-row items-center space-x-6">
+
               <div className="w-full flex justify-end relative">
                   <div className="md:w-1/2 md:py-0 py-6 w-full z-10">
                       <h1 className="hidden md:flex w-full justify-center md:text-4xl font-bold text-[#111827] mb-6">
@@ -86,7 +93,7 @@ export default function Home() {
                       </div>
                   </div>
               </div>
-          </div>
+          </BackgroundImage>
           <div className="w-full bg-white">
               <div className="text-3xl font-bold my-4 md:my-8 md:hidden">Vishe me krenari</div>
               <p className="md:hidden mb-4 mt-2 text-sm text-gray-600 px-4">
