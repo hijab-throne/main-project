@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import main from "../../../public/assets/raw/icons/main-logo.svg";
+import main from "../../../public/assets/desktop/icons/main-logo.svg";
 import { Menu, X } from "lucide-react";
 import { useLocation } from "wouter";
 import OptimizedImage from "../ImageOptimized.jsx";
