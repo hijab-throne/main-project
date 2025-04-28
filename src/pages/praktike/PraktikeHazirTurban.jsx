@@ -40,7 +40,7 @@ export default function PraktikeHazirTurban() {
     details={details}
     title="Shami Praktike Hazir Turban"
     description="Zbulo koleksionin tonë të shamive praktike – të lehta për t’u veshur, të rehatshme për përdorim ditor dhe të disponueshme në lloje të ndryshme për çdo stil dhe nevojë."
-    mainImage="../assets/shall_chiffon/main_img.png"
+    mainImage="/shall_chiffon/main_img.png"
     showMainImage={false}
     mainAlt=" Hijab"
     featuresTitle="Karakteristikat e Shamise Praktike"

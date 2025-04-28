@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useState, useCallback } from 'react';
 import { X } from "lucide-react";
+import OptimizedImage from "./ImageOptimized.jsx";
 // Create Context
 const ImagePreviewContext = createContext();
 
@@ -58,8 +59,9 @@ const ImagePreviewModal = ({ imageUrl, onClose }) => {
 
 
         {/* Image */}
-        <img
+        <OptimizedImage
             src={imageUrl}
+            variant="modal"
             alt="Preview"
             className="max-w-[90vw] h-[90vh] w-auto object-cover rounded-lg animate-fadeIn"
         />

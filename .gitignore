@@ -1,4 +1,6 @@
 # Logs
+/public/assets/raw/
+/scripts/
 logs
 *.log
 npm-debug.log*

@@ -1,3 +1,4 @@
+import OptimizedImage from "../ImageOptimized.jsx";
 
 
 const ColorFilter = ({ selectedPalette, setSelectedPalette, uniquePalettes, productCount, arrayWithPalettes }) => (
@@ -20,7 +21,7 @@ const ColorFilter = ({ selectedPalette, setSelectedPalette, uniquePalettes, prod
                       selectedPalette === paletteKey ? "border-black" : "border-transparent"
                   }`}
               >
-                  <img src={arrayWithPalettes[paletteKey]} alt={paletteKey} className="w-full h-full object-cover"/>
+                  <OptimizedImage src={arrayWithPalettes[paletteKey]} alt={paletteKey} className="w-full h-full object-cover"/>
               </button>
           ))}
       </div>

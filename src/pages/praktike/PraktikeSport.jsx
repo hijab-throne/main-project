@@ -40,7 +40,7 @@ export default function PraktikeSport() {
     details={details}
     title="Shami Praktike Fular Sportiv Duz"
     description="Zbulo koleksionin tonë të shamive praktike – të lehta për t’u veshur, të rehatshme për përdorim ditor dhe të disponueshme në lloje të ndryshme për çdo stil dhe nevojë."
-    mainImage="../assets/shall_chiffon/main_img.png"
+    mainImage="/shall_chiffon/main_img.png"
     mainAlt="Praktike"
     showMainImage={false}
     featuresTitle="Karakteristikat e Shamise Praktike"

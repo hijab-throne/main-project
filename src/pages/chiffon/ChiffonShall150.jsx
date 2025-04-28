@@ -35,10 +35,10 @@ const details = [
 ];
 
 const paletteImages = {
-  palette1: "../assets/shall_chiffon_150/paletat/1.png",
-  palette2: "../assets/shall_chiffon_150/paletat/2.png",
-  palette3: "../assets/shall_chiffon_150/paletat/3.png",
-  palette4: "../assets/shall_chiffon_150/paletat/4.png",
+  palette1: "/shall_chiffon_150/paletat/1.png",
+  palette2: "/shall_chiffon_150/paletat/2.png",
+  palette3: "/shall_chiffon_150/paletat/3.png",
+  palette4: "/shall_chiffon_150/paletat/4.png",
 };
 
 export default function ChiffonShall150() {
@@ -47,7 +47,7 @@ export default function ChiffonShall150() {
     details={details}
     title="Shami Chiffon"
     description="Shami Chiffon është i njohur për lehtësinë dhe elegancën e tij, duke qenë një nga materialet më të preferuara për veshjet e vajzave me shami."
-    mainImage="../assets/shall_chiffon_150/main.png"
+    mainImage="/shall_chiffon_150/main.png"
     mainAlt="Chiffon Hijab"
     imagePosition="object-top"
     featuresTitle="Karakteristikat e Shamise Chiffon"

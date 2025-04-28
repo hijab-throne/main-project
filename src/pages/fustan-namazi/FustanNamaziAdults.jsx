@@ -1,30 +1,31 @@
 import React from "react";
+import OptimizedImage from "../../components/ImageOptimized.jsx";
 
 const products = [
   {
     id: 1,
-    image: "../assets/fustane-namazi/te_rritur/1.jpeg",
+    image: "/fustane-namazi/te_rritur/1.jpeg",
     name: "Fustan Namazi - Blu Mbretëror",
     price: "2200L",
     color: "Ngjyrë e thellë dhe qetësuese për një përqendrim të plotë gjatë faljes"
   },
   {
     id: 2,
-    image: "../assets/fustane-namazi/te_rritur/2.jpg",
+    image: "/fustane-namazi/te_rritur/2.jpg",
     name: "Fustan Namazi - E Zezë Klasike",
     price: "2200L",
     color: "Elegancë dhe thjeshtësi – zgjedhja më e preferuar për çdo ditë"
   },
   {
     id: 3,
-    image: "../assets/fustane-namazi/te_rritur/3.jpeg",
+    image: "/fustane-namazi/te_rritur/3.jpeg",
     name: "Fustan Namazi - Rozë e Butë",
     price: "2200L",
     color: "Ngjyrë delikate dhe femërore që sjell qetësi dhe rehati"
   },
   {
     id: 4,
-    image: "../assets/fustane-namazi/te_rritur/4.jpg",
+    image: "/fustane-namazi/te_rritur/4.jpg",
     name: "Fustan Namazi - Bezhë Natyrale",
     price: "2200L",
     color: "Neutral dhe i lehtë për t’u kombinuar – perfekt për çdo stinë"
@@ -68,7 +69,7 @@ const FustanNamaziAdults = () => {
                     key={product.id}
                     className="bg-gray-50 rounded-xl overflow-hidden shadow hover:shadow-lg transition"
                 >
-                  <img
+                  <OptimizedImage
                       src={product.image}
                       alt={product.name}
                       className="w-full h-72 object-top object-cover"

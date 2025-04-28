@@ -39,7 +39,7 @@ export default function Saten() {
     details={details}
     title="Shalli Saten"
     description="Shalli Saten është i njohur për butësinë dhe shkëlqimin e tij delikat; tekstura e lëmuar i lejon drapimet elegante pa rrudha, ndërsa materiali rrëshqitës siguron një veshje të rehatshme dhe të qëndrueshme gjatë gjithë ditës. Ai ofron një pamje rafinuar, e përshtatshme si për rastet formale ashtu edhe për përdorimin e përditshëm."
-    mainImage="../assets/saten/saten_main.png"
+    mainImage="/saten/saten_main.png"
     mainAlt="Saten Hijab"
     featuresTitle="Karakteristikat e Shall-it Saten"
   />

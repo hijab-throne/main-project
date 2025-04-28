@@ -1,48 +1,49 @@
 import { Link } from 'wouter'
+import OptimizedImage from "../ImageOptimized.jsx";
 
 const categories = [
   {
     title: 'Chiffon',
-    image: '../assets/landing_page/lulu/DSCF6803.jpg',
+    image: '/landing_page/lulu/DSCF6803.jpg',
     link: '/chiffon/shall-ch-gur',
   },
   {
     title: 'Jersey',
-    image: '../assets/landing_page/image00048.jpeg',
+    image: '/landing_page/image00048.jpeg',
     link: '/jersey/shall-jr-180',
   },
   {
     title: 'Jazz',
-    image: '../assets/landing_page/image00054.jpeg',
+    image: '/landing_page/image00054.jpeg',
     link: '/jazz/shall-jazz-200',
   },
   {
     title: 'Saten',
-    image: '../assets/landing_page/lulu/DSCF6812.jpg',
+    image: '/landing_page/lulu/DSCF6812.jpg',
     link: '/saten',
   },
   {
     title: 'Fustan Namazi',
-    image: '../assets/fustane-namazi/femije/2.jpg',
+    image: '/fustane-namazi/femije/2.jpg',
     link: '/fustan-namazi/per-femije',
   },
   {
     title: 'Sfilatat',
-    image: '../assets/aktivitetet/sfilatat/2022/image00007.jpeg',
+    image: '/aktivitetet/sfilatat/2022/image00007.jpeg',
     link: '/aktivitete/sfiltata',
   },
   {
     title: 'Panairet',
-    image: '../assets/aktivitetet/panairet/2025/panair1.jpg',
+    image: '/aktivitetet/panairet/2025/panair1.jpg',
     link: '/aktivitete/panaire',
   },
   {
     title: 'Politikat e dhurimit',
-    image: '../assets/aktivitetet/politikat/img5.jpeg',
+    image: '/aktivitetet/politikat/img5.jpeg',
     link: '/aktivitete/politikat-e-dhurimit',
   }, {
     title: 'Aksesor',
-    image: '../assets/aksesor/1.jpeg',
+    image: '/aksesor/1.jpeg',
     link: '/aksesor',
   },
 ]
@@ -62,7 +63,7 @@ export default function CategoryGrid() {
             className="group cursor-pointer"
           >
             <div className="aspect-square overflow-hidden rounded-lg shadow-md">
-              <img
+              <OptimizedImage
                 src={cat.image}
                 alt={cat.title}
                 className="w-full h-full object-top object-cover group-hover:scale-105 transition-transform duration-300"

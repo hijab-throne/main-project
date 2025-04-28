@@ -1,7 +1,9 @@
+import OptimizedImage from "../ImageOptimized.jsx";
+
 export default function AlternatingFeaturesSection() {
   const features = [
     {
-      image: '../assets/personalizime/buqet1.jpeg',
+      image: '/personalizime/buqet1.jpeg',
       title: 'Buqetë me Hijabe, Dhuratë Plot Stil',
       description: (
         <>
@@ -12,7 +14,7 @@ export default function AlternatingFeaturesSection() {
       reverse: false,
     },
     {
-      image: '../assets/personalizime/shami.jpg',
+      image: '/personalizime/shami.jpg',
       title: 'Hijabe të Personalizuara',
       description: (
         <>
@@ -35,7 +37,7 @@ export default function AlternatingFeaturesSection() {
         >
           {/* Image */}
           <div className="w-full md:w-1/2">
-            <img
+            <OptimizedImage
               src={image}
               alt={title}
               className="rounded-lg object-cover w-full h-[400px]"

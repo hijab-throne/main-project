@@ -44,7 +44,7 @@ export default function JazzShall200() {
     details={details}
     title="Shalli Jazz"
     description="Lehtësia dhe eleganca e këtij materiali i përshtatet në mënyrë të përkryer çdo rasti dhe stine. I njohur për rehatinë dhe mënyrën se si përshtatet në mënyrë ideale për çdo person."
-    mainImage="../assets/shall_jazz/main2.png"
+    mainImage="/shall_jazz/main2.png"
     mainAlt="Jazz Hijab"
     featuresTitle="Karakteristikat e Shall-it Jazz"
   />

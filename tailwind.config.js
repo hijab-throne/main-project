@@ -7,8 +7,8 @@ export default {
   theme: {
     extend: {
        backgroundImage: {
-        'main-bg': "url('/assets/landing_page/lulu/DSCF6700.jpg')",
-        'main-bg-mobile': "url('/assets/landing_page/lulu/DSCF6700-mobile.jpg')",
+        'main-bg': "url('/assets/desktop/landing_page/lulu/DSCF6700.jpg')",
+        'main-bg-mobile': "url('/assets/mobile/landing_page/lulu/DSCF6700.jpg')",
       },
     },
   },

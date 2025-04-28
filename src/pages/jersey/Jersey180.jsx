@@ -35,10 +35,10 @@ const details = [
 ];
 
 const paletteImages = {
-  palette1: "../assets/shall_chiffon/paletat/1.png",
-  palette2: "../assets/shall_chiffon/paletat/2.png",
-  palette3: "../assets/shall_chiffon/paletat/3.png",
-  palette4: "../assets/shall_chiffon/paletat/4.png",
+  palette1: "/shall_chiffon/paletat/1.png",
+  palette2: "/shall_chiffon/paletat/2.png",
+  palette3: "/shall_chiffon/paletat/3.png",
+  palette4: "/shall_chiffon/paletat/4.png",
 };
 
 export default function Jersey180() {
@@ -47,7 +47,7 @@ export default function Jersey180() {
     details={details}
     title="Jersey"
     description="Hijabi i materialit ZHARS (jersey) është shumë i preferuar për shkak të disa karakteristikave kryesore që e bëjnë të rehatshëm dhe praktik për përdorim të përditshëm."
-    mainImage="../assets/shall_jersey/main.png"
+    mainImage="/shall_jersey/main.png"
     mainAlt="Jersey Hijab"
     featuresTitle="Karakteristikat e Shall-it Jersey"
     arrayWithPalettes={paletteImages}

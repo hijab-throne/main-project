@@ -40,7 +40,7 @@ export default function ShallKrep() {
     details={details}
     title="Shalli Krep"
     description="Teksturë jashtëzakonisht e butë dhe e lehtë, sikur të mos e ndjeni fare. E përkryer për të gjitha rastet."
-    mainImage="../assets/shall_krep/main.png"
+    mainImage="/shall_krep/main.png"
     mainAlt="Krep Hijab"
     featuresTitle="Karakteristikat e Shall-it Krep"
   />

@@ -1,10 +1,8 @@
 import React, { useState } from 'react'
-import review1 from '../../../public/assets/reviews/1.png'
-import review2 from '../../../public/assets/reviews/2.png'
-import review3 from '../../../public/assets/reviews/3.png'
+import OptimizedImage from "../ImageOptimized.jsx";
 
 export default function NewsLetterSignup() {
-  const photos = [review1, review2, review3]
+  const photos = ['reviews/1.png', 'reviews/2.png', 'reviews/3.png']
   const [current, setCurrent] = useState(0)
   const lastIndex = photos.length - 1
 
@@ -28,7 +26,7 @@ export default function NewsLetterSignup() {
 
         {/* Image container */}
         <div className="overflow-hidden rounded-lg shadow-md h-48 sm:h-64 flex items-center justify-center bg-white w-full">
-          <img
+          <OptimizedImage
             src={photos[current]}
             alt={`Review ${current + 1}`}
             className="max-h-full max-w-full object-contain"

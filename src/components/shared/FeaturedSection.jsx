@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react'
+import OptimizedImage from "../ImageOptimized.jsx";
 
 export default function FeaturedSection() {
   const [showAll, setShowAll] = useState(false)
@@ -7,17 +8,17 @@ export default function FeaturedSection() {
 
   const products = [
     {
-      src: '../assets/landing_page/lulu/DSCF6753.jpg',
+      src: '/landing_page/lulu/DSCF6753.jpg',
       title: 'Chiffon me gurë',
       price: '1100 Lekë',
     },
     {
-      src: '../assets/landing_page/lulu/DSCF6736.jpg',
+      src: '/landing_page/lulu/DSCF6736.jpg',
       title: 'Shami me shkëlqim',
       price: '1000 Lekë',
     },
     {
-      src: '../assets/landing_page/lulu/DSCF6812.jpg',
+      src: '/landing_page/lulu/DSCF6812.jpg',
       title: 'Saten',
       price: '900 Lekë',
     },
@@ -65,7 +66,7 @@ export default function FeaturedSection() {
             className="bg-white rounded-xl shadow-lg overflow-hidden flex flex-col"
             style={{ boxShadow: '0 10px 30px #8F89A9' }}
           >
-            <img
+            <OptimizedImage
               src={product.src}
               alt={product.title}
               className="w-full h-96 object-cover object-top"
@@ -91,7 +92,7 @@ export default function FeaturedSection() {
               className="bg-white rounded-xl shadow-lg overflow-hidden flex flex-col"
               style={{ boxShadow: '0 10px 30px #8F89A9' }}
             >
-              <img
+              <OptimizedImage
                 src={product.src}
                 alt={product.title}
                 className="w-full h-80 object-cover object-top"

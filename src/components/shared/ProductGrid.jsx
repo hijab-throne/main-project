@@ -1,5 +1,6 @@
 import React, { memo, useRef, useState, useEffect } from 'react';
 import {useImagePreview} from "../ImagePreview.jsx";
+import OptimizedImage from "../ImageOptimized.jsx";
 
 const ProductItem = memo((props) => {
   const {color,width,height,name,image} = props?.product || {}
@@ -27,7 +28,7 @@ const ProductItem = memo((props) => {
     <div ref={ref} className="relative md:w-44 w-full">
       <div className="relative aspect-square cursor-pointer"  onClick={()=>openImage(image)}>
         {isVisible && (
-          <img
+          <OptimizedImage
             src={image}
             alt={name || "Product"}
             loading="lazy"

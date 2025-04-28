@@ -1,4 +1,5 @@
 import React from "react";
+import OptimizedImage from "../ImageOptimized.jsx";
 
 const ProductDescription = props => {
   const { title, description, details, imageSrc, imageAlt, showMainImage } = props;
@@ -13,7 +14,7 @@ const ProductDescription = props => {
       </div>
     </div>
     <div className={`${showMainImage === false ? "hidden" : ""} flex w-full md:my-6 my-2 lg:mt-auto md:px-8 px-2`}>
-      <img
+      <OptimizedImage
         src={imageSrc}
         alt={imageAlt}
         className="md:min-h-[300px] md:h-full h-[250px] mx-auto rounded-lg md:w-64 w-full md:object-cover object-contain"

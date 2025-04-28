@@ -40,7 +40,7 @@ export default function JerseyGur() {
     details={details}
     title="Jersey shall me gure"
     description="Hijabi i materialit ZHARS (jersey) është shumë i preferuar për shkak të disa karakteristikave kryesore që e bëjnë të rehatshëm dhe praktik për përdorim të përditshëm."
-    mainImage="../assets/shall_jersey/main.png"
+    mainImage="/shall_jersey/main.png"
     mainAlt="Chiffon Hijab"
     featuresTitle="Karakteristikat e Shall-it Jersey me gure"
   />

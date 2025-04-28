@@ -1,10 +1,11 @@
 import React from "react";
+import OptimizedImage from "../../components/ImageOptimized.jsx";
 
 const photos = [
-  { id: 1, image: "../assets/aktivitetet/politikat/img1.jpeg" },
-  { id: 2, image: "../assets/aktivitetet/politikat/img3.jpeg" },
-  { id: 3, image: "../assets/aktivitetet/politikat/img4.jpeg" },
-  { id: 4, image: "../assets/aktivitetet/politikat/img5.jpeg" },
+  { id: 1, image: "/aktivitetet/politikat/img1.jpeg" },
+  { id: 2, image: "/aktivitetet/politikat/img3.jpeg" },
+  { id: 3, image: "/aktivitetet/politikat/img4.jpeg" },
+  { id: 4, image: "/aktivitetet/politikat/img5.jpeg" },
 ];
 
 export default function PolitikatEDhurimit() {
@@ -49,7 +50,7 @@ export default function PolitikatEDhurimit() {
                 <p className="text-gray-600 mt-2">{section.text}</p>
               </div>
               <div className="md:w-1/2">
-                <img src={section.image} alt={section.title} className=" w-64 md:w-full h-64 md:h-72 object-cover rounded-lg shadow-md" />
+                <OptimizedImage src={section.image} alt={section.title} className=" w-64 md:w-full h-64 md:h-72 object-cover rounded-lg shadow-md" />
               </div>
             </div>
           ))}
