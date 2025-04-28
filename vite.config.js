@@ -1,13 +1,9 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
-import viteCompression from 'vite-plugin-compression';
-import path from 'path';
 
-export default defineConfig({
+export default defineConfig(({ mode }) => ({
   plugins: [
-    react(),
-    viteCompression({ algorithm: 'brotliCompress', ext: '.br', threshold: 10240 }),
-    viteCompression({ algorithm: 'gzip', ext: '.gz', threshold: 10240 }),
+    react(),  // ONLY react, no viteCompression anymore
   ],
   resolve: {
     alias: {
@@ -21,11 +17,11 @@ export default defineConfig({
     target: 'esnext',
     outDir: 'dist',
     assetsDir: 'assets',
-    minify: 'terser',
+    minify: 'terser',  // we assume you installed terser
     terserOptions: {
       compress: {
-        drop_console: true,
-        drop_debugger: true,
+        drop_console: mode === 'production',
+        drop_debugger: mode === 'production',
       },
       format: {
         comments: false,
@@ -34,9 +30,9 @@ export default defineConfig({
     brotliSize: true,
     chunkSizeWarningLimit: 500,
     cssCodeSplit: true,
-    sourcemap: false,
+    sourcemap: mode !== 'production',  // Enable sourcemap in dev, disable in prod
   },
   esbuild: {
-    drop: ['console', 'debugger'],
+    drop: mode === 'production' ? ['console', 'debugger'] : [],
   },
-});
+}));
