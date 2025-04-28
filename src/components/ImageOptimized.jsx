@@ -6,10 +6,10 @@ const isMobileDevice = () => {
 };
 
 const isFullUrl = (url) => /^https?:\/\//i.test(url);
-const isSvg = (src) => src.toLowerCase().endsWith('.svg');
+const isSvg = (src = "") => src.toLowerCase().endsWith('.svg');
 
 const OptimizedImage = ({
-  src,
+  src = '',
   alt = '',
   className = '',
   loading = 'lazy',
@@ -40,7 +40,6 @@ const OptimizedImage = ({
       />
     );
   }
-
   const fileBase = src.substring(0, src.lastIndexOf('.'));
   const folder = variant === 'modal' ? 'modal' : isMobile ? 'mobile' : 'desktop';
 

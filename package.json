@@ -4,6 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
+    "optimize:images": "node scripts/optimize-images.cjs\n",
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
