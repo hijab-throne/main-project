@@ -29,7 +29,7 @@ const features = [
 ];
 
 const details = [
-  "<strong>Çmimi</strong> "
+  "<strong>Çmimi</strong> 1000L"
 ];
 
 export default function ZharsMeDredha() {
@@ -39,6 +39,7 @@ export default function ZharsMeDredha() {
     title="Jersey"
     description="Hijabi i materialit ZHARS (jersey) është shumë i preferuar për shkak të disa karakteristikave kryesore që e bëjnë të rehatshëm dhe praktik për përdorim të përditshëm."
     mainImage="/shall_jersey/main.png"
+    showMainImage={false}
     mainAlt="Jersey Hijab"
     featuresTitle="Karakteristikat e Shall-it Jersey"
   />

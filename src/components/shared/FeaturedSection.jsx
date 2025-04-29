@@ -10,16 +10,19 @@ export default function FeaturedSection() {
     {
       src: '/landing_page/lulu/DSCF6753.jpg',
       title: 'Chiffon me gurë',
+      link:"/chiffon/shall-ch-gur",
       price: '1100 Lekë',
     },
     {
       src: '/landing_page/lulu/DSCF6736.jpg',
       title: 'Shami me shkëlqim',
+      link:"/shkelqim",
       price: '1000 Lekë',
     },
     {
       src: '/landing_page/lulu/DSCF6812.jpg',
       title: 'Saten',
+      link:"/saten",
       price: '900 Lekë',
     },
   ]
@@ -61,7 +64,7 @@ export default function FeaturedSection() {
       {/* 👇 Desktop view (always show all) */}
       <div className="hidden md:grid grid-cols-3 gap-6">
         {products.map((product, index) => (
-          <div
+          <a href={product.link}
             key={index}
             className="bg-white rounded-xl shadow-lg overflow-hidden flex flex-col"
             style={{ boxShadow: '0 10px 30px #8F89A9' }}
@@ -79,7 +82,7 @@ export default function FeaturedSection() {
                 {product.price}
               </p>
             </div>
-          </div>
+          </a>
         ))}
       </div>
 
@@ -87,7 +90,7 @@ export default function FeaturedSection() {
       <div className="block md:hidden">
         <div className="grid grid-cols-1 gap-6">
           {(showAll ? products : [products[0]]).map((product, index) => (
-            <div
+            <a href={product.link}
               key={index}
               className="bg-white rounded-xl shadow-lg overflow-hidden flex flex-col"
               style={{ boxShadow: '0 10px 30px #8F89A9' }}
@@ -105,7 +108,7 @@ export default function FeaturedSection() {
                   {product.price}
                 </p>
               </div>
-            </div>
+            </a>
           ))}
         </div>
 

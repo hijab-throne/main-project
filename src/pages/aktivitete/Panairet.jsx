@@ -29,20 +29,21 @@ const Panairet = () => {
           </p>
         </section>
 
-        <section className="flex flex-wrap justify-center gap-4">
+        <section className="flex flex-wrap md:justify-center gap-4">
           {panair_photos.map((item) => (
-              <OptimizedImage
-                  key={item.id}
-                  src={item.image}
-                  alt={`Sfilata ${item.id}`}
-                  className="w-40 h-40 object-cover rounded-lg shadow-md"
-              />
-          ))}
-        </section>
+              <div className="inline-flex w-max h-max" key={item.id}>
+                  <OptimizedImage
+                      src={item.image}
+                      alt={`Sfilata ${item.id}`}
+                      className="w-40 h-40 object-cover rounded-lg shadow-md"
+                  />
+              </div>
+                  ))}
+              </section>
 
-      </div>
-    </div>
-  );
-};
+              </div>
+              </div>
+              );
+          };
 
-export default Panairet;
+            export default Panairet;

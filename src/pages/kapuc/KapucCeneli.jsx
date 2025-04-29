@@ -30,7 +30,7 @@ const features = [
 
 
 const details = [
-  "<strong>Çmimi</strong> 400L"
+  "<strong>Çmimi</strong> 500L"
 ];
 
 export default function KapucCeneli() {

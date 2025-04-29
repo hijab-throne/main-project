@@ -41,6 +41,7 @@ export default function Jersey200() {
     title="Jersey"
     description="Hijabi i materialit ZHARS (jersey) është shumë i preferuar për shkak të disa karakteristikave kryesore që e bëjnë të rehatshëm dhe praktik për përdorim të përditshëm."
     mainImage="/shall_jersey/main.png"
+    showMainImage={false}
     mainAlt="Chiffon Hijab"
     featuresTitle="Karakteristikat e Shamise Jersey"
   />

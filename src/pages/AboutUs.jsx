@@ -1,13 +1,24 @@
+import OptimizedImage from "../components/ImageOptimized.jsx";
+
 const AboutUs = () => {
   return (
     <div className="py-16 px-6 md:px-20">
 
       <div className="max-w-4xl mx-auto text-center">
         <h2 className="text-xl md:text-4xl font-extrabold text-gray-800">Rreth Nesh</h2>
-        {/*<Color1 width={44} height={64} fill="#444" className="mr-2" />*/}
         <p className="mt-4 text-lg text-gray-600">
         Hijab Throne u krijua për të ofruar hijabe cilësore dhe elegante, të dizajnuara për çdo stil dhe rast. Ne ofrojmë një koleksion të gjerë shajesh, të cilat pasqyrojnë përkushtimin tonë ndaj cilësisë dhe shijes, duke plotësuar nevojat e grave shqiptare për veshje që reflektojnë besimin dhe personalitetin e tyre unik.        </p>
       </div>
+
+          <div className="w-full flex justify-center">
+              <OptimizedImage
+            src="/landing_page/image00057.jpeg"
+            alt="About us"
+            width={1644}
+            height={1184}
+            className="max-h-[400px] max-w-full object-cover [object-position:0_-100px] rounded-lg mt-4"
+          />
+          </div>
 
       <div className="mt-12 space-y-12 max-w-5xl mx-auto">
         {[{

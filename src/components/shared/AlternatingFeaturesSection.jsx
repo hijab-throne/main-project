@@ -3,7 +3,7 @@ import OptimizedImage from "../ImageOptimized.jsx";
 export default function AlternatingFeaturesSection() {
   const features = [
     {
-      image: '/personalizime/buqet1.jpeg',
+      image: '/personalizime/buqeta.jpeg',
       title: 'Buqetë me Hijabe, Dhuratë Plot Stil',
       description: (
         <>

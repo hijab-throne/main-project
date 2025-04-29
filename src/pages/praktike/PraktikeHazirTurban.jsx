@@ -30,7 +30,7 @@ const features = [
 
 
 const details = [
-  "<strong>Çmimi</strong> 1100L"
+  "<strong>Çmimi</strong> 900L"
 ];
 
 

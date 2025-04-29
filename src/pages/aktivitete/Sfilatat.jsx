@@ -110,16 +110,17 @@ const Sfilatat = () => {
         <h2 className="text-xl md:text-3xl text-center font-semibold text-gray-700 mb-4">
           Sfilata 2022
         </h2>
-        <section className="flex flex-wrap justify-center gap-4">
+        <section className="flex flex-wrap md:justify-center gap-4">
           {sfilata_2022.map((item, idx) => (
-              <OptimizedImage
-                  key={item.id}
+              <div className="inline-flex w-max h-max"  key={item.id}>
+                <OptimizedImage
                   src={item.image}
                   alt={`Sfilata ${item.id}`}
                   className={`w-40 h-40  sm:w-48 sm:h-48  md:w-56 md:h-56  lg:w-64 lg:h-64  object-cover rounded-lg shadow-md
                 ${idx > 2 && !open2022 ? 'hidden md:block' : ''}
               `}
               />
+              </div>
           ))}
         </section>
         {/* toggle only on mobile */}
@@ -139,10 +140,10 @@ const Sfilatat = () => {
           <h2 className="text-xl md:text-3xl text-center font-semibold text-gray-700 mb-4">
             Sfilata 2020
           </h2>
-          <section className="flex flex-wrap justify-center gap-4">
+          <section className="flex flex-wrap md:justify-center gap-4">
             {sfilata_2020.map((item, idx) => (
+              <div className="inline-flex w-max h-max" key={item.id}>
                 <OptimizedImage
-                    key={item.id}
                     src={item.image}
                     alt={`Sfilata ${item.id}`}
                     className={`
@@ -150,6 +151,7 @@ const Sfilatat = () => {
                   ${idx > 2 && !open2020 ? 'hidden md:block' : ''}
                 `}
                 />
+              </div>
             ))}
           </section>
           <div className="text-center mt-4 md:hidden">
@@ -168,16 +170,17 @@ const Sfilatat = () => {
         <h2 className="text-xl md:text-3xl text-center font-semibold text-gray-700 mb-4">
           Sfilata 2019
         </h2>
-        <section className="flex flex-wrap justify-center gap-4">
+        <section className="flex flex-wrap md:justify-center gap-4">
           {sfilata_2019.map((item, idx) => (
+            <div className="inline-flex w-max h-max" key={item.id}>
               <OptimizedImage
-                  key={item.id}
                   src={item.image}
                   alt={`Sfilata ${item.id}`}
                   className={`w-40 h-40  sm:w-48 sm:h-48  md:w-56 md:h-56  lg:w-64 lg:h-64 object-cover rounded-lg shadow-md
                 ${idx > 2 && !open2019 ? 'hidden md:block' : ''}
               `}
               />
+                            </div>
           ))}
         </section>
         <div className="text-center mt-4 md:hidden">

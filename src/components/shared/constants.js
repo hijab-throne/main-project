@@ -126,20 +126,6 @@ const jersey = [
     ]
 
 const shall_krep = [
-  { id: 1, image: "/shall_krep/image00001.jpeg", color: "#9199CD" },
-  { id: 2, image: "/shall_krep/image00002.jpeg", color: "#35407B" },
-  { id: 3, image: "/shall_krep/image00003.jpeg", color: "#867AE4" },
-  { id: 4, image: "/shall_krep/image00004.jpeg", color: "#7B64B7" },
-  { id: 5, image: "/shall_krep/image00005.jpeg", color: "#564275" },
-  { id: 6, image: "/shall_krep/image00006.jpeg", color: "#5E4A73" },
-  { id: 7, image: "/shall_krep/image00007.jpeg", color: "#6F486E" },
-  { id: 8, image: "/shall_krep/image00008.jpeg", color: "#7A5B72" },
-  { id: 9, image: "/shall_krep/image00009.jpeg", color: "#886374" },
-  { id: 10, image: "/shall_krep/image00010.jpeg", color: "#943A61" },
-  { id: 11, image: "/shall_krep/image00011.jpeg", color: "#7A446E" },
-  { id: 12, image: "/shall_krep/image00012.jpeg", color: "#AB0059" },
-  { id: 13, image: "/shall_krep/image00013.jpeg", color: "#0A0F1C" },
-  { id: 14, image: "/shall_krep/image00014.jpeg", color: "#175065" },
   { id: 15, image: "/shall_krep/image00015.jpeg", color: "#216B79" },
   { id: 16, image: "/shall_krep/image00016.jpeg", color: "#47999E" },
   { id: 17, image: "/shall_krep/image00017.jpeg", color: "#195C46" },
@@ -187,6 +173,20 @@ const shall_krep = [
   { id: 59, image: "/shall_krep/image00059.jpeg", color: "#D7827C" },
   { id: 60, image: "/shall_krep/image00060.jpeg", color: "#A3120A" },
   { id: 61, image: "/shall_krep/image00061.jpeg", color: "#A41035" },
+ { id: 1, image: "/shall_krep/image00001.jpeg", color: "#9199CD" },
+  { id: 2, image: "/shall_krep/image00002.jpeg", color: "#35407B" },
+  { id: 3, image: "/shall_krep/image00003.jpeg", color: "#867AE4" },
+  { id: 4, image: "/shall_krep/image00004.jpeg", color: "#7B64B7" },
+  { id: 5, image: "/shall_krep/image00005.jpeg", color: "#564275" },
+  { id: 6, image: "/shall_krep/image00006.jpeg", color: "#5E4A73" },
+  { id: 7, image: "/shall_krep/image00007.jpeg", color: "#6F486E" },
+  { id: 8, image: "/shall_krep/image00008.jpeg", color: "#7A5B72" },
+  { id: 9, image: "/shall_krep/image00009.jpeg", color: "#886374" },
+  { id: 10, image: "/shall_krep/image00010.jpeg", color: "#943A61" },
+  { id: 11, image: "/shall_krep/image00011.jpeg", color: "#7A446E" },
+  { id: 12, image: "/shall_krep/image00012.jpeg", color: "#AB0059" },
+  { id: 13, image: "/shall_krep/image00013.jpeg", color: "#0A0F1C" },
+  { id: 14, image: "/shall_krep/image00014.jpeg", color: "#175065" },
   { id: 62, image: "/shall_krep/image00062.jpeg", color: "#A1C1EA" },
     ]
 
@@ -529,7 +529,6 @@ const jersey_me_dredha = [
 ]
 
 const jersey_200 = [
-  { id: 1, image: "/shall_jersey/shami200/image00002.jpeg", color: "#" },
   { id: 1, image: "/shall_jersey/shami200/image00003.jpeg", color: "#" },
   { id: 1, image: "/shall_jersey/shami200/image00004.jpeg", color: "#" },
   { id: 1, image: "/shall_jersey/shami200/image00005.jpeg", color: "#" },
@@ -967,6 +966,12 @@ const xh_pambuk = [
   { image: "/kapuc/xhufke/pambuk/image00020.jpeg"},
     ]
 
+const shall_shkelqim = [
+  { image: "/landing_page/lulu/DSCF6721.jpg"},
+  { image: "/landing_page/lulu/DSCF6736.jpg"},
+  { image: "/landing_page/lulu/DSCF6700.jpg"},
+  { image: "/landing_page/lulu/blue.jpeg"},
+    ]
 export const products = {
   chiffon : {
     ["shall-ch-180"] : hijabs_chiffon_shall,
@@ -1009,5 +1014,6 @@ export const products = {
   },
 
   saten: shall_saten,
+  shkelqim: shall_shkelqim,
 }
 

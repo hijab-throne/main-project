@@ -37,7 +37,7 @@ export default function KapucSedef() {
   return <ProductPage
     features={features}
     details={details}
-    title="Kapuc Pambuk Sedef"
+    title="Ninxha Pambuk Sedef"
     description="Kapuçet janë aksesorë esencialë për çdo stil modest veshjeje, duke ofruar rehati, qëndrueshmëri dhe pamje të pastër."
     mainAlt="Kapuc"
     hideColorCircle={true}

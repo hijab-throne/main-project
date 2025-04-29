@@ -30,7 +30,7 @@ const features = [
 
 
 const details = [
-  "<strong>Çmimi</strong> 900"
+  "<strong>Çmimi</strong> 900L"
 ];
 
 export default function Saten() {

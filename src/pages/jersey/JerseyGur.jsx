@@ -31,7 +31,7 @@ const features = [
 const details = [
   "<strong>Përmasat</strong> 180:70 cm",
   "<strong>Firma</strong> Mercan",
-  "<strong>Çmimi</strong> 800L"
+  "<strong>Çmimi</strong> 1000L"
 ];
 
 export default function JerseyGur() {
@@ -41,6 +41,7 @@ export default function JerseyGur() {
     title="Jersey shall me gure"
     description="Hijabi i materialit ZHARS (jersey) është shumë i preferuar për shkak të disa karakteristikave kryesore që e bëjnë të rehatshëm dhe praktik për përdorim të përditshëm."
     mainImage="/shall_jersey/main.png"
+    showMainImage={false}
     mainAlt="Chiffon Hijab"
     featuresTitle="Karakteristikat e Shall-it Jersey me gure"
   />

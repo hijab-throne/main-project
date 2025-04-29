@@ -37,7 +37,7 @@ export default function KapucEcardinClassic() {
   return <ProductPage
     features={features}
     details={details}
-    title="Kapuc Classic Ecardin"
+    title="Ninxha Classic Ecardin"
     description="Kapuçet janë aksesorë esencialë për çdo stil modest veshjeje, duke ofruar rehati, qëndrueshmëri dhe pamje të pastër."
     mainAlt="Kapuc"
     hideColorCircle={true}

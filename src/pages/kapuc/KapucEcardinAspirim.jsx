@@ -37,7 +37,7 @@ export default function KapucEcardinAspirim() {
   return <ProductPage
     features={features}
     details={details}
-    title="Kapuc Climatic Ecardin"
+    title="Ninxha Climatic Ecardin"
     description="Kapuçet janë aksesorë esencialë për çdo stil modest veshjeje, duke ofruar rehati, qëndrueshmëri dhe pamje të pastër."
     mainAlt="Kapuc"
     hideColorCircle={true}

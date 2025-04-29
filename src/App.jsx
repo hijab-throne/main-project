@@ -42,6 +42,7 @@ import KapucTylTjeter from "./pages/kapuc/KapucTylTjeter.jsx";
 import KapucTylLehte from "./pages/kapuc/KapucTylLehte.jsx";
 import KapucXhElastik from "./pages/kapuc/KapucXhElastik.jsx";
 import KapucXhPambuk from "./pages/kapuc/KapucXhPambuk.jsx";
+import ShamiShkelqim from "./pages/ShamiShkelqim.jsx";
 
 const navItems = [
   {
@@ -208,6 +209,7 @@ function App() {
             <Route path="/kapuc/tyl-i-lehte" component={() => <KapucTylLehte/>}/>
             <Route path="/kapuc/elastik" component={() => <KapucXhElastik/>}/>
             <Route path="/kapuc/pambuk" component={() => <KapucXhPambuk/>}/>
+            <Route path="/shkelqim" component={() => <ShamiShkelqim/>}/>
             {navItems.map(({href, Component}) => <Route key={href} path={href} component={Component}/>)}
           </Switch>
         </BasicLayout>

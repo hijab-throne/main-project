@@ -29,6 +29,8 @@ export default function NewsLetterSignup() {
           <OptimizedImage
             src={photos[current]}
             alt={`Review ${current + 1}`}
+            width={1402}
+            height={418}
             className="max-h-full max-w-full object-contain"
           />
         </div>
