@@ -36,6 +36,15 @@ const ImagePreviewModal = ({ imageUrl, onClose }) => {
   const [hasError, setHasError] = useState(false);
 
   useEffect(() => {
+  document.body.style.overflow = 'hidden';
+  document.documentElement.style.overflow = 'hidden';
+
+  return () => {
+    document.body.style.overflow = '';
+    document.documentElement.style.overflow = '';
+  };
+}, []);
+  useEffect(() => {
     const handleKeyDown = (e) => {
       if (e.key === 'Escape') onClose();
     };
@@ -53,11 +62,11 @@ const ImagePreviewModal = ({ imageUrl, onClose }) => {
 
   return (
     <div
-      className="fixed inset-0 bg-black bg-opacity-70 flex justify-center items-center z-50 overflow-y-auto transition-all"
+      className="fixed inset-0 w-screen h-screen bg-black bg-opacity-70 flex justify-center items-center z-50 overflow-y-auto transition-all"
       onClick={onClose}
     >
       <div
-        className="relative p-4 my-auto rounded-lg h-[90vh] w-full flex items-center justify-center"
+        className="relative rounded-lg w-full h-full flex items-center justify-center"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Close button */}
@@ -77,9 +86,9 @@ const ImagePreviewModal = ({ imageUrl, onClose }) => {
 
         {/* OptimizedImage */}
         {!hasError && (
-            <div className="relative flex w-max h-full">
+            <div className="relative flex h-[95vh] w-[95vw] bg-white rounded-lg">
               {isLoaded && <button
-          className="absolute top-4 right-4 bg-white text-gray-700 hover:bg-gray-200 z-50 hover:text-gray-900 rounded-full p-2 shadow-md transition"
+          className="absolute top-4 right-4 bg-black text-gray-100 hover:bg-gray-800 z-50 hover:text-gray-300 rounded-full p-2 shadow-md transition"
           onClick={onClose}
           aria-label="Close preview"
         >
@@ -90,7 +99,7 @@ const ImagePreviewModal = ({ imageUrl, onClose }) => {
             alt="Preview"
             variant="modal"
             className={`max-w-full max-h-full rounded-lg transition-opacity duration-700 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}
-            imageClassName='object-contain'
+            imageClassName='object-contain rounded-lg'
             onLoad={handleLoad}
             onError={handleError}
           />
