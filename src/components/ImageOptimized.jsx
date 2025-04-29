@@ -76,6 +76,7 @@ const OptimizedImage = ({
   }, []);
 
   const handleLoad = (e) => {
+    props?.onLoad?.();
     if (!isLoaded) {
       const img = e.currentTarget;
       if (!width || !height) {
@@ -127,10 +128,10 @@ const OptimizedImage = ({
     alt,
     title: title || alt,
     loading,
-    onLoad: handleLoad,
     onError: handleError,
     className: finalImageClassName,
-    ...props
+    ...props,
+    onLoad: handleLoad,
   };
 
   if (hasError) {

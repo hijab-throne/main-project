@@ -148,7 +148,7 @@ export default function Home() {
               </h2>
           </div>
 
-          <div className="flex relative">
+          <div className="flex relative w-full">
           <NewsLetterSignup />
 
           </div>

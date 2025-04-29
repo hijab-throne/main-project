@@ -12,7 +12,7 @@ export default function NewsLetterSignup() {
     setCurrent((c) => (c === lastIndex ? 0 : c + 1))
 
   return (
-    <section className="py-8 px-4">
+    <section className="py-8 px-4 w-full">
       <div className="mb-2 font-bold text-2xl md:text-3xl">Google reviews</div>
       <div className="relative mx-auto w-full max-w-md sm:max-w-xl flex items-center justify-center">
         {/* Prev Button */}
