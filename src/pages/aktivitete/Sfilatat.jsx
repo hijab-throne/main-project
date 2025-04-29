@@ -146,8 +146,7 @@ const Sfilatat = () => {
                 <OptimizedImage
                     src={item.image}
                     alt={`Sfilata ${item.id}`}
-                    className={`
-                  w-40 h-40 rounded-lg shadow-md
+                    className={`w-40 h-40 rounded-lg shadow-md
                   ${idx > 2 && !open2020 ? 'hidden md:block' : ''}
                 `}
                 />

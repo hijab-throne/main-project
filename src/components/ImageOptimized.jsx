@@ -1,17 +1,27 @@
 import React, { useState, useEffect, useMemo, useRef } from 'react';
 
+// Detect mobile devices
 const isMobileDevice = () =>
   typeof navigator !== 'undefined' && /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
 
+// Detect if URL is absolute
 const isFullUrl = (url = '') => /^https?:\/\//i.test(url);
+
+// Detect if image is SVG
 const isSvg = (src = '') => src.toLowerCase().endsWith('.svg');
 
+// Extract and clean classes based on regex
 const extractClasses = (classStr = '', regex) => {
   const matches = [...(classStr.match(regex) || [])];
   const cleaned = classStr.replace(regex, '').trim();
   return { matches, cleaned };
 };
 
+// Correct width detection
+const hasWidthClass = (classStr = '') =>
+  /\bw-(\d+|\[\d+[a-zA-Z%]*\]|[1-9]\/[1-9]|auto)\b/.test(classStr);
+
+// Build className safely
 const buildClassName = (...classes) =>
   classes.flat().filter(Boolean).join(' ');
 
@@ -53,14 +63,13 @@ const OptimizedImage = ({
     ? finalHeight / finalWidth
     : 1 / fallbackAspectRatio;
 
-  // Use IntersectionObserver to save bandwidth
+  // IntersectionObserver to lazy-load
   useEffect(() => {
     if (!wrapperRef.current) return;
     if (!('IntersectionObserver' in window)) {
       setShouldLoad(true);
       return;
     }
-
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -70,7 +79,6 @@ const OptimizedImage = ({
       },
       { threshold: 0.1 }
     );
-
     observer.observe(wrapperRef.current);
     return () => observer.disconnect();
   }, []);
@@ -104,8 +112,17 @@ const OptimizedImage = ({
     /\bobject-(cover|contain|fill|none|scale-down)\b/.test(cls)
   );
 
+  const shouldAddWrapperWFull = !hasWidthClass(className);
+  const shouldAddImageWFull = !hasWidthClass(imageClassName);
+
+  const wrapperWidthClass = shouldAddWrapperWFull ? 'w-full' : '';
+  const imageWidthClass = shouldAddImageWFull ? 'w-full' : '';
+
   const finalImageClassName = buildClassName(
-    'absolute inset-0 w-full h-full transition-opacity duration-700',
+    'absolute inset-0',
+    imageWidthClass,
+    'h-full',
+    'transition-opacity duration-700',
     isLoaded ? 'opacity-100' : 'opacity-0',
     !hasObjectClass && 'object-cover',
     objectClasses,
@@ -114,7 +131,8 @@ const OptimizedImage = ({
   );
 
   const wrapperClassName = buildClassName(
-    'relative w-full overflow-hidden',
+    'relative overflow-hidden',
+    wrapperWidthClass,
     pureWrapperClassName,
     roundedClasses
   );
