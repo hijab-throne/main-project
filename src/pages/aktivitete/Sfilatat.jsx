@@ -90,7 +90,7 @@ const Sfilatat = () => {
           <OptimizedImage
               src="/aktivitetet/sfilatat/2022/sfilata.jpeg"
               alt="Sfilatë bamirësie"
-              className="w-full h-64 md:h-96 object-cover rounded-lg shadow-lg mb-6"
+              className="w-full h-64 md:h-96 rounded-lg shadow-lg mb-6"
           />
           <h2 className="text-xl md:text-3xl text-center font-semibold text-gray-700 mb-4">
             Sfilatat e Bamirësisë
@@ -116,7 +116,7 @@ const Sfilatat = () => {
                 <OptimizedImage
                   src={item.image}
                   alt={`Sfilata ${item.id}`}
-                  className={`w-40 h-40  sm:w-48 sm:h-48  md:w-56 md:h-56  lg:w-64 lg:h-64  object-cover rounded-lg shadow-md
+                  className={`w-40 h-40  sm:w-48 sm:h-48  md:w-56 md:h-56  lg:w-64 lg:h-64 rounded-lg shadow-md
                 ${idx > 2 && !open2022 ? 'hidden md:block' : ''}
               `}
               />
@@ -147,7 +147,7 @@ const Sfilatat = () => {
                     src={item.image}
                     alt={`Sfilata ${item.id}`}
                     className={`
-                  w-40 h-40 object-cover rounded-lg shadow-md
+                  w-40 h-40 rounded-lg shadow-md
                   ${idx > 2 && !open2020 ? 'hidden md:block' : ''}
                 `}
                 />
@@ -176,7 +176,7 @@ const Sfilatat = () => {
               <OptimizedImage
                   src={item.image}
                   alt={`Sfilata ${item.id}`}
-                  className={`w-40 h-40  sm:w-48 sm:h-48  md:w-56 md:h-56  lg:w-64 lg:h-64 object-cover rounded-lg shadow-md
+                  className={`w-40 h-40  sm:w-48 sm:h-48  md:w-56 md:h-56  lg:w-64 lg:h-64 rounded-lg shadow-md
                 ${idx > 2 && !open2019 ? 'hidden md:block' : ''}
               `}
               />

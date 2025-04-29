@@ -16,7 +16,8 @@ const AboutUs = () => {
             alt="About us"
             width={1644}
             height={1184}
-            className="max-h-[400px] max-w-full object-cover [object-position:0_-100px] rounded-lg mt-4"
+            imageClassName='object-cover [object-position:0_-100px]'
+            className="max-h-[400px] max-w-full rounded-lg mt-4"
           />
           </div>
 

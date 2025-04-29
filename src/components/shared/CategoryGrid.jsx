@@ -66,7 +66,8 @@ export default function CategoryGrid() {
               <OptimizedImage
                 src={cat.image}
                 alt={cat.title}
-                className="w-full h-full object-top object-cover group-hover:scale-105 transition-transform duration-300"
+                imageClassName='object-top object-cover'
+                className="w-full h-full group-hover:scale-105 transition-transform duration-300"
               />
             </div>
             <h3 className="text-center text-sm font-semibold text-gray-900 mt-2">

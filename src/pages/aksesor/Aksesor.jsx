@@ -18,7 +18,8 @@ export default function Aksesor() {
                   <OptimizedImage
                       src={item.image}
                       alt={item.name}
-                      className="w-full h-64 object-cover object-center mb-4 rounded-t"
+                      imageClassName='object-cover object-center'
+                      className="w-full h-64  mb-4 rounded-t"
                   />
                   <div className="p-2">
                       <h3 className="text-xl font-semibold mb-2">{item.name}</h3>
@@ -28,9 +29,10 @@ export default function Aksesor() {
           ))}
           <div className="border shadow rounded-xl flex flex-col items-center text-center p-2">
               <OptimizedImage
+                  imageClassName='object-contain'
                   src="/aksesor/krahe.png"
                   alt="krahe"
-                  className="w-full h-64 object-contain mb-4 rounded"
+                  className="w-full h-64 mb-4 rounded"
               />
               <h3 className="text-xl font-semibold mb-2">Krahë</h3>
               <p className="text-gray-600">Firma mercan, material i butë, i hollë dhe i freskët.</p>

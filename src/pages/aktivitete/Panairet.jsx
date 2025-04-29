@@ -35,7 +35,8 @@ const Panairet = () => {
                   <OptimizedImage
                       src={item.image}
                       alt={`Sfilata ${item.id}`}
-                      className="w-40 h-40 object-cover rounded-lg shadow-md"
+                      className="w-40 h-40 rounded-lg"
+                      imageClassName='rounded-lg shadow-md'
                   />
               </div>
                   ))}

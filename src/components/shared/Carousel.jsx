@@ -127,7 +127,8 @@ export default function Carousel() {
               <OptimizedImage
                 src={img.image}
                 alt={`Slide ${index}`}
-                className="h-96 md:h-full w-full object-cover object-center"
+                className="h-96 md:h-full w-full"
+                imageClassName='object-cover object-center'
               />
             </div>
           </div>

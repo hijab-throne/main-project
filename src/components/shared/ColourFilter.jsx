@@ -21,7 +21,7 @@ const ColorFilter = ({ selectedPalette, setSelectedPalette, uniquePalettes, prod
                       selectedPalette === paletteKey ? "border-black" : "border-transparent"
                   }`}
               >
-                  <OptimizedImage src={arrayWithPalettes[paletteKey]} alt={paletteKey} className="w-full h-full object-cover"/>
+                  <OptimizedImage src={arrayWithPalettes[paletteKey]} alt={paletteKey} className="w-full h-full"/>
               </button>
           ))}
       </div>

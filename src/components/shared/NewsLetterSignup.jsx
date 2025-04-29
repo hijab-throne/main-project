@@ -31,7 +31,8 @@ export default function NewsLetterSignup() {
             alt={`Review ${current + 1}`}
             width={1402}
             height={418}
-            className="max-h-full max-w-full object-contain"
+            imageClassName='object-contain'
+            className="max-h-full max-w-full"
           />
         </div>
 

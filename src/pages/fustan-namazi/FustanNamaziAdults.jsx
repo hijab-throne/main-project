@@ -72,7 +72,8 @@ const FustanNamaziAdults = () => {
                   <OptimizedImage
                       src={product.image}
                       alt={product.name}
-                      className="w-full h-72 object-top object-cover"
+                      imageClassName='object-top'
+                      className="w-full h-72"
                   />
                   <div className="p-4">
                     <h3 className="text-lg font-semibold text-gray-800">{product.name}</h3>

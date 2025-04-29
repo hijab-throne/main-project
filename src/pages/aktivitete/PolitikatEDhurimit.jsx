@@ -50,7 +50,7 @@ export default function PolitikatEDhurimit() {
                 <p className="text-gray-600 mt-2">{section.text}</p>
               </div>
               <div className="md:w-1/2">
-                <OptimizedImage src={section.image} alt={section.title} className=" w-64 md:w-full h-64 md:h-72 object-cover rounded-lg shadow-md" />
+                <OptimizedImage src={section.image} alt={section.title} className=" w-64 md:w-full h-64 md:h-72 rounded-lg shadow-md" />
               </div>
             </div>
           ))}

@@ -72,7 +72,8 @@ export default function FeaturedSection() {
             <OptimizedImage
               src={product.src}
               alt={product.title}
-              className="w-full h-96 object-cover object-top"
+              imageClassName='object-cover object-top'
+              className="w-full h-96"
             />
             <div className="p-5 text-center">
               <h3 className="text-lg font-semibold text-gray-800">
@@ -98,7 +99,8 @@ export default function FeaturedSection() {
               <OptimizedImage
                 src={product.src}
                 alt={product.title}
-                className="w-full h-80 object-cover object-top"
+                imageClassName='object-cover object-top'
+                className="w-full h-80"
               />
               <div className="p-5 text-center">
                 <h3 className="text-lg font-semibold text-gray-800">

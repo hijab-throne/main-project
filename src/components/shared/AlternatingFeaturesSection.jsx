@@ -40,7 +40,7 @@ export default function AlternatingFeaturesSection() {
             <OptimizedImage
               src={image}
               alt={title}
-              className="rounded-lg object-cover w-full h-[400px]"
+              className="rounded-lg w-full h-[400px]"
             />
           </div>
 

@@ -1,23 +1,32 @@
 import React, { useState, useEffect, useMemo } from 'react';
 
-const isMobileDevice = () => {
-  if (typeof navigator === 'undefined') return false;
-  return /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
-};
+// Helpers
+const isMobileDevice = () =>
+  typeof navigator !== 'undefined' && /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
 
 const isFullUrl = (url = '') => /^https?:\/\//i.test(url);
 const isSvg = (src = '') => src.toLowerCase().endsWith('.svg');
 
+const extractClasses = (classStr = '', regex) => {
+  const matches = [...(classStr.match(regex) || [])];
+  const cleaned = classStr.replace(regex, '').trim();
+  return { matches, cleaned };
+};
+
+const buildClassName = (...classes) => classes.flat().filter(Boolean).join(' ');
+
 const OptimizedImage = ({
   src = '',
   alt = '',
-  className = '',
   loading = 'lazy',
   width,
   height,
   title,
-  variant = 'desktop',
+  className = '',
+  imageClassName = '',
   fallbackAspectRatio = 16 / 9,
+  variant = 'desktop',
+  style = {},
   ...props
 }) => {
   const [naturalSize, setNaturalSize] = useState({ width: 0, height: 0 });
@@ -27,47 +36,79 @@ const OptimizedImage = ({
   const isMobile = useMemo(() => isMobileDevice(), []);
   const shouldUseDirect = useMemo(() => isFullUrl(src) || isSvg(src), [src]);
 
-  // Construct the final correct URL
-  const fileBase = src.startsWith('/') ? src.slice(1, src.lastIndexOf('.')) : src.slice(0, src.lastIndexOf('.'));
+  const fileBase = src.startsWith('/')
+    ? src.slice(1, src.lastIndexOf('.'))
+    : src.slice(0, src.lastIndexOf('.'));
   const folder = variant === 'modal' ? 'modal' : isMobile ? 'mobile' : 'desktop';
   const finalSrc = shouldUseDirect ? src : `/assets/${folder}/${fileBase}.webp`;
- const handleLoad = () => {
-    setIsLoaded(true);
-  };
-  useEffect(() => {
-      const img = new Image();
-      img.src = finalSrc; // preload the final real src
-      img.onload = () => {
-          handleLoad()
-        setNaturalSize({ width: img.naturalWidth, height: img.naturalHeight });
-      };
-      img.onerror = () => {
-        setHasError(true);
-      };
-  }, [finalSrc, width, height]);
+  const fallbackSrc = finalSrc.replace(/\.webp$/i, '.jpg');
 
   const finalWidth = width || naturalSize.width;
   const finalHeight = height || naturalSize.height;
-
-  const aspectRatio = finalWidth && finalHeight
-    ? finalWidth / finalHeight
-    : fallbackAspectRatio;
+  const aspectRatio = finalWidth && finalHeight ? finalWidth / finalHeight : fallbackAspectRatio;
 
   const wrapperStyle = {
     aspectRatio: `${aspectRatio}`,
     position: 'relative',
     overflow: 'hidden',
-    ...(props?.style || {}),
+    ...style,
   };
 
-  const handleError = () => {
-    setHasError(true);
+  useEffect(() => {
+    const img = new Image();
+    img.src = finalSrc;
+    img.onload = () => {
+      setIsLoaded(true);
+      setNaturalSize({ width: img.naturalWidth, height: img.naturalHeight });
+    };
+    img.onerror = () => setHasError(true);
+  }, [finalSrc]);
+
+  // Extract rounded-* classes
+  const { matches: roundedClasses, cleaned: afterRoundedClassName } = extractClasses(className, /rounded(-[^\s]*)?/g);
+
+  // Extract object-* classes from wrapper and move to image
+  const { matches: objectClasses, cleaned: pureWrapperClassName } = extractClasses(afterRoundedClassName, /\bobject-(cover|contain|fill|none|scale-down)\b/g);
+
+  const hasObjectClass = /\bobject-(cover|contain|fill|none|scale-down)\b/.test(
+    [...objectClasses, imageClassName].join(' ')
+  );
+
+  const finalImageClassName = buildClassName(
+    'w-full',
+    'h-full',
+    'transition-opacity',
+    'duration-700',
+    isLoaded ? 'opacity-100' : 'opacity-0',
+    !hasObjectClass && 'object-cover',
+    objectClasses,
+    imageClassName,
+    roundedClasses
+  );
+
+  const wrapperClassName = buildClassName(
+    pureWrapperClassName,
+    roundedClasses
+  );
+
+  const sharedImgProps = {
+    alt,
+    title: title || alt,
+    loading,
+    width: finalWidth || undefined,
+    height: finalHeight || undefined,
+    onError: () => setHasError(true),
+    className: finalImageClassName,
+    ...props,
   };
 
   if (hasError) {
     return (
       <div
-        className={`flex items-center justify-center bg-gray-100 text-gray-500 ${className}`}
+        className={buildClassName(
+          'flex items-center justify-center bg-gray-100 text-gray-500',
+          wrapperClassName
+        )}
         style={wrapperStyle}
       >
         Failed to load image
@@ -76,36 +117,16 @@ const OptimizedImage = ({
   }
 
   return (
-    <div className={className} style={wrapperStyle}>
+    <div className={wrapperClassName} style={wrapperStyle}>
       {!isLoaded && (
-        <div className="absolute inset-0 bg-gray-200 animate-pulse"></div>
+        <div className={buildClassName('absolute inset-0 bg-gray-200 animate-pulse', roundedClasses)} />
       )}
       {shouldUseDirect ? (
-        <img
-          src={finalSrc}
-          alt={alt}
-          title={title || alt}
-          loading={loading}
-          width={finalWidth || undefined}
-          height={finalHeight || undefined}
-          onError={handleError}
-          className={`w-full h-full object-cover transition-opacity duration-700 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}
-          {...props}
-        />
+        <img {...sharedImgProps} src={finalSrc} />
       ) : (
         <picture>
           <source srcSet={finalSrc} type="image/webp" />
-          <img
-            src={finalSrc}
-            alt={alt}
-            title={title || alt}
-            loading={loading}
-            width={finalWidth || undefined}
-            height={finalHeight || undefined}
-            onError={handleError}
-            className={`w-full h-full object-cover transition-opacity duration-700 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}
-            {...props}
-          />
+          <img {...sharedImgProps} src={fallbackSrc} />
         </picture>
       )}
     </div>

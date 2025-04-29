@@ -87,7 +87,8 @@ const ImagePreviewModal = ({ imageUrl, onClose }) => {
             src={imageUrl}
             alt="Preview"
             variant="modal"
-            className={`max-w-full max-h-full rounded-lg object-contain transition-opacity duration-700 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}
+            className={`max-w-full max-h-full rounded-lg transition-opacity duration-700 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}
+            imageClassName='object-contain'
             onLoad={handleLoad}
             onError={handleError}
           />

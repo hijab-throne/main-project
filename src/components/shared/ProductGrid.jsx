@@ -32,7 +32,8 @@ const ProductItem = memo((props) => {
             alt={name || "Product"}
             loading="lazy"
             decoding="async"
-            className={`rounded-lg w-full h-full object-cover ${props.imagePosition ? props.imagePosition : "object-center"} transition-opacity duration-300`}
+            imageClassName={`object-cover ${props.imagePosition ? props.imagePosition : "object-center"} `}
+            className='rounded-lg w-full h-full transition-opacity duration-300'
             {...(width ? {width:width,height:height} : {}) }
           />
         )}

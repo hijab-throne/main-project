@@ -59,7 +59,8 @@ const FustanNamaziKids = () => {
                   <OptimizedImage
                       src={product.image}
                       alt={`Product ${product.id}`}
-                      className="w-full h-full object-cover object-top"
+                      imageClassName='object-top'
+                      className="w-full h-full"
                   />
                 </div>
             ))}
