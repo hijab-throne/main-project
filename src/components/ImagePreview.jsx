@@ -57,17 +57,11 @@ const ImagePreviewModal = ({ imageUrl, onClose }) => {
       onClick={onClose}
     >
       <div
-        className="relative p-4 my-auto rounded-lg max-w-[90vw] max-h-[90vh] w-full flex items-center justify-center"
+        className="relative p-4 my-auto rounded-lg h-[90vh] w-full flex items-center justify-center"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Close button */}
-        {isLoaded && <button
-          className="absolute top-4 right-4 bg-white text-gray-700 hover:bg-gray-200 z-50 hover:text-gray-900 rounded-full p-2 shadow-md transition"
-          onClick={onClose}
-          aria-label="Close preview"
-        >
-          <X size={20} />
-        </button>}
+
 
         {/* Loading background */}
         {!isLoaded && !hasError && (
@@ -83,7 +77,15 @@ const ImagePreviewModal = ({ imageUrl, onClose }) => {
 
         {/* OptimizedImage */}
         {!hasError && (
-          <OptimizedImage
+            <div className="relative flex w-max h-full">
+              {isLoaded && <button
+          className="absolute top-4 right-4 bg-white text-gray-700 hover:bg-gray-200 z-50 hover:text-gray-900 rounded-full p-2 shadow-md transition"
+          onClick={onClose}
+          aria-label="Close preview"
+        >
+          <X size={20} />
+        </button>}
+              <OptimizedImage
             src={imageUrl}
             alt="Preview"
             variant="modal"
@@ -92,6 +94,7 @@ const ImagePreviewModal = ({ imageUrl, onClose }) => {
             onLoad={handleLoad}
             onError={handleError}
           />
+            </div>
         )}
       </div>
     </div>
