@@ -58,47 +58,52 @@ const isMobile = window.innerWidth < 768
               )}
 
                 {/* Desktop Dropdown */}
-                {item.dropdown && activeIndex === index && (
-                    <div
-                        className={`absolute ${
-                            index === navItems.length - 1 ? "right-0" : "left-0"
-                        } top-full bg-white shadow-lg rounded-md z-20`}
-                >
-                  {item.dropdown.map((dropdownItem) => (
-                    <div key={dropdownItem.href} className="relative group">
-                        {dropdownItem.subdropdown ? <div
-                                className="cursor-pointer block px-4 py-2 text-sm text-[#6F678E] hover:bg-[#8F89A9] hover:text-white whitespace-nowrap transition-all"
-                            >
-                                {dropdownItem.label}
-                                {dropdownItem.subdropdown && <span className="ml-2">‹</span>}
-                            </div> :
-                            <a
-                                href={dropdownItem.href}
-                                className="block px-4 py-2 text-sm text-[#6F678E] hover:bg-[#8F89A9] hover:text-white whitespace-nowrap transition-all"
-                            >
-                                {dropdownItem.label}
-                                {dropdownItem.subdropdown && <span className="ml-2">‹</span>}
-                            </a>}
+{/* Desktop Dropdown */}
+{item.dropdown && activeIndex === index && (
+  <div
+    className={`absolute ${
+      index === navItems.length - 1 ? "right-0" : "left-0"
+    } top-full bg-white shadow-lg rounded-md z-20`}
+  >
+    {item.dropdown.map((dropdownItem) => (
+      <div key={dropdownItem.href} className="relative group">
+        {dropdownItem.subdropdown ? (
+          <div
+            className="cursor-pointer block px-4 py-2 text-sm text-[#6F678E] hover:bg-[#8F89A9] hover:text-white whitespace-nowrap transition-all"
+          >
+            {dropdownItem.label}
+            <span className="ml-2">›</span> {/* Changed arrow direction */}
+          </div>
+        ) : (
+          <a
+            href={dropdownItem.href}
+            className="block px-4 py-2 text-sm text-[#6F678E] hover:bg-[#8F89A9] hover:text-white whitespace-nowrap transition-all"
+          >
+            {dropdownItem.label}
+            {dropdownItem.subdropdown && <span className="ml-2">›</span>}
+          </a>
+        )}
 
-                        {/* Subdropdown */}
-                        {dropdownItem.subdropdown && (
-                            <div
-                                className="absolute right-full top-0 bg-white shadow-lg rounded-md z-20 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
-                                {dropdownItem.subdropdown.map((subItem) => (
-                                    <a
-                              key={subItem.href}
-                              href={subItem.href}
-                              className="block px-4 py-2 text-xs text-[#6F678E] hover:bg-[#8F89A9] hover:text-white whitespace-nowrap transition-all"
-                            >
-                              {subItem.label}
-                            </a>
-                          ))}
-                        </div>
-                      )}
-                    </div>
-                  ))}
-                </div>
-              )}
+        {/* Subdropdown */}
+        {dropdownItem.subdropdown && (
+          <div
+            className="absolute left-full top-0 bg-white shadow-lg rounded-md z-20 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200"
+          >
+            {dropdownItem.subdropdown.map((subItem) => (
+              <a
+                key={subItem.href}
+                href={subItem.href}
+                className="block px-4 py-2 text-xs text-[#6F678E] hover:bg-[#8F89A9] hover:text-white whitespace-nowrap transition-all"
+              >
+                {subItem.label}
+              </a>
+            ))}
+          </div>
+        )}
+      </div>
+    ))}
+  </div>
+)}
             </div>
           ))}
         </nav>

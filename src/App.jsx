@@ -87,31 +87,7 @@ const navItems = [
     Component: Saten,
     isClickable: true,
   },
-  {
-    label: 'Praktike',
-    href: '/praktike',
-    isClickable: false,
-    dropdown: [
-      {label: 'Pileli', href: '/praktike/pileli'},
-      {label: 'Fular Sportiv duz', href: '/praktike/sportiv'},
-      {label: 'Namaz Ortusu', href: '/praktike/ortusu'},
-      {label: 'Hazir Turban', href: '/praktike/tese'},
-      {label: 'Tesettur', href: '/praktike/viscon'},
-      // {label: 'Fernuarli Viscon', href: '/praktike/viscon'},
-      {label: 'Per femije', href: '/praktike/femije'},
-      {label: 'Praktik Penye Sal ', href: '/praktike/penye'},
-    ],
-  },
-  {
-    label: 'Fustan Namazi',
-    href: '/fustan-namazi',
-    isClickable: false,
-    dropdown: [
-      {label: 'Per te rritur', href: '/fustan-namazi/per-te-rritur'},
-      {label: 'Per femije', href: '/fustan-namazi/per-femije'},
-    ],
-  },
-{
+    {
     label: 'Underscarf',
     href: '/kapuc',
     isClickable: false,
@@ -146,6 +122,30 @@ const navItems = [
       {label: 'Ninxha pambuk sedef', href: '/kapuc/sedef'},
       {label: 'Ninxha climatic ecardin', href: '/kapuc/aspirim'},
       {label: 'Ninxha classic ecardin', href: '/kapuc/classic'},
+    ],
+  },
+  {
+    label: 'Praktike',
+    href: '/praktike',
+    isClickable: false,
+    dropdown: [
+      {label: 'Pileli', href: '/praktike/pileli'},
+      {label: 'Fular Sportiv duz', href: '/praktike/sportiv'},
+      {label: 'Namaz Ortusu', href: '/praktike/ortusu'},
+      {label: 'Hazir Turban', href: '/praktike/tese'},
+      {label: 'Tesettur', href: '/praktike/viscon'},
+      // {label: 'Fernuarli Viscon', href: '/praktike/viscon'},
+      {label: 'Per femije', href: '/praktike/femije'},
+      {label: 'Praktik Penye Sal ', href: '/praktike/penye'},
+    ],
+  },
+  {
+    label: 'Fustan Namazi',
+    href: '/fustan-namazi',
+    isClickable: false,
+    dropdown: [
+      {label: 'Per te rritur', href: '/fustan-namazi/per-te-rritur'},
+      {label: 'Per femije', href: '/fustan-namazi/per-femije'},
     ],
   },
   {
