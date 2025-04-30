@@ -249,7 +249,7 @@ const isMobile = window.innerWidth < 768
                       className="hover:scale-110 hover:text-blue-500 transition-all duration-300"
                   >
                       <div className=' w-[25px] '>
-                                           <OptimizedImage imageClassName="object-contain" width={30} height={30} src="/landing_page/location-30.png"/>
+                          <OptimizedImage imageClassName="object-contain" width={30} height={30} src="/landing_page/location-30.png"/>
                       </div>
                   </a>
               </div>
