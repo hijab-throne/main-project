@@ -43,6 +43,7 @@ export default function PraktikeSport() {
     mainImage="/shall_chiffon/main_img.png"
     mainAlt="Praktike"
     showMainImage={false}
+    hideColorCircle={true}
     featuresTitle="Karakteristikat e Shamise Praktike"
   />
 }

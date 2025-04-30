@@ -42,6 +42,7 @@ export default function PraktikeHazirTurban() {
     description="Zbulo koleksionin tonë të shamive praktike – të lehta për t’u veshur, të rehatshme për përdorim ditor dhe të disponueshme në lloje të ndryshme për çdo stil dhe nevojë."
     mainImage="/shall_chiffon/main_img.png"
     showMainImage={false}
+    hideColorCircle={true}
     mainAlt=" Hijab"
     featuresTitle="Karakteristikat e Shamise Praktike"
   />

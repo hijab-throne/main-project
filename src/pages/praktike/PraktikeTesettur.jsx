@@ -43,6 +43,7 @@ export default function PraktikeTesettur() {
     mainImage="/shall_chiffon/main_img.png"
     mainAlt="Chiffon Hijab"
     showMainImage={false}
+    hideColorCircle={true}
     featuresTitle="Karakteristikat e Shamise Praktike"
   />
 }

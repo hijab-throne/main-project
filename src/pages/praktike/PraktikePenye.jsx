@@ -42,6 +42,7 @@ export default function PraktikePenye() {
     description="Zbulo koleksionin tonë të shamive praktike – të lehta për t’u veshur, të rehatshme për përdorim ditor dhe të disponueshme në lloje të ndryshme për çdo stil dhe nevojë."
     mainImage="/shall_chiffon/main_img.png"
     mainAlt="Hijab"
+    hideColorCircle={true}
     showMainImage={false}
     featuresTitle="Karakteristikat e Shamise Praktike"
   />
