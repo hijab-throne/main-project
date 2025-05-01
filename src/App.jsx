@@ -96,8 +96,6 @@ const navItems = [
       {label: 'Kapuc me aspirim (klimatik)', href: '/kapuc/klimatik'},
       {
         label: 'Kapuc me silikon (kaymaz)',
-        href: '/kapuc/me-silikon',
-        isClickable: false,
         subdropdown: [
           {label: 'Kapuc me silikon 400', href: '/kapuc/silikon400'},
           {label: 'Kapuc me silikon 500', href: '/kapuc/silikon500'},
@@ -105,8 +103,6 @@ const navItems = [
       },
       {
         label: 'Kapuc xhufke',
-        href: '/kapuc/xhufke',
-        isClickable: false,
         subdropdown: [
           {label: 'Kapuc me pambuk lidhese xhufke', href: '/kapuc/pambuk'},
           {label: 'Kapuc elastik xhufke', href: '/kapuc/elastik'},
@@ -114,8 +110,6 @@ const navItems = [
       },
       {
         label: 'Kapuc tyl',
-        href: '/kapuc/tyl',
-        isClickable: false,
         subdropdown: [
           {label: 'Kapuc tyl tjeter', href: '/kapuc/tyl-tjeter'},
           {label: 'Kapuc i lehte', href: '/kapuc/tyl-i-lehte'},
