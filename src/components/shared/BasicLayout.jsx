@@ -157,7 +157,7 @@ const isMobile = window.innerWidth < 768
                       <div key={dropdownItem.href}>
                         <a
                           href={dropdownItem.href}
-                          className={` ${dropdownItem.isClickable ? "" : "pointer-events-none"} block text-sm font-medium text-[#6F678E] hover:bg-[#8F89A9] hover:text-white px-3 py-1 rounded transition-all`}
+                          className={`  block text-sm font-medium text-[#6F678E] hover:bg-[#8F89A9] hover:text-white px-3 py-1 rounded transition-all`}
                           onClick={() => setIsDrawerOpen(false)}
                         >
                           {dropdownItem.label}
