@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import OptimizedImage from "../ImageOptimized.jsx";
 
 export default function NewsLetterSignup() {
-  const photos = ['reviews/1.png', 'reviews/2.png', 'reviews/3.png']
+  const photos = ['reviews/1.png', 'reviews/2.png', 'reviews/3.png', 'reviews/4.png', 'reviews/5.png']
   const [current, setCurrent] = useState(0)
   const lastIndex = photos.length - 1
 

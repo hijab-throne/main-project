@@ -34,7 +34,7 @@ const details = [
   "<strong>Çmimi</strong> 800L"
 ];
 
-const paletteImages = {
+const arrayWithPalettes = {
   palette1: "/shall_chiffon/paletat/1.png",
   palette2: "/shall_chiffon/paletat/2.png",
   palette3: "/shall_chiffon/paletat/3.png",
@@ -50,6 +50,6 @@ export default function ChiffonShall180() {
     mainImage="/shall_chiffon/main.png"
     mainAlt="Chiffon Hijab"
     featuresTitle="Karakteristikat e Shall-it Chiffon"
-    arrayWithPalettes={paletteImages}
+    arrayWithPalettes={arrayWithPalettes}
   />
 }

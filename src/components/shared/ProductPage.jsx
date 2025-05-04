@@ -24,7 +24,6 @@ export default function ProductPage(props) {
   const [selectedPalette, setSelectedPalette] = useState("");
   const [pathname] = useLocation();
   const [_, category, subCategory] = pathname.split("/") || [];
-
   const { uniquePalettes, filteredProducts } = useMemo(() => {
     const categorizedProducts =
       products?.[category]?.[subCategory] ?? products?.[category] ?? [];
