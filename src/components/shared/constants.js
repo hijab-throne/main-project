@@ -929,6 +929,7 @@ const tyl_lehte = [
   { image: "/kapuc/tyl/i_lehte/image00019.jpeg"},
     ]
 
+
 const xh_elastik = [
   { image: "/kapuc/xhufke/elastik/image00001.jpeg"},
   { image: "/kapuc/xhufke/elastik/image00002.jpeg"},
