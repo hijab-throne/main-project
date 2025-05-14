@@ -35,10 +35,10 @@ const details = [
 ];
 
 const paletteImages = {
-  palette1: "/shall_chiffon/paletat/1.png",
-  palette2: "/shall_chiffon/paletat/2.png",
-  palette3: "/shall_chiffon/paletat/3.png",
-  palette4: "/shall_chiffon/paletat/4.png",
+  palette1: "/shall_jersey/paletat_jersey_180/1.png",
+  palette2: "/shall_jersey/paletat_jersey_180/2.png",
+  palette3: "/shall_jersey/paletat_jersey_180/3.png",
+  palette4: "/shall_jersey/paletat_jersey_180/4.png",
 };
 
 export default function Jersey180() {

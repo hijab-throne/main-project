@@ -34,6 +34,13 @@ const details = [
   "<strong>Çmimi</strong> 1000L"
 ];
 
+const paletteImages = {
+  palette1: "/shall_krep/paletat/1.png",
+  palette2: "/shall_krep/paletat/2.png",
+  palette3: "/shall_krep/paletat/3.png",
+  palette4: "/shall_krep/paletat/4.png",
+};
+
 export default function ShallKrep() {
   return <ProductPage
     features={features}
@@ -43,5 +50,6 @@ export default function ShallKrep() {
     mainImage="/shall_krep/main.png"
     mainAlt="Krep Hijab"
     featuresTitle="Karakteristikat e Shall-it Krep"
+    arrayWithPalettes={paletteImages}
   />
 }

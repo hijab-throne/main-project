@@ -38,6 +38,13 @@ const details = [
   "<strong>Çmimi</strong> 1000L"
 ];
 
+const paletteImages = {
+  palette1: "/shall_jazz/paletat/1.png",
+  palette2: "/shall_jazz/paletat/2.png",
+  palette3: "/shall_jazz/paletat/3.png",
+  palette4: "/shall_jazz/paletat/4.png",
+};
+
 export default function JazzShall200() {
   return <ProductPage
     features={features}
@@ -47,5 +54,6 @@ export default function JazzShall200() {
     mainImage="/shall_jazz/main2.png"
     mainAlt="Jazz Hijab"
     featuresTitle="Karakteristikat e Shall-it Jazz"
+    arrayWithPalettes={paletteImages}
   />
 }
