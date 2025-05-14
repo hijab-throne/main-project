@@ -28,6 +28,7 @@ const buildClassName = (...classes) =>
 const OptimizedImage = ({
   src = '',
   alt = '',
+    layout,
   loading = 'lazy',
   width,
   height,
@@ -39,6 +40,7 @@ const OptimizedImage = ({
   style = {},
   ...props
 }) => {
+  const isLayoutFill = layout === 'fill';
   const wrapperRef = useRef(null);
   const [naturalSize, setNaturalSize] = useState({ width: 0, height: 0 });
   const [isLoaded, setIsLoaded] = useState(false);
@@ -149,6 +151,10 @@ const OptimizedImage = ({
     onError: handleError,
     className: finalImageClassName,
     ...props,
+    style:{...(props.style ?? {}), ...(isLayoutFill ? {
+       aspectRatio,
+        position: "relative",
+      }: {})},
     onLoad: handleLoad,
   };
 
@@ -166,7 +172,7 @@ const OptimizedImage = ({
 
   return (
     <div ref={wrapperRef} className={wrapperClassName} style={style}>
-      <div style={wrapperStyle}></div>
+      {!isLayoutFill && <div style={wrapperStyle}></div>}
 
       {!isLoaded && (
         <div className={buildClassName('absolute inset-0 bg-gray-200 animate-pulse', roundedClasses)} />
@@ -176,7 +182,7 @@ const OptimizedImage = ({
         shouldUseDirect ? (
           <img {...sharedImgProps} src={finalSrc} />
         ) : (
-          <picture>
+          <picture className={isLayoutFill ? 'flex' : ''}>
             <source srcSet={finalSrc} type="image/webp" />
             <img {...sharedImgProps} src={fallbackSrc} />
           </picture>
