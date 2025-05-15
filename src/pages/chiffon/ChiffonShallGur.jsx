@@ -31,7 +31,7 @@ const features = [
 const details = [
   "<strong>Përmasat</strong> 180:70 cm",
   "<strong>Firma</strong> Sedef",
-  "<strong>Çmimi</strong> 800L"
+  "<strong>Çmimi</strong> 1100L"
 ];
 
 const paletteImages = {

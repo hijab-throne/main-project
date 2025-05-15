@@ -31,7 +31,7 @@ const features = [
 const details = [
   "<strong>Përmasat</strong> 200:100 cm",
   "<strong>Firma</strong> Mercan",
-  "<strong>Çmimi</strong> 800L"
+  "<strong>Çmimi</strong> 900L"
 ];
 
 export default function Jersey200() {
