@@ -24,7 +24,7 @@ const AboutUs = () => {
       <div className="mt-12 space-y-12 max-w-5xl mx-auto">
         {[{
           title: "Si Lindi Hijab Throne?",
-          content: "Historia e Hijab Throne nisi nga dëshira për të sjellë një koleksion hijabeshtë të bukura dhe cilësore për gratë shqiptare. Pasi identifikuam një mungesë mundësish në treg, vendosëm të ofrojmë një platformë ku gratë mund të gjenin shaje të stilizuara, të dizajnuara me kujdes dhe që reflektonin stilin e jetesës dhe besimin e tyre. Edhe pse ne nuk i prodhojmë vetë, ne punojmë me markat më të besueshme për t'ju ofruar produkte të cilësisë së lartë."
+          content: "Historia e Hijab Throne nisi nga dëshira për të sjellë një koleksion hijabesh të bukura dhe cilësore për gratë shqiptare. Pasi identifikuam një mungesë mundësish në treg, vendosëm të ofrojmë një platformë ku gratë mund të gjenin shaje të stilizuara, të dizajnuara me kujdes dhe që reflektonin stilin e jetesës dhe besimin e tyre. Edhe pse ne nuk i prodhojmë vetë, ne punojmë me markat më të besueshme për t'ju ofruar produkte të cilësisë së lartë."
         }, {
           title: "Inspirimi",
           content:"Frymëzimi ynë vjen nga dëshira e grave shqiptare për të gjetur hijabe që respektojnë traditën, por gjithashtu ofrojnë mundësi për shprehje personale dhe stil të modernizuar. Me këtë frymë, krijuam një hapësirë ku mund të zgjidhni nga një gamë e gjerë shajesh, nga ato përditshme deri te hijabet për raste speciale."
