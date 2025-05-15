@@ -133,7 +133,7 @@ const OptimizedImage = ({
   );
 
   const wrapperClassName = buildClassName(
-    'relative overflow-hidden',
+    'relative overflow-hidden optimized-image-wrapper',
     wrapperWidthClass,
     pureWrapperClassName,
     roundedClasses

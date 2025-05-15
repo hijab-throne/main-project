@@ -22,7 +22,7 @@ const isMobile = window.innerWidth < 768
       <header className="sticky top-0 z-50 w-full flex justify-between items-center px-4 py-3 bg-[#F3F1FA]">
         {/* Logo */}
         <a href="/" className="flex flex-col items-center cursor-pointer">
-          <img className="w-auto h-8" alt="logo" src={main} />
+          <img className="w-auto h-8" alt="logo" src={main} loading="eager" />
         </a>
 
         {/* Desktop Navigation */}
