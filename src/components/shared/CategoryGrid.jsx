@@ -5,7 +5,7 @@ const categories = [
   {
     title: 'Chiffon',
     image: '/landing_page/lulu/DSCF6803.jpg',
-    link: '/chiffon/shall-ch-gur',
+    link: '/chiffon/shall-ch-180',
   },
   {
     title: 'Jersey',
