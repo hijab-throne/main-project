@@ -37,7 +37,7 @@ export default function KapucTylLehte() {
   return <ProductPage
     features={features}
     details={details}
-    title="Kapuc Tyl i lehte"
+    title="Kapuc Tyl"
     description="Kapuçet janë aksesorë esencialë për çdo stil modest veshjeje, duke ofruar rehati, qëndrueshmëri dhe pamje të pastër."
     mainAlt="Kapuc"
     hideColorCircle={true}

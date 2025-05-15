@@ -108,13 +108,7 @@ const navItems = [
           {label: 'Kapuc elastik xhufke', href: '/kapuc/elastik'},
         ]
       },
-      {
-        label: 'Kapuc tyl',
-        subdropdown: [
-          {label: 'Kapuc tyl tjeter', href: '/kapuc/tyl-tjeter'},
-          {label: 'Kapuc i lehte', href: '/kapuc/tyl-i-lehte'},
-        ]
-      },
+      {label: 'Kapuc tyl', href: '/kapuc/tyl-i-lehte'},
       {label: 'Kapuc ceneli', href: '/kapuc/ceneli'},
       {label: 'Ninxha pambuk sedef', href: '/kapuc/sedef'},
       {label: 'Ninxha climatic ecardin', href: '/kapuc/aspirim'},
@@ -202,7 +196,7 @@ function App() {
             <Route path="/kapuc/klimatik" component={() => <KapucKlimatik/>}/>
             <Route path="/kapuc/sedef" component={() => <KapucSedef/>}/>
             <Route path="/kapuc/tub" component={() => <KapucTub/>}/>
-            <Route path="/kapuc/tyl-tjeter" component={() => <KapucTylTjeter/>}/>
+            {/*<Route path="/kapuc/tyl-tjeter" component={() => <KapucTylTjeter/>}/>*/}
             <Route path="/kapuc/tyl-i-lehte" component={() => <KapucTylLehte/>}/>
             <Route path="/kapuc/elastik" component={() => <KapucXhElastik/>}/>
             <Route path="/kapuc/pambuk" component={() => <KapucXhPambuk/>}/>
