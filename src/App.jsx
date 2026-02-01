@@ -43,6 +43,7 @@ import KapucTylLehte from "./pages/kapuc/KapucTylLehte.jsx";
 import KapucXhElastik from "./pages/kapuc/KapucXhElastik.jsx";
 import KapucXhPambuk from "./pages/kapuc/KapucXhPambuk.jsx";
 import ShamiShkelqim from "./pages/ShamiShkelqim.jsx";
+import Spinner from "./pages/spinner/Spinner.jsx";
 
 const navItems = [
   {
@@ -175,6 +176,8 @@ function App() {
             <Route path="/jazz/shall-jazz-200" component={() => <JazzShall200/>}/>
             <Route path="/jazz/shall-krep" component={() => <ShallKrep/>}/>
             <Route path="/about-us" component={() => <AboutUs/>}/>
+            <Route path="/spinner" component={() => <Spinner storageKey="hijab-throne-spinner" />} />
+            <Route path="/spinner-test" component={() => <Spinner storageKey="hijab-throne-spinner-test" />} />
             <Route path="/aktivitete/bamiresi" component={() => <Bamiresite/>}/>
             <Route path="/aktivitete/sfiltata" component={() => <Sfilatat/>}/>
             <Route path="/aktivitete/panaire" component={() => <Panairet/>}/>

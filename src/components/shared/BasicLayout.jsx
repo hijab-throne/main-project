@@ -15,11 +15,12 @@ const isMobile = window.innerWidth < 768
     document.body.style.overflow = isDrawerOpen ? "hidden" : "auto";
     return () => { document.body.style.overflow = "auto"; };
   }, [isDrawerOpen]);
+  const hideHeader = window.location.href?.endsWith?.("spinner") || window.location.href?.endsWith?.("spinner-test")
 
   return (
     <div className="h-full flex flex-col items-center">
       {/* Header */}
-      <header className="sticky top-0 z-50 w-full flex justify-between items-center px-4 py-3 bg-[#F3F1FA]">
+        {!hideHeader && <header className="sticky top-0 z-50 w-full flex justify-between items-center px-4 py-3 bg-[#F3F1FA]">
         {/* Logo */}
         <a href="/" className="flex flex-col items-center cursor-pointer">
           <img className="w-auto h-8" alt="logo" src={main} loading="eager" />
@@ -115,7 +116,7 @@ const isMobile = window.innerWidth < 768
         >
           <Menu size={28} />
         </button>
-      </header>
+      </header>}
 
       {/* Mobile Drawer */}
       <div

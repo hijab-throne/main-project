@@ -1,0 +1,443 @@
+import { useState, useCallback, useRef, memo, useMemo, useEffect } from "react";
+
+const SPIN_DURATION_MIN = 4000;
+const SPIN_DURATION_MAX = 6000;
+const SAVE_DEBOUNCE_MS = 100;
+
+const PRIZE_CONFIG = [
+  { id: 0, text: "5% ZBRITJE", color: "#FF7BA3", probability: 22, maxRedemptions: 500 },
+  { id: 1, text: "10% ZBRITJE", color: "#A8D5E2", probability: 8, maxRedemptions: 50 },
+  { id: 2, text: "BLI NJË SHALL", subtext: "& TË DYTIN -20%", color: "#B4A5E8", probability: 6, maxRedemptions: 30 },
+  { id: 3, text: "POSTA FALAS", color: "#FFD93D", probability: 4, maxRedemptions: 100 },
+  { id: 4, text: "PROVO SËRISH ✨", color: "#95E1D3", probability: 60, maxRedemptions: 99999 },
+];
+
+const SEGMENT_ANGLE = 360 / PRIZE_CONFIG.length;
+const RADIUS = 180;
+const CENTER_X = 200;
+const CENTER_Y = 200;
+const TEXT_RADIUS = 120;
+const ANTI_PATTERN_THRESHOLD = 3;
+const COOLDOWN_SPINS = 5;
+const POINTER_ANGLE_SVG = 270;
+
+const compressGameState = (redemptionCounts) =>
+  PRIZE_CONFIG.map((prize) => redemptionCounts[prize.id] || 0).join(",");
+
+const decompressGameState = (compressed) => {
+  const values = compressed.split(",").map(Number);
+  const redemptions = {};
+  PRIZE_CONFIG.forEach((prize, index) => {
+    redemptions[prize.id] = values[index] || 0;
+  });
+  return redemptions;
+};
+
+const compressHistory = (history) => history.join(",");
+
+const decompressHistory = (compressed) =>
+  compressed ? compressed.split(",").map(Number) : [];
+
+const getStoredState = (storageKey) => {
+  try {
+    const redemptionData = localStorage.getItem(storageKey);
+    const historyData = localStorage.getItem(`${storageKey}_h`);
+    return {
+      redemptions: redemptionData ? decompressGameState(redemptionData) : null,
+      history: historyData ? decompressHistory(historyData) : []
+    };
+  } catch {
+    localStorage.removeItem(storageKey);
+    localStorage.removeItem(`${storageKey}_h`);
+    return { redemptions: null, history: [] };
+  }
+};
+
+const saveState = (redemptions, history, storageKey) => {
+  try {
+    localStorage.setItem(storageKey, compressGameState(redemptions));
+    localStorage.setItem(`${storageKey}_h`, compressHistory(history.slice(-20)));
+  } catch {
+    localStorage.removeItem(storageKey);
+    localStorage.removeItem(`${storageKey}_h`);
+  }
+};
+
+const initializeState = (storageKey) => {
+  const stored = getStoredState(storageKey);
+  if (stored.redemptions) return stored;
+
+  const redemptions = {};
+  PRIZE_CONFIG.forEach((prize) => {
+    redemptions[prize.id] = 0;
+  });
+  return { redemptions, history: [] };
+};
+
+const calculateAvailablePrizes = (redemptions) =>
+  PRIZE_CONFIG.filter((prize) => (redemptions[prize.id] || 0) < prize.maxRedemptions);
+
+const analyzeRecentPattern = (history) => {
+  if (history.length < 2) return { hasPattern: false };
+
+  const recentSpins = history.slice(-ANTI_PATTERN_THRESHOLD);
+  if (recentSpins.every(id => id === recentSpins[0]) && recentSpins.length >= ANTI_PATTERN_THRESHOLD) {
+    return { hasPattern: true, repeatedPrize: recentSpins[0] };
+  }
+
+  return { hasPattern: false };
+};
+
+const calculateTimeBasedBoost = () => {
+  const currentHour = new Date().getHours();
+  if (currentHour >= 10 && currentHour < 12) return 1.3;
+  if (currentHour >= 14 && currentHour < 16) return 1.2;
+  if (currentHour >= 18 && currentHour < 20) return 1.4;
+  return 1.0;
+};
+
+const calculateProgressiveOdds = (currentRedemptions, maxRedemptions, baseProbability) => {
+  const remainingPercentage = (maxRedemptions - currentRedemptions) / maxRedemptions;
+
+  if (remainingPercentage < 0.1) return baseProbability * 0.2;
+  if (remainingPercentage < 0.2) return baseProbability * 0.4;
+  if (remainingPercentage < 0.3) return baseProbability * 0.6;
+  if (remainingPercentage < 0.5) return baseProbability * 0.8;
+
+  return baseProbability;
+};
+
+const selectPrizeWithWeightedProbability = (availablePrizes, redemptions, history) => {
+  const patternAnalysis = analyzeRecentPattern(history);
+  const timeBoost = calculateTimeBasedBoost();
+
+  const adjustedPrizes = availablePrizes.map(prize => {
+    let adjustedProbability = calculateProgressiveOdds(
+      redemptions[prize.id] || 0,
+      prize.maxRedemptions,
+      prize.probability
+    );
+
+    if (patternAnalysis.hasPattern && prize.id === patternAnalysis.repeatedPrize) {
+      adjustedProbability *= 0.1;
+    }
+
+    if (prize.id === 4 && history.slice(-COOLDOWN_SPINS).filter(id => id === 4).length >= 2) {
+      adjustedProbability *= 0.3;
+    }
+
+    if (prize.id !== 4) {
+      adjustedProbability *= timeBoost;
+    }
+
+    return { ...prize, adjustedProbability };
+  });
+
+  const totalWeight = adjustedPrizes.reduce((sum, prize) => sum + Math.max(prize.adjustedProbability, 0), 0);
+  const randomValue = Math.random() * totalWeight;
+
+  let cumulativeWeight = 0;
+  for (const prize of adjustedPrizes) {
+    cumulativeWeight += Math.max(prize.adjustedProbability, 0);
+    if (randomValue <= cumulativeWeight) {
+      return PRIZE_CONFIG.find(original => original.id === prize.id);
+    }
+  }
+
+  return PRIZE_CONFIG.find(original => original.id === adjustedPrizes[adjustedPrizes.length - 1].id);
+};
+
+const calculateRotationToLandOnPrize = (targetPrizeId, currentRotation) => {
+  const targetSegmentCenterAngle = targetPrizeId * SEGMENT_ANGLE + SEGMENT_ANGLE / 2;
+
+  const targetWheelRotation = POINTER_ANGLE_SVG - targetSegmentCenterAngle;
+
+  const currentNormalized = ((currentRotation % 360) + 360) % 360;
+  const targetNormalized = ((targetWheelRotation % 360) + 360) % 360;
+
+  let additionalRotation = targetNormalized - currentNormalized;
+
+  if (additionalRotation <= 0) {
+    additionalRotation += 360;
+  }
+
+  const fullRotations = 4 + Math.floor(Math.random() * 3);
+  const maxWobble = SEGMENT_ANGLE * 0.35;
+  const randomOffsetWithinSegment = (Math.random() * maxWobble * 2) - maxWobble;
+
+  return fullRotations * 360 + additionalRotation + randomOffsetWithinSegment;
+};
+
+const segmentCache = PRIZE_CONFIG.map((prize, index) => {
+  const startAngle = index * SEGMENT_ANGLE;
+  const endAngle = startAngle + SEGMENT_ANGLE;
+  const startRadian = (startAngle * Math.PI) / 180;
+  const endRadian = (endAngle * Math.PI) / 180;
+
+  const x1 = CENTER_X + RADIUS * Math.cos(startRadian);
+  const y1 = CENTER_Y + RADIUS * Math.sin(startRadian);
+  const x2 = CENTER_X + RADIUS * Math.cos(endRadian);
+  const y2 = CENTER_Y + RADIUS * Math.sin(endRadian);
+
+  const largeArcFlag = SEGMENT_ANGLE > 180 ? 1 : 0;
+  const path = `M ${CENTER_X} ${CENTER_Y} L ${x1} ${y1} A ${RADIUS} ${RADIUS} 0 ${largeArcFlag} 1 ${x2} ${y2} Z`;
+
+  const middleAngle = startAngle + SEGMENT_ANGLE / 2;
+  const textRadian = (middleAngle * Math.PI) / 180;
+  const textX = CENTER_X + TEXT_RADIUS * Math.cos(textRadian);
+  const textY = CENTER_Y + TEXT_RADIUS * Math.sin(textRadian);
+  const textRotation = middleAngle + 90;
+
+  return { prize, path, textX, textY, rotation: textRotation };
+});
+
+const confettiCache = Array.from({ length: 50 }, (_, i) => ({
+  id: i,
+  left: Math.random() * 100,
+  delay: Math.random() * 0.5,
+  duration: 2 + Math.random() * 2,
+  rotation: Math.random() * 360,
+  color: PRIZE_CONFIG[Math.floor(Math.random() * PRIZE_CONFIG.length)].color,
+}));
+
+const WheelSegment = memo(({ segmentData }) => {
+  const { prize, path, textX, textY, rotation } = segmentData;
+  const fontSize = prize.subtext ? "13px" : "15px";
+  const textTransform = `rotate(${rotation}, ${textX}, ${textY})`;
+
+  return (
+    <g>
+      <path d={path} fill={prize.color} stroke="white" strokeWidth="4" />
+      <text
+        x={textX}
+        y={textY}
+        textAnchor="middle"
+        dominantBaseline="middle"
+        transform={textTransform}
+        className="fill-gray-800 font-bold pointer-events-none"
+        fontSize={fontSize}
+      >
+        {prize.text}
+        {prize.subtext && <tspan x={textX} dy="14">{prize.subtext}</tspan>}
+      </text>
+    </g>
+  );
+});
+WheelSegment.displayName = "WheelSegment";
+
+const ConfettiPiece = memo(({ piece }) => {
+  const style = useMemo(() => ({
+    left: `${piece.left}%`,
+    top: "-10%",
+    backgroundColor: piece.color,
+    animation: `confettiFall ${piece.duration}s linear ${piece.delay}s forwards`,
+    transform: `rotate(${piece.rotation}deg)`,
+  }), [piece]);
+
+  return <div className="absolute w-2 h-2 opacity-0" style={style} />;
+});
+ConfettiPiece.displayName = "ConfettiPiece";
+
+const Confetti = memo(() => (
+  <div className="fixed inset-0 pointer-events-none overflow-hidden z-50">
+    {confettiCache.map((piece) => <ConfettiPiece key={piece.id} piece={piece} />)}
+  </div>
+));
+Confetti.displayName = "Confetti";
+
+const WinnerDisplay = memo(({ prize }) => {
+  const isRetry = prize.id === 4;
+  const message = isRetry ? "😊 Provo sërish!" : "🎊 Urime! Ke fituar:";
+  const displayText = prize.subtext ? `${prize.text} ${prize.subtext}` : prize.text;
+
+  return (
+    <div className="w-full">
+      <div className="bg-white rounded-3xl shadow-2xl px-8 py-10 border-4 border-purple-400">
+        <p className="text-gray-600 text-lg mb-4 text-center font-medium">{message}</p>
+        <p className="text-5xl font-black bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent text-center leading-tight">
+          {displayText}
+        </p>
+      </div>
+    </div>
+  );
+});
+WinnerDisplay.displayName = "WinnerDisplay";
+
+export default function SpinnerReward({ storageKey = "sg" }) {
+  const [state, setState] = useState(() => initializeState(storageKey));
+  const [currentRotation, setCurrentRotation] = useState(0);
+  const [wonPrize, setWonPrize] = useState(null);
+  const [showConfetti, setShowConfetti] = useState(false);
+  const [isSpinning, setIsSpinning] = useState(false);
+
+  const saveTimeoutRef = useRef(null);
+  const spinAnimationRef = useRef(null);
+  const selectedPrizeRef = useRef(null);
+
+  useEffect(() => {
+    return () => {
+      if (spinAnimationRef.current) {
+        cancelAnimationFrame(spinAnimationRef.current);
+        spinAnimationRef.current = null;
+      }
+    };
+  }, []);
+
+  const debouncedSave = useCallback((newRedemptions, newHistory) => {
+    if (saveTimeoutRef.current) clearTimeout(saveTimeoutRef.current);
+
+    saveTimeoutRef.current = setTimeout(() => {
+      saveState(newRedemptions, newHistory, storageKey);
+      saveTimeoutRef.current = null;
+    }, SAVE_DEBOUNCE_MS);
+  }, [storageKey]);
+
+  const finishSpin = useCallback((selectedPrize) => {
+    setIsSpinning(false);
+    setWonPrize(selectedPrize);
+    setShowConfetti(selectedPrize.id !== 4);
+    spinAnimationRef.current = null;
+    selectedPrizeRef.current = null;
+
+    setState((previousState) => {
+      const updatedRedemptions = {
+        ...previousState.redemptions,
+        [selectedPrize.id]: previousState.redemptions[selectedPrize.id] + 1
+      };
+      const updatedHistory = [...previousState.history, selectedPrize.id];
+
+      debouncedSave(updatedRedemptions, updatedHistory);
+
+      return {
+        redemptions: updatedRedemptions,
+        history: updatedHistory
+      };
+    });
+  }, [debouncedSave]);
+
+  const animateSpin = useCallback((selectedPrize, targetRotation, startRotation) => {
+    const startTime = performance.now();
+    const baseDuration = SPIN_DURATION_MIN + Math.random() * (SPIN_DURATION_MAX - SPIN_DURATION_MIN);
+    const animationDuration = baseDuration * (0.95 + Math.random() * 0.1);
+
+    const finalRotation = startRotation + targetRotation;
+
+    const animate = (currentTime) => {
+      const elapsed = currentTime - startTime;
+      const progress = Math.min(elapsed / animationDuration, 1);
+
+      const easeOut = 1 - Math.pow(1 - progress, 4);
+      const wobble = Math.sin(progress * Math.PI * 3) * (1 - progress) * 2;
+
+      if (progress < 1) {
+        const nextRotation = startRotation + targetRotation * easeOut + wobble;
+        setCurrentRotation(nextRotation);
+        spinAnimationRef.current = requestAnimationFrame(animate);
+      } else {
+        setCurrentRotation(finalRotation);
+        finishSpin(selectedPrize);
+      }
+    };
+
+    spinAnimationRef.current = requestAnimationFrame(animate);
+  }, [finishSpin]);
+
+  const handleSpin = useCallback(() => {
+    if (spinAnimationRef.current) return;
+
+    const { redemptions, history } = state;
+    const availablePrizes = calculateAvailablePrizes(redemptions);
+
+    if (!availablePrizes.length) {
+      alert("Të gjitha çmimet janë të shpenzuara!");
+      return;
+    }
+
+    const selectedPrize = selectPrizeWithWeightedProbability(availablePrizes, redemptions, history);
+    selectedPrizeRef.current = selectedPrize;
+
+    setIsSpinning(true);
+    setWonPrize(null);
+    setShowConfetti(false);
+
+    const targetRotation = calculateRotationToLandOnPrize(selectedPrize.id, currentRotation);
+
+    animateSpin(selectedPrize, targetRotation, currentRotation);
+  }, [state, currentRotation, animateSpin]);
+
+  const wheelStyle = useMemo(() => ({
+    transform: `rotate(${currentRotation}deg)`,
+    transition: isSpinning ? "none" : "transform 0.25s ease-out",
+  }), [currentRotation, isSpinning]);
+
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-purple-50 via-pink-50 to-purple-100 flex items-center justify-center p-8">
+      <style>{`@keyframes confettiFall{to{top:110%;opacity:1}}`}</style>
+      {showConfetti && <Confetti />}
+
+      <div className="w-full max-w-6xl flex flex-col gap-12 items-center">
+        <div className="flex flex-col items-center space-y-6">
+          <div className="text-center">
+            <h1 className="text-6xl lg:text-7xl font-black mb-3 bg-gradient-to-r from-purple-600 via-pink-600 to-purple-700 bg-clip-text text-transparent">
+              Rrotullo rrotën
+            </h1>
+            <p className="text-gray-700 text-2xl font-medium mb-8">Fito çmime të mrekullueshme! 🎁</p>
+          </div>
+
+          <div className="relative">
+            <div className="absolute inset-0 -m-10 rounded-full bg-gradient-to-br from-purple-400 via-pink-400 to-purple-500 opacity-25 blur-3xl" />
+            <div className="absolute top-1 left-1/2 -translate-x-1/2 z-20">
+              <div className="w-0 h-0 border-l-[28px] border-l-transparent border-r-[28px] border-r-transparent border-t-[42px] border-t-red-500 drop-shadow-2xl" />
+            </div>
+            <div className="absolute inset-0 -m-6 rounded-full border-[8px] border-purple-300 shadow-xl" />
+            <svg
+              width="600"
+              height="600"
+              viewBox="0 0 400 400"
+              className="cursor-pointer drop-shadow-2xl"
+              onClick={handleSpin}
+              style={wheelStyle}
+            >
+              {segmentCache.map((data) => <WheelSegment key={data.prize.id} segmentData={data} />)}
+              <circle cx="200" cy="200" r="60" fill="white" stroke="#6F678E" strokeWidth="6" />
+              <circle cx="200" cy="200" r="54" fill="url(#g)" />
+              <text
+                x="200"
+                y="200"
+                textAnchor="middle"
+                dominantBaseline="middle"
+                className="fill-white font-black text-2xl pointer-events-none"
+              >
+                SPIN
+              </text>
+              <defs>
+                <linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stopColor="#8B7FB8" />
+                  <stop offset="100%" stopColor="#6F678E" />
+                </linearGradient>
+              </defs>
+            </svg>
+          </div>
+        </div>
+
+        <div className="flex flex-col space-y-8 mt-6">
+          <button
+            onClick={handleSpin}
+            disabled={isSpinning}
+            className={`w-full px-12 py-6 rounded-full font-black text-2xl text-white bg-gradient-to-r from-purple-600 to-pink-600 shadow-2xl transform transition-all duration-300 ${
+              isSpinning ? "opacity-60 cursor-not-allowed" : "hover:scale-105 hover:-translate-y-1 active:scale-95"
+            }`}
+          >
+            {isSpinning ? "Duke u rrotulluar..." : "Kliko për të rrotulluar! 🎉"}
+          </button>
+
+          {wonPrize && <WinnerDisplay prize={wonPrize} />}
+
+          <p className="text-gray-600 text-xl text-center lg:text-left font-medium">
+            Kliko rrotën ose butonin për të rrotulluar dhe fituar një çmim të veçantë!
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+}
