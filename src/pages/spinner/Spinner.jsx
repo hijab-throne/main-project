@@ -103,19 +103,24 @@ const selectPrizeWithWeightedProbability = (availablePrizes, redemptions, histor
   const patternAnalysis = analyzeRecentPattern(history);
 
   const adjustedPrizes = availablePrizes.map(prize => {
-    let adjustedProbability = calculateProgressiveOdds(
-      redemptions[prize.id] || 0,
-      prize.maxRedemptions,
-      prize.probability
-    );
+    let adjustedProbability = prize.probability; // Start with base probability
 
-    if (patternAnalysis.hasPattern && prize.id === patternAnalysis.repeatedPrize) {
+    // Only apply progressive odds to LIMITED prizes (not the "try again" prize)
+    if (prize.id !== 4) {
+      adjustedProbability = calculateProgressiveOdds(
+        redemptions[prize.id] || 0,
+        prize.maxRedemptions,
+        prize.probability
+      );
+    }
+
+    // Only apply anti-pattern penalty to LIMITED prizes
+    if (prize.id !== 4 && patternAnalysis.hasPattern && prize.id === patternAnalysis.repeatedPrize) {
       adjustedProbability *= 0.1;
     }
 
-    if (prize.id === 4 && history.slice(-COOLDOWN_SPINS).filter(id => id === 4).length >= 2) {
-      adjustedProbability *= 0.3;
-    }
+    // Remove the cooldown penalty for "try again" entirely
+    // (The original cooldown code is deleted)
 
     return { ...prize, adjustedProbability };
   });
