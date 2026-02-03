@@ -246,7 +246,7 @@ const WinnerDisplay = memo(({ prize }) => {
     <div className="w-full">
       <div className="bg-white rounded-2xl sm:rounded-3xl shadow-2xl px-4 sm:px-6 md:px-8 py-6 sm:py-8 md:py-10 border-2 sm:border-4 border-purple-400">
         <p className="text-gray-600 text-base sm:text-lg mb-3 sm:mb-4 text-center font-medium">{message}</p>
-        <p className="text-3xl sm:text-4xl md:text-5xl font-black bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent text-center leading-tight">
+        <p className="text-2xl sm:text-3xl md:text-4xl font-black bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent text-center leading-tight">
           {displayText}
         </p>
       </div>
@@ -375,7 +375,7 @@ export default function SpinnerReward({ storageKey = "sg" }) {
               width="100%"
               height="100%"
               viewBox="0 0 400 400"
-              className="cursor-pointer drop-shadow-2xl w-[280px] h-[280px] sm:w-[400px] sm:h-[400px] md:w-[500px] md:h-[500px] lg:w-[600px] lg:h-[600px]"
+              className="cursor-pointer w-[280px] h-[280px] sm:w-[400px] sm:h-[400px] md:w-[500px] md:h-[500px] lg:w-[600px] lg:h-[600px]"
               onClick={handleSpin}
               style={wheelStyle}
             >
