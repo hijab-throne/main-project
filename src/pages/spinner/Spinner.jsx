@@ -5,11 +5,11 @@ const SPIN_DURATION_MAX = 6000;
 const SAVE_DEBOUNCE_MS = 100;
 
 const PRIZE_CONFIG = [
-  { id: 0, text: "5% ZBRITJE", color: "#FF7BA3", probability: 22, maxRedemptions: 500 },
-  { id: 1, text: "10% ZBRITJE", color: "#A8D5E2", probability: 8, maxRedemptions: 50 },
-  { id: 2, text: "BLI NJË SHALL", subtext: "& TË DYTIN -20%", color: "#B4A5E8", probability: 6, maxRedemptions: 30 },
-  { id: 3, text: "POSTA FALAS", color: "#FFD93D", probability: 4, maxRedemptions: 100 },
-  { id: 4, text: "PROVO SËRISH ✨", color: "#95E1D3", probability: 60, maxRedemptions: 99999 },
+  { id: 0, text: "5% ZBRITJE", color: "#FF7BA3", probability: 11, maxRedemptions: 500 },
+  { id: 1, text: "10% ZBRITJE", color: "#A8D5E2", probability: 2, maxRedemptions: 50 },
+  { id: 2, text: "BLI NJË SHALL", subtext: "& TË DYTIN -20%", color: "#B4A5E8", probability: 4, maxRedemptions: 30 },
+  { id: 3, text: "POSTA FALAS", color: "#FFD93D", probability: 3, maxRedemptions: 100 },
+  { id: 4, text: "PROVO SËRISH ✨", color: "#95E1D3", probability: 80, maxRedemptions: 99999 },
 ];
 
 const SEGMENT_ANGLE = 360 / PRIZE_CONFIG.length;
