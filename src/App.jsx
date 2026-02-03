@@ -44,6 +44,7 @@ import KapucXhElastik from "./pages/kapuc/KapucXhElastik.jsx";
 import KapucXhPambuk from "./pages/kapuc/KapucXhPambuk.jsx";
 import ShamiShkelqim from "./pages/ShamiShkelqim.jsx";
 import Spinner from "./pages/spinner/Spinner.jsx";
+import NotFound from "./pages/NotFound.jsx";
 
 const navItems = [
   {
@@ -204,7 +205,12 @@ function App() {
             <Route path="/kapuc/elastik" component={() => <KapucXhElastik/>}/>
             <Route path="/kapuc/pambuk" component={() => <KapucXhPambuk/>}/>
             <Route path="/shkelqim" component={() => <ShamiShkelqim/>}/>
-            {navItems.map(({href, Component}) => <Route key={href} path={href} component={Component}/>)}
+            {navItems.map(({ href, Component }) =>
+                Component ? (
+                  <Route key={href} path={href} component={Component} />
+                ) : null
+              )}
+            <Route component={() => <NotFound/>} />
           </Switch>
         </BasicLayout>
       </div>
