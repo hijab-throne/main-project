@@ -239,9 +239,9 @@ const WinnerDisplay = memo(({ prize }) => {
 
   return (
     <div className="w-full">
-      <div className="bg-white rounded-3xl shadow-2xl px-8 py-10 border-4 border-purple-400">
-        <p className="text-gray-600 text-lg mb-4 text-center font-medium">{message}</p>
-        <p className="text-5xl font-black bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent text-center leading-tight">
+      <div className="bg-white rounded-2xl sm:rounded-3xl shadow-2xl px-4 sm:px-6 md:px-8 py-6 sm:py-8 md:py-10 border-2 sm:border-4 border-purple-400">
+        <p className="text-gray-600 text-base sm:text-lg mb-3 sm:mb-4 text-center font-medium">{message}</p>
+        <p className="text-3xl sm:text-4xl md:text-5xl font-black bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent text-center leading-tight">
           {displayText}
         </p>
       </div>
@@ -347,30 +347,30 @@ export default function SpinnerReward({ storageKey = "sg" }) {
   }), [currentRotation, isSpinning, spinDuration]);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-50 via-pink-50 to-purple-100 flex items-center justify-center p-8">
+    <div className="min-h-screen bg-gradient-to-br from-purple-50 via-pink-50 to-purple-100 flex items-center justify-center p-4 sm:p-6 md:p-8">
       <style>{`@keyframes confettiFall{to{top:110%;opacity:1}}`}</style>
       {showConfetti && <Confetti />}
 
-      <div className="w-full max-w-6xl flex flex-col gap-12 items-center">
-        <div className="flex flex-col items-center space-y-6">
+      <div className="w-full max-w-6xl flex flex-col gap-6 sm:gap-8 md:gap-12 items-center">
+        <div className="flex flex-col items-center space-y-4 sm:space-y-6">
           <div className="text-center">
-            <h1 className="text-6xl lg:text-7xl font-black mb-3 bg-gradient-to-r from-purple-600 via-pink-600 to-purple-700 bg-clip-text text-transparent">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black mb-2 sm:mb-3 bg-gradient-to-r from-purple-600 via-pink-600 to-purple-700 bg-clip-text text-transparent">
               Rrotullo rrotën
             </h1>
-            <p className="text-gray-700 text-2xl font-medium mb-8">Fito çmime të mrekullueshme! 🎁</p>
+            <p className="text-gray-700 text-lg sm:text-xl md:text-2xl font-medium mb-4 sm:mb-6 md:mb-8">Fito çmime të mrekullueshme! 🎁</p>
           </div>
 
           <div className="relative">
-            <div className="absolute inset-0 -m-10 rounded-full bg-gradient-to-br from-purple-400 via-pink-400 to-purple-500 opacity-25 blur-3xl" />
+            <div className="absolute inset-0 -m-6 sm:-m-8 md:-m-10 rounded-full bg-gradient-to-br from-purple-400 via-pink-400 to-purple-500 opacity-25 blur-3xl" />
             <div className="absolute top-1 left-1/2 -translate-x-1/2 z-20">
-              <div className="w-0 h-0 border-l-[28px] border-l-transparent border-r-[28px] border-r-transparent border-t-[42px] border-t-red-500 drop-shadow-2xl" />
+              <div className="w-0 h-0 border-l-[20px] sm:border-l-[24px] md:border-l-[28px] border-l-transparent border-r-[20px] sm:border-r-[24px] md:border-r-[28px] border-r-transparent border-t-[30px] sm:border-t-[36px] md:border-t-[42px] border-t-red-500 drop-shadow-2xl" />
             </div>
-            <div className="absolute inset-0 -m-6 rounded-full border-[8px] border-purple-300 shadow-xl" />
+            <div className="absolute inset-0 -m-4 sm:-m-5 md:-m-6 rounded-full border-4 sm:border-6 md:border-[8px] border-purple-300 shadow-xl" />
             <svg
-              width="600"
-              height="600"
+              width="100%"
+              height="100%"
               viewBox="0 0 400 400"
-              className="cursor-pointer drop-shadow-2xl"
+              className="cursor-pointer drop-shadow-2xl w-[280px] h-[280px] sm:w-[400px] sm:h-[400px] md:w-[500px] md:h-[500px] lg:w-[600px] lg:h-[600px]"
               onClick={handleSpin}
               style={wheelStyle}
             >
@@ -398,11 +398,11 @@ export default function SpinnerReward({ storageKey = "sg" }) {
           </div>
         </div>
 
-        <div className="flex flex-col space-y-8 mt-6">
+        <div className="flex flex-col space-y-4 sm:space-y-6 md:space-y-8 mt-4 sm:mt-6 w-full max-w-2xl px-2 sm:px-0">
           <button
             onClick={handleSpin}
             disabled={isSpinning}
-            className={`w-full px-12 py-6 rounded-full font-black text-2xl text-white bg-gradient-to-r from-purple-600 to-pink-600 shadow-2xl transform transition-all duration-300 ${
+            className={`w-full px-6 sm:px-8 md:px-12 py-4 sm:py-5 md:py-6 rounded-full font-black text-lg sm:text-xl md:text-2xl text-white bg-gradient-to-r from-purple-600 to-pink-600 shadow-2xl transform transition-all duration-300 ${
               isSpinning ? "opacity-60 cursor-not-allowed" : "hover:scale-105 hover:-translate-y-1 active:scale-95"
             }`}
           >
@@ -411,7 +411,7 @@ export default function SpinnerReward({ storageKey = "sg" }) {
 
           {wonPrize && <WinnerDisplay prize={wonPrize} />}
 
-          <p className="text-gray-600 text-xl text-center lg:text-left font-medium">
+          <p className="text-gray-600 text-base sm:text-lg md:text-xl text-center font-medium px-2">
             Kliko rrotën ose butonin për të rrotulluar dhe fituar një çmim të veçantë!
           </p>
         </div>
