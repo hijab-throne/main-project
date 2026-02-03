@@ -88,14 +88,6 @@ const analyzeRecentPattern = (history) => {
   return { hasPattern: false };
 };
 
-const calculateTimeBasedBoost = () => {
-  const currentHour = new Date().getHours();
-  if (currentHour >= 10 && currentHour < 12) return 1.3;
-  if (currentHour >= 14 && currentHour < 16) return 1.2;
-  if (currentHour >= 18 && currentHour < 20) return 1.4;
-  return 1.0;
-};
-
 const calculateProgressiveOdds = (currentRedemptions, maxRedemptions, baseProbability) => {
   const remainingPercentage = (maxRedemptions - currentRedemptions) / maxRedemptions;
 
@@ -109,7 +101,6 @@ const calculateProgressiveOdds = (currentRedemptions, maxRedemptions, baseProbab
 
 const selectPrizeWithWeightedProbability = (availablePrizes, redemptions, history) => {
   const patternAnalysis = analyzeRecentPattern(history);
-  const timeBoost = calculateTimeBasedBoost();
 
   const adjustedPrizes = availablePrizes.map(prize => {
     let adjustedProbability = calculateProgressiveOdds(
@@ -124,10 +115,6 @@ const selectPrizeWithWeightedProbability = (availablePrizes, redemptions, histor
 
     if (prize.id === 4 && history.slice(-COOLDOWN_SPINS).filter(id => id === 4).length >= 2) {
       adjustedProbability *= 0.3;
-    }
-
-    if (prize.id !== 4) {
-      adjustedProbability *= timeBoost;
     }
 
     return { ...prize, adjustedProbability };
@@ -269,6 +256,7 @@ export default function SpinnerReward({ storageKey = "sg" }) {
   const [wonPrize, setWonPrize] = useState(null);
   const [showConfetti, setShowConfetti] = useState(false);
   const [isSpinning, setIsSpinning] = useState(false);
+  const [spinDuration, setSpinDuration] = useState(5000);
 
   const saveTimeoutRef = useRef(null);
   const spinAnimationRef = useRef(null);
@@ -277,7 +265,7 @@ export default function SpinnerReward({ storageKey = "sg" }) {
   useEffect(() => {
     return () => {
       if (spinAnimationRef.current) {
-        cancelAnimationFrame(spinAnimationRef.current);
+        clearTimeout(spinAnimationRef.current);
         spinAnimationRef.current = null;
       }
     };
@@ -316,30 +304,17 @@ export default function SpinnerReward({ storageKey = "sg" }) {
   }, [debouncedSave]);
 
   const animateSpin = useCallback((selectedPrize, targetRotation, startRotation) => {
-    const startTime = performance.now();
     const baseDuration = SPIN_DURATION_MIN + Math.random() * (SPIN_DURATION_MAX - SPIN_DURATION_MIN);
     const animationDuration = baseDuration * (0.95 + Math.random() * 0.1);
 
     const finalRotation = startRotation + targetRotation;
 
-    const animate = (currentTime) => {
-      const elapsed = currentTime - startTime;
-      const progress = Math.min(elapsed / animationDuration, 1);
+    setSpinDuration(animationDuration);
+    setCurrentRotation(finalRotation);
 
-      const easeOut = 1 - Math.pow(1 - progress, 4);
-      const wobble = Math.sin(progress * Math.PI * 3) * (1 - progress) * 2;
-
-      if (progress < 1) {
-        const nextRotation = startRotation + targetRotation * easeOut + wobble;
-        setCurrentRotation(nextRotation);
-        spinAnimationRef.current = requestAnimationFrame(animate);
-      } else {
-        setCurrentRotation(finalRotation);
-        finishSpin(selectedPrize);
-      }
-    };
-
-    spinAnimationRef.current = requestAnimationFrame(animate);
+    spinAnimationRef.current = setTimeout(() => {
+      finishSpin(selectedPrize);
+    }, animationDuration);
   }, [finishSpin]);
 
   const handleSpin = useCallback(() => {
@@ -367,8 +342,9 @@ export default function SpinnerReward({ storageKey = "sg" }) {
 
   const wheelStyle = useMemo(() => ({
     transform: `rotate(${currentRotation}deg)`,
-    transition: isSpinning ? "none" : "transform 0.25s ease-out",
-  }), [currentRotation, isSpinning]);
+    transition: isSpinning ? `transform ${spinDuration}ms cubic-bezier(0.25, 0.1, 0.25, 1)` : "transform 0.25s ease-out",
+    willChange: isSpinning ? 'transform' : 'auto',
+  }), [currentRotation, isSpinning, spinDuration]);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-purple-50 via-pink-50 to-purple-100 flex items-center justify-center p-8">
@@ -399,17 +375,19 @@ export default function SpinnerReward({ storageKey = "sg" }) {
               style={wheelStyle}
             >
               {segmentCache.map((data) => <WheelSegment key={data.prize.id} segmentData={data} />)}
-              <circle cx="200" cy="200" r="60" fill="white" stroke="#6F678E" strokeWidth="6" />
-              <circle cx="200" cy="200" r="54" fill="url(#g)" />
-              <text
-                x="200"
-                y="200"
-                textAnchor="middle"
-                dominantBaseline="middle"
-                className="fill-white font-black text-2xl pointer-events-none"
-              >
-                SPIN
-              </text>
+
+              {/* Center button with logo */}
+              <circle cx="200" cy="200" r="62" fill="white" stroke="#9333EA" strokeWidth="5" />
+              <circle cx="200" cy="200" r="56" fill="#F8F5FF" />
+              <image
+                href="/main.svg"
+                x="162"
+                y="162"
+                width="76"
+                height="76"
+                className="pointer-events-none opacity-90"
+              />
+
               <defs>
                 <linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%">
                   <stop offset="0%" stopColor="#8B7FB8" />
