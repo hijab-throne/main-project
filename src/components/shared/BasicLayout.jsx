@@ -259,6 +259,10 @@ const isMobile = window.innerWidth < 768
                       </div>
                   </a>
               </div>
+              <div className="mt-6 text-center text-xs text-gray-500 space-y-0.5">
+                  <p className="font-semibold text-gray-600">Hijab Throne — Biznes i vogel</p>
+                  <p>NIPT: M61410050C</p>
+              </div>
           </footer>
       </div>
   );
