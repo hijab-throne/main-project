@@ -1,1 +1,5 @@
-/*    /index.html   200
+# Normalize hostname (force apex; if you prefer www, swap the rule)
+https://www.hijabthrone.al/*  https://hijabthrone.al/:splat  301!
+
+# Legacy redirects (placeholder — add any old URLs that need to map to new ones)
+# /old-url  /new-url  301

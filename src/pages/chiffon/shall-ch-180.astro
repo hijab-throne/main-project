@@ -1,0 +1,17 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Page from '../../page-components/chiffon/ChiffonShall180.jsx';
+import WhatsAppWidget from '../../components/WhatsAppWidget.jsx';
+import { buildProductPageJsonLd } from '../../lib/productLd.js';
+
+const pathname = '/chiffon/shall-ch-180';
+const jsonLd = buildProductPageJsonLd(pathname, [
+  { name: 'Kryefaqja', url: '/' },
+  { name: 'Chiffon', url: '/chiffon/shall-ch-180' },
+  { name: 'Shall Chiffon 180×70 cm', url: pathname },
+]);
+---
+<Layout ogType="product" jsonLd={jsonLd}>
+  <WhatsAppWidget client:idle />
+  <Page client:load pathname={pathname} locale="sq" />
+</Layout>

@@ -1,0 +1,15 @@
+---
+import Layout from '../layouts/Layout.astro';
+import AboutUs from '../page-components/AboutUs.jsx';
+import WhatsAppWidget from '../components/WhatsAppWidget.jsx';
+import { breadcrumbsJsonLd } from '../lib/structuredData.js';
+
+const breadcrumbs = breadcrumbsJsonLd([
+  { name: 'Kryefaqja', url: '/' },
+  { name: 'Rreth Nesh', url: '/about-us' },
+]);
+---
+<Layout jsonLd={[breadcrumbs]}>
+  <WhatsAppWidget client:idle />
+  <AboutUs client:load locale="sq" />
+</Layout>

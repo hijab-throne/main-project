@@ -1,0 +1,17 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import Page from '../../../page-components/praktike/PraktikePenye.jsx';
+import WhatsAppWidget from '../../../components/WhatsAppWidget.jsx';
+import { buildProductPageJsonLd } from '../../../lib/productLd.js';
+
+const pathname = '/en/praktike/penye';
+const jsonLd = buildProductPageJsonLd(pathname, [
+  { name: 'Home', url: '/en' },
+  { name: 'Practical', url: '/en/praktike' },
+  { name: 'Penye Sal', url: pathname },
+]);
+---
+<Layout ogType="product" jsonLd={jsonLd}>
+  <WhatsAppWidget client:idle />
+  <Page client:load pathname="/praktike/penye" locale="en" />
+</Layout>

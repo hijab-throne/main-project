@@ -25,9 +25,10 @@ export const ImagePreviewProvider = ({ children }) => {
   );
 };
 
-// Hook
+// Hook (safe when no provider is mounted yet, e.g. during SSR before hydration)
+const noopPreview = { openImage: () => {} };
 export const useImagePreview = () => {
-  return useContext(ImagePreviewContext);
+  return useContext(ImagePreviewContext) || noopPreview;
 };
 
 // Modal

@@ -50,13 +50,16 @@ const OptimizedImage = ({
   const isMobile = useMemo(() => isMobileDevice(), []);
   const shouldUseDirect = useMemo(() => isFullUrl(src) || isSvg(src), [src]);
 
+  const dotIdx = src.lastIndexOf('.');
   const fileBase = src.startsWith('/')
-    ? src.slice(1, src.lastIndexOf('.'))
-    : src.slice(0, src.lastIndexOf('.'));
+    ? src.slice(1, dotIdx)
+    : src.slice(0, dotIdx);
+  const origExt = dotIdx >= 0 ? src.slice(dotIdx + 1).toLowerCase() : 'jpg';
 
   const folder = variant === 'modal' ? 'modal' : isMobile ? 'mobile' : 'desktop';
   const finalSrc = shouldUseDirect ? src : `/assets/${folder}/${fileBase}.webp`;
-  const fallbackSrc = finalSrc.replace(/\.webp$/i, '.jpg');
+  const fallbackExt = ['png', 'jpg', 'jpeg', 'gif'].includes(origExt) ? origExt : 'jpg';
+  const fallbackSrc = finalSrc.replace(/\.webp$/i, `.${fallbackExt}`);
 
   const finalWidth = width || naturalSize.width;
   const finalHeight = height || naturalSize.height;
@@ -152,7 +155,7 @@ const OptimizedImage = ({
     className: finalImageClassName,
     ...props,
     style:{...(props.style ?? {}), ...(isLayoutFill ? {
-       aspectRatio,
+       aspectRatio: aspectRatio > 0 ? 1 / aspectRatio : undefined,
         position: "relative",
       }: {})},
     onLoad: handleLoad,

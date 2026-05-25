@@ -1,0 +1,17 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Page from '../../page-components/kapuc/KapucTub.jsx';
+import WhatsAppWidget from '../../components/WhatsAppWidget.jsx';
+import { buildProductPageJsonLd } from '../../lib/productLd.js';
+
+const pathname = '/kapuc/tub';
+const jsonLd = buildProductPageJsonLd(pathname, [
+  { name: 'Kryefaqja', url: '/' },
+  { name: 'Underscarf', url: '/kapuc/tub' },
+  { name: 'Kapuc Tub', url: pathname },
+]);
+---
+<Layout ogType="product" jsonLd={jsonLd}>
+  <WhatsAppWidget client:idle />
+  <Page client:load pathname={pathname} locale="sq" />
+</Layout>

@@ -1,0 +1,40 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { breadcrumbsJsonLd } from '../../lib/structuredData.js';
+
+const products = [
+  { name: 'Shall Jersey 180×70 cm', href: '/jersey/shall-jr-180', description: 'Shall jersey i butë dhe elastik.', image: '/landing_page/image00048.jpeg' },
+  { name: 'Shami Jersey 200×100 cm', href: '/jersey/shami-jr-200', description: 'Shami jersey ideale për mbulim të plotë.', image: '/landing_page/image00048.jpeg' },
+  { name: 'Shall Jersey me Gur 180×70 cm', href: '/jersey/shall-jr-gur', description: 'Shall jersey me gurë dekorativë.', image: '/landing_page/image00048.jpeg' },
+  { name: 'Zhars me Dredha', href: '/jersey/dredha', description: 'Shall hijabi me dredha (pleqe), stil i veçantë.', image: '/landing_page/image00048.jpeg' },
+];
+
+const breadcrumbs = breadcrumbsJsonLd([
+  { name: 'Kryefaqja', url: '/' },
+  { name: 'Shall Jersey', url: '/jersey' },
+]);
+---
+<Layout
+  title="Shall Jersey – Shalla Hijabi Jersey në Shqipëri | Hijab Throne"
+  description="Shalla jersey të butë, elastikë dhe komodë për përdorim të përditshëm. Disa përmasa dhe stile. Bli online në Hijab Throne."
+  keywords="shall jersey, shall hijabi jersey, shami jersey, jersey Shqipëri"
+  jsonLd={[breadcrumbs]}
+>
+  <section class="max-w-6xl mx-auto px-6 py-12">
+    <h1 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Shall Jersey Hijabi</h1>
+    <p class="text-gray-600 mb-8 text-base md:text-lg">
+      Jersey është materiali më i butë dhe elastik për shalla hijabi, duke ofruar rehati maksimale gjatë gjithë ditës. Në Hijab Throne ofrojmë jersey në përmasa dhe stile të ndryshme që përshtaten me çdo nevojë.
+    </p>
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+      {products.map((p) => (
+        <a href={p.href} class="group block">
+          <div class="aspect-square overflow-hidden rounded-lg shadow-md bg-white">
+            <img src={p.image} alt={`${p.name} – Hijab Throne`} loading="lazy" width="600" height="600" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+          </div>
+          <h2 class="mt-3 text-lg font-semibold text-gray-900">{p.name}</h2>
+          <p class="text-sm text-gray-600 mt-1">{p.description}</p>
+        </a>
+      ))}
+    </div>
+  </section>
+</Layout>

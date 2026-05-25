@@ -1,0 +1,17 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Page from '../../page-components/jersey/Jersey200.jsx';
+import WhatsAppWidget from '../../components/WhatsAppWidget.jsx';
+import { buildProductPageJsonLd } from '../../lib/productLd.js';
+
+const pathname = '/jersey/shami-jr-200';
+const jsonLd = buildProductPageJsonLd(pathname, [
+  { name: 'Kryefaqja', url: '/' },
+  { name: 'Jersey', url: '/jersey/shall-jr-180' },
+  { name: 'Shami Jersey 200×100', url: pathname },
+]);
+---
+<Layout ogType="product" jsonLd={jsonLd}>
+  <WhatsAppWidget client:idle />
+  <Page client:load pathname={pathname} locale="sq" />
+</Layout>

@@ -1,0 +1,17 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Page from '../page-components/saten/Saten.jsx';
+import WhatsAppWidget from '../components/WhatsAppWidget.jsx';
+import { buildProductPageJsonLd } from '../lib/productLd.js';
+
+const pathname = '/saten';
+const jsonLd = buildProductPageJsonLd(pathname, [
+  { name: 'Kryefaqja', url: '/' },
+  { name: 'Koleksionet', url: '/' },
+  { name: 'Shall Saten', url: pathname },
+]);
+---
+<Layout ogType="product" jsonLd={jsonLd}>
+  <WhatsAppWidget client:idle />
+  <Page client:load pathname={pathname} locale="sq" />
+</Layout>

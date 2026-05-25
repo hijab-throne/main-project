@@ -1,0 +1,16 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import Page from '../../../page-components/aktivitete/Panairet.jsx';
+import WhatsAppWidget from '../../../components/WhatsAppWidget.jsx';
+import { breadcrumbsJsonLd } from '../../../lib/structuredData.js';
+
+const breadcrumbs = breadcrumbsJsonLd([
+  { name: 'Home', url: '/en' },
+  { name: 'Activities', url: '/en/aktivitete' },
+  { name: 'Fairs', url: '/en/aktivitete/panaire' },
+]);
+---
+<Layout jsonLd={[breadcrumbs]}>
+  <WhatsAppWidget client:idle />
+  <Page client:load locale="en" />
+</Layout>

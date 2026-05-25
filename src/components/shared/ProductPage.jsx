@@ -1,10 +1,10 @@
 import React, { useMemo, useState } from "react";
-import { useLocation } from "wouter";
 import { products } from "./constants.js";
 import ProductDescription from "./ProductDescription.jsx";
 import ColorFilter from "./ColourFilter.jsx";
 import ProductGrid from "./ProductGrid.jsx";
 import Features from "./Features.jsx";
+import { ImagePreviewProvider } from "../ImagePreview.jsx";
 
 export default function ProductPage(props) {
   const {
@@ -18,12 +18,17 @@ export default function ProductPage(props) {
     showMainImage,
       imagePosition,
       hideColorCircle,
+      pathname: pathnameProp,
+      locale = 'sq',
     arrayWithPalettes = [],
   } = props;
 
   const [selectedPalette, setSelectedPalette] = useState("");
-  const [pathname] = useLocation();
-  const [_, category, subCategory] = pathname.split("/") || [];
+  const pathname = pathnameProp || (typeof window !== "undefined" ? window.location.pathname : "");
+  // Strip /en prefix when reading category from the URL
+  const normalizedPath = pathname.replace(/^\/en(?=\/|$)/, '') || '/';
+  const [_, category, subCategory] = normalizedPath.split("/") || [];
+  const charsTitle = locale === 'en' ? 'Features' : 'Karakteristikat';
   const { uniquePalettes, filteredProducts } = useMemo(() => {
     const categorizedProducts =
       products?.[category]?.[subCategory] ?? products?.[category] ?? [];
@@ -39,30 +44,33 @@ export default function ProductPage(props) {
   }, [category, subCategory, selectedPalette]);
 
   return (
-    <div className="w-full h-full md:px-32 px-6">
-      <ProductDescription
-        title={title}
-        description={description}
-        details={details}
-        imageSrc={mainImage}
-        showMainImage={showMainImage}
-        imageAlt={mainAlt}
-      />
-      <Features title="Karakteristikat" features={features} />
-      <div className="mt-8">
-        <ColorFilter
-          selectedPalette={selectedPalette}
-          setSelectedPalette={setSelectedPalette}
-          uniquePalettes={uniquePalettes}
-          arrayWithPalettes={arrayWithPalettes}
-          productCount={filteredProducts.length}
+    <ImagePreviewProvider>
+      <div className="w-full h-full md:px-32 px-6">
+        <ProductDescription
+          title={title}
+          description={description}
+          details={details}
+          imageSrc={mainImage}
+          showMainImage={showMainImage}
+          imageAlt={mainAlt}
         />
-        <ProductGrid
-            products={filteredProducts}
-            imagePosition={imagePosition}
-            hideColorCircle={hideColorCircle}
-        />
+        <Features title={featuresTitle || charsTitle} features={features} />
+        <div className="mt-8">
+          <ColorFilter
+            selectedPalette={selectedPalette}
+            setSelectedPalette={setSelectedPalette}
+            uniquePalettes={uniquePalettes}
+            arrayWithPalettes={arrayWithPalettes}
+            productCount={filteredProducts.length}
+            locale={locale}
+          />
+          <ProductGrid
+              products={filteredProducts}
+              imagePosition={imagePosition}
+              hideColorCircle={hideColorCircle}
+          />
+        </div>
       </div>
-    </div>
+    </ImagePreviewProvider>
   );
 }

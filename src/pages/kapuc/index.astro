@@ -1,0 +1,45 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { breadcrumbsJsonLd } from '../../lib/structuredData.js';
+
+const products = [
+  { name: 'Kapuc Tub', href: '/kapuc/tub', description: 'Kapuc tub i thjeshtë dhe komod.' },
+  { name: 'Kapuc Klimatik', href: '/kapuc/klimatik', description: 'Kapuc me aspirim që lë lëkurën të frymojë.' },
+  { name: 'Kapuc Kaymaz Silikon 400', href: '/kapuc/silikon400', description: 'Mban shallin pa rrëshqitur.' },
+  { name: 'Kapuc Kaymaz Silikon 500', href: '/kapuc/silikon500', description: 'Mbajtës profesional për shallin.' },
+  { name: 'Kapuc me Pambuk Xhufkë', href: '/kapuc/pambuk', description: 'Pambuk natyral me lidhëse.' },
+  { name: 'Kapuc Elastik Xhufkë', href: '/kapuc/elastik', description: 'Përshtatje e përsosur me xhufkë.' },
+  { name: 'Kapuc Tyl', href: '/kapuc/tyl-i-lehte', description: 'Tyl i lehtë dhe ajror.' },
+  { name: 'Kapuc Ceneli', href: '/kapuc/ceneli', description: 'Përfundime të hijshme.' },
+  { name: 'Ninxha Pambuk Sedef', href: '/kapuc/sedef', description: 'Cilësi premium Sedef.' },
+  { name: 'Ninxha Climatic Ecardin', href: '/kapuc/aspirim', description: 'Climatic ecardin premium.' },
+  { name: 'Ninxha Classic Ecardin', href: '/kapuc/classic', description: 'Dizajn klasik me cilësi premium.' },
+];
+
+const breadcrumbs = breadcrumbsJsonLd([
+  { name: 'Kryefaqja', url: '/' },
+  { name: 'Kapuc Hijabi', url: '/kapuc' },
+]);
+---
+<Layout
+  title="Kapuc Hijabi (Underscarf) – Të gjitha llojet | Hijab Throne"
+  description="Të gjitha llojet e kapuc-eve hijabi: tub, klimatik, kaymaz me silikon, xhufkë, tyl, ceneli, sedef dhe ecardin. Bli online në Hijab Throne."
+  keywords="kapuc hijabi, underscarf, kapuc kaymaz, kapuc silikon, ninxha sedef, ninxha ecardin"
+  jsonLd={[breadcrumbs]}
+>
+  <section class="max-w-6xl mx-auto px-6 py-12">
+    <h1 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Kapuc Hijabi (Underscarf)</h1>
+    <p class="text-gray-600 mb-8 text-base md:text-lg">
+      Kapuci është themeli i çdo stili hijabi: mban flokët në vend dhe parandalon rrëshqitjen e shallit. Në Hijab Throne ofrojmë mbi 10 lloje të ndryshme kapuc-esh për çdo nevojë: kaymaz me silikon, klimatik me aspirim, tyl i lehtë, xhufkë elastik dhe me pambuk, ceneli, ninxha sedef dhe ecardin.
+    </p>
+    <div class="grid grid-cols-2 md:grid-cols-3 gap-6">
+      {products.map((p) => (
+        <a href={p.href} class="group block bg-white rounded-lg shadow-md p-4 hover:shadow-lg transition-shadow">
+          <h2 class="text-base font-semibold text-gray-900">{p.name}</h2>
+          <p class="text-sm text-gray-600 mt-1">{p.description}</p>
+          <span class="text-xs text-[#8F89A9] mt-2 inline-block">Shiko →</span>
+        </a>
+      ))}
+    </div>
+  </section>
+</Layout>

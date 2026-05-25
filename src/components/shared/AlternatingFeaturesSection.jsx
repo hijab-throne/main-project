@@ -1,7 +1,30 @@
 import OptimizedImage from "../ImageOptimized.jsx";
 
-export default function AlternatingFeaturesSection() {
-  const features = [
+export default function AlternatingFeaturesSection({ locale = 'sq' }) {
+  const features = locale === 'en' ? [
+    {
+      image: '/personalizime/buqeta.jpeg',
+      title: 'Hijab Bouquet — A Gift Full of Style',
+      description: (
+        <>
+          A unique and elegant idea at last: hijabs wrapped to look like a flower bouquet. The perfect combination of finesse, function and creativity — a special gift for a dear friend, for mom, or just for yourself.
+        </>
+      ),
+      button: 'Bouquets',
+      reverse: false,
+    },
+    {
+      image: '/personalizime/shami.jpg',
+      title: 'Personalised Hijabs',
+      description: (
+        <>
+          Our personalised hijabs are designed with your name embroidered in Arabic — or any script you prefer. A combination of personal care and modest style that makes every outfit unique and memorable.
+        </>
+      ),
+      button: 'Personalisation',
+      reverse: true,
+    },
+  ] : [
     {
       image: '/personalizime/buqeta.jpeg',
       title: 'Buqetë me Hijabe, Dhuratë Plot Stil',

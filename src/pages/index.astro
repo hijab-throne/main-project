@@ -1,0 +1,34 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Home from '../components/Home.jsx';
+import WhatsAppWidget from '../components/WhatsAppWidget.jsx';
+import { faqJsonLd, breadcrumbsJsonLd } from '../lib/structuredData.js';
+
+const homeFaq = faqJsonLd([
+  {
+    question: 'A bën Hijab Throne dorëzim në gjithë Shqipërinë?',
+    answer: 'Po, ne ofrojmë dorëzim në të gjithë Shqipërinë. Për porositë jashtë Tiranës, na kontaktoni në WhatsApp për detajet.',
+  },
+  {
+    question: 'Si mund të bëj porosi?',
+    answer: 'Mund të na shkruani direkt në WhatsApp ose Instagram (@hijab.throne) për të bërë porosinë tuaj. Ekipi ynë ju ndihmon hap pas hapi.',
+  },
+  {
+    question: 'Çfarë materialesh ofron Hijab Throne?',
+    answer: 'Ne ofrojmë shalla chiffon, jersey, jazz, saten, si dhe kapuc-e, fustanë namazi dhe aksesorë hijabi.',
+  },
+  {
+    question: 'A janë cilësore shamia dhe shallët tuaj?',
+    answer: 'Po, të gjitha produktet tona janë të zgjedhura me kujdes nga markat më të besueshme dhe testohen për cilësi premium.',
+  },
+]);
+
+const breadcrumbs = breadcrumbsJsonLd([
+  { name: 'Kryefaqja', url: '/' },
+]);
+---
+<Layout jsonLd={[homeFaq, breadcrumbs]}>
+  <h1 class="sr-only">Hijab Throne – Shalla, Shami dhe Aksesorë Hijabi në Shqipëri</h1>
+  <WhatsAppWidget client:idle />
+  <Home client:load locale="sq" />
+</Layout>

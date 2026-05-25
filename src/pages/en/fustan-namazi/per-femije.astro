@@ -1,0 +1,17 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import Page from '../../../page-components/fustan-namazi/FustanNamaziKids.jsx';
+import WhatsAppWidget from '../../../components/WhatsAppWidget.jsx';
+import { buildProductPageJsonLd } from '../../../lib/productLd.js';
+
+const pathname = '/en/fustan-namazi/per-femije';
+const jsonLd = buildProductPageJsonLd(pathname, [
+  { name: 'Home', url: '/en' },
+  { name: 'Prayer Dress', url: '/en/fustan-namazi' },
+  { name: 'Prayer Dress for Kids', url: pathname },
+]);
+---
+<Layout ogType="product" jsonLd={jsonLd}>
+  <WhatsAppWidget client:idle />
+  <Page client:load pathname="/fustan-namazi/per-femije" locale="en" />
+</Layout>

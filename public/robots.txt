@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+
+# Block client-side query/filter params if added later
+Disallow: /*?*sort=
+Disallow: /*?*filter=
+Disallow: /spinner
+Disallow: /spinner-test
+
+Sitemap: https://hijabthrone.al/sitemap-index.xml

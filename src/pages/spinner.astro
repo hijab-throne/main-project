@@ -1,0 +1,12 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Spinner from '../page-components/spinner/Spinner.jsx';
+---
+<Layout
+  title="Spinner – Hijab Throne"
+  description="Provo fatin tuaj me Spinner-in e Hijab Throne."
+  noindex={true}
+  hideChrome={true}
+>
+  <Spinner client:only="react" storageKey="hijab-throne-spinner" />
+</Layout>

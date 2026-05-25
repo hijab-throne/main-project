@@ -1,0 +1,40 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import { breadcrumbsJsonLd } from '../../../lib/structuredData.js';
+
+const products = [
+  { name: 'Tube Underscarf', href: '/en/kapuc/tub', description: 'Simple and comfortable tube.' },
+  { name: 'Climatic Underscarf', href: '/en/kapuc/klimatik', description: 'Breathable mesh that keeps skin cool.' },
+  { name: 'Kaymaz Silicone 400', href: '/en/kapuc/silikon400', description: 'Prevents hijab from slipping.' },
+  { name: 'Kaymaz Silicone 500', href: '/en/kapuc/silikon500', description: 'Professional grip for the hijab.' },
+  { name: 'Cotton Tassel Underscarf', href: '/en/kapuc/pambuk', description: 'Natural cotton with tie tassel.' },
+  { name: 'Elastic Tassel Underscarf', href: '/en/kapuc/elastik', description: 'Perfect fit with tassel.' },
+  { name: 'Light Tulle Underscarf', href: '/en/kapuc/tyl-i-lehte', description: 'Light, airy tulle.' },
+  { name: 'Ceneli Underscarf', href: '/en/kapuc/ceneli', description: 'Elegant trims.' },
+  { name: 'Sedef Cotton Ninja', href: '/en/kapuc/sedef', description: 'Premium Sedef cotton ninja.' },
+  { name: 'Climatic Ecardin Ninja', href: '/en/kapuc/aspirim', description: 'Premium climatic ecardin.' },
+  { name: 'Classic Ecardin Ninja', href: '/en/kapuc/classic', description: 'Classic design, premium quality.' },
+];
+
+const breadcrumbs = breadcrumbsJsonLd([
+  { name: 'Home', url: '/en' },
+  { name: 'Underscarf', url: '/en/kapuc' },
+]);
+---
+<Layout jsonLd={[breadcrumbs]}>
+  <section class="max-w-6xl mx-auto px-6 py-12">
+    <h1 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Underscarves (Kapuc)</h1>
+    <p class="text-gray-600 mb-8 text-base md:text-lg">
+      The underscarf is the foundation of any hijab look: it holds your hair in place and prevents the scarf from slipping. At Hijab Throne we offer more than 10 types of underscarves for every need: kaymaz with silicone, climatic with mesh, light tulle, elastic with tassels, cotton, ceneli, and ninja-style sedef and ecardin.
+    </p>
+    <div class="grid grid-cols-2 md:grid-cols-3 gap-6">
+      {products.map((p) => (
+        <a href={p.href} class="group block bg-white rounded-lg shadow-md p-4 hover:shadow-lg transition-shadow">
+          <h2 class="text-base font-semibold text-gray-900">{p.name}</h2>
+          <p class="text-sm text-gray-600 mt-1">{p.description}</p>
+          <span class="text-xs text-[#8F89A9] mt-2 inline-block">View →</span>
+        </a>
+      ))}
+    </div>
+  </section>
+</Layout>

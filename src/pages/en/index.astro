@@ -1,0 +1,32 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Home from '../../components/Home.jsx';
+import WhatsAppWidget from '../../components/WhatsAppWidget.jsx';
+import { faqJsonLd, breadcrumbsJsonLd } from '../../lib/structuredData.js';
+
+const homeFaq = faqJsonLd([
+  {
+    question: 'Do you deliver across Albania?',
+    answer: 'Yes, we deliver throughout Albania. For orders outside Tirana, please contact us on WhatsApp for details.',
+  },
+  {
+    question: 'How can I place an order?',
+    answer: 'You can message us directly on WhatsApp or Instagram (@hijab.throne) to place your order. Our team will guide you step by step.',
+  },
+  {
+    question: 'What materials does Hijab Throne offer?',
+    answer: 'We offer chiffon, jersey, jazz and satin hijab scarves, as well as underscarves, prayer dresses, and hijab accessories.',
+  },
+  {
+    question: 'Are your hijabs and scarves high quality?',
+    answer: 'Yes, every product is carefully sourced from the most trusted brands and tested for premium quality.',
+  },
+]);
+
+const breadcrumbs = breadcrumbsJsonLd([{ name: 'Home', url: '/en' }]);
+---
+<Layout jsonLd={[homeFaq, breadcrumbs]}>
+  <h1 class="sr-only">Hijab Throne – Hijab Scarves & Accessories in Albania</h1>
+  <WhatsAppWidget client:idle />
+  <Home client:load locale="en" />
+</Layout>

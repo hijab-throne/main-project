@@ -1,0 +1,45 @@
+---
+import { stripLocale, getLocale, withLocale } from '../../lib/i18n.js';
+
+const pathname = Astro.url.pathname;
+const sqPath = stripLocale(pathname);
+const currentLocale = getLocale(pathname);
+const sqUrl = withLocale(sqPath, 'sq');
+const enUrl = withLocale(sqPath, 'en');
+---
+<div
+  class="inline-flex items-center bg-white/70 backdrop-blur-sm rounded-full p-0.5 border border-[#D5CFE8] shadow-sm"
+  role="group"
+  aria-label="Language switcher"
+>
+  <a
+    href={sqUrl}
+    class:list={[
+      'flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold tracking-wide transition-all duration-200',
+      currentLocale === 'sq'
+        ? 'bg-gradient-to-br from-[#8F89A9] to-[#6F678E] text-white shadow-sm'
+        : 'text-[#6F678E] hover:text-[#8F89A9] hover:bg-[#F3F1FA]',
+    ]}
+    aria-current={currentLocale === 'sq' ? 'page' : undefined}
+    hreflang="sq"
+    title="Shqip"
+  >
+    <span class="text-base leading-none" aria-hidden="true">🇦🇱</span>
+    <span>SQ</span>
+  </a>
+  <a
+    href={enUrl}
+    class:list={[
+      'flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold tracking-wide transition-all duration-200',
+      currentLocale === 'en'
+        ? 'bg-gradient-to-br from-[#8F89A9] to-[#6F678E] text-white shadow-sm'
+        : 'text-[#6F678E] hover:text-[#8F89A9] hover:bg-[#F3F1FA]',
+    ]}
+    aria-current={currentLocale === 'en' ? 'page' : undefined}
+    hreflang="en"
+    title="English"
+  >
+    <span class="text-base leading-none" aria-hidden="true">🇬🇧</span>
+    <span>EN</span>
+  </a>
+</div>

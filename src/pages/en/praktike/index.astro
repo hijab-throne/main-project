@@ -1,0 +1,36 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import { breadcrumbsJsonLd } from '../../../lib/structuredData.js';
+
+const products = [
+  { name: 'Pileli Instant Hijab', href: '/en/praktike/pileli', description: 'Ready-to-wear hijab for quick styling.' },
+  { name: 'Sport Scarf', href: '/en/praktike/sportiv', description: 'Ideal for physical activities and sports.' },
+  { name: 'Namaz Örtüsü', href: '/en/praktike/ortusu', description: 'Practical cover for prayer time.' },
+  { name: 'Hazir Turban', href: '/en/praktike/tese', description: 'Instant elegant turban.' },
+  { name: 'Tesettür Instant', href: '/en/praktike/viscon', description: 'Easy zipper closure.' },
+  { name: 'Practical Hijab for Kids', href: '/en/praktike/femije', description: 'Soft and comfortable for children.' },
+  { name: 'Penye Sal', href: '/en/praktike/penye', description: 'Combined scarf + underscarf.' },
+];
+
+const breadcrumbs = breadcrumbsJsonLd([
+  { name: 'Home', url: '/en' },
+  { name: 'Practical Hijab', url: '/en/praktike' },
+]);
+---
+<Layout jsonLd={[breadcrumbs]}>
+  <section class="max-w-6xl mx-auto px-6 py-12">
+    <h1 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Practical / Instant Hijabs</h1>
+    <p class="text-gray-600 mb-8 text-base md:text-lg">
+      Practical hijabs are the perfect choice when you're short on time: just slip them on and you're ready. At Hijab Throne we offer a wide range of ready-to-wear hijabs: pileli, turban, tesettür, prayer covers and more.
+    </p>
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+      {products.map((p) => (
+        <a href={p.href} class="group block bg-white rounded-lg shadow-md p-4 hover:shadow-lg transition-shadow">
+          <h2 class="text-base font-semibold text-gray-900">{p.name}</h2>
+          <p class="text-sm text-gray-600 mt-1">{p.description}</p>
+          <span class="text-xs text-[#8F89A9] mt-2 inline-block">View →</span>
+        </a>
+      ))}
+    </div>
+  </section>
+</Layout>

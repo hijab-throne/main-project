@@ -1,0 +1,33 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import { breadcrumbsJsonLd } from '../../../lib/structuredData.js';
+
+const products = [
+  { name: 'Jazz Hijab 200×70 cm', href: '/en/jazz/shall-jazz-200', description: 'Luxurious jazz hijab with elegant drape.', image: '/landing_page/image00054.jpeg' },
+  { name: 'Crepe Hijab', href: '/en/jazz/shall-krep', description: 'Crepe hijab with distinctive texture.', image: '/landing_page/image00054.jpeg' },
+];
+
+const breadcrumbs = breadcrumbsJsonLd([
+  { name: 'Home', url: '/en' },
+  { name: 'Jazz Hijab', url: '/en/jazz' },
+]);
+---
+<Layout jsonLd={[breadcrumbs]}>
+  <section class="max-w-6xl mx-auto px-6 py-12">
+    <h1 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Jazz Hijab Scarves</h1>
+    <p class="text-gray-600 mb-8 text-base md:text-lg">
+      Jazz is a luxurious fabric with an elegant drape and subtle sheen — perfect for ceremonies and special occasions. At Hijab Throne we offer jazz hijabs in different sizes and styles.
+    </p>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+      {products.map((p) => (
+        <a href={p.href} class="group block">
+          <div class="aspect-square overflow-hidden rounded-lg shadow-md bg-white">
+            <img src={p.image} alt={`${p.name} – Hijab Throne`} loading="lazy" width="600" height="600" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+          </div>
+          <h2 class="mt-3 text-lg font-semibold text-gray-900">{p.name}</h2>
+          <p class="text-sm text-gray-600 mt-1">{p.description}</p>
+        </a>
+      ))}
+    </div>
+  </section>
+</Layout>

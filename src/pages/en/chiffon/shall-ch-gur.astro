@@ -1,0 +1,17 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import Page from '../../../page-components/chiffon/ChiffonShallGur.jsx';
+import WhatsAppWidget from '../../../components/WhatsAppWidget.jsx';
+import { buildProductPageJsonLd } from '../../../lib/productLd.js';
+
+const pathname = '/en/chiffon/shall-ch-gur';
+const jsonLd = buildProductPageJsonLd(pathname, [
+  { name: 'Home', url: '/en' },
+  { name: 'Chiffon', url: '/en/chiffon' },
+  { name: 'Chiffon Hijab with Stones', url: pathname },
+]);
+---
+<Layout ogType="product" jsonLd={jsonLd}>
+  <WhatsAppWidget client:idle />
+  <Page client:load pathname="/chiffon/shall-ch-gur" locale="en" />
+</Layout>

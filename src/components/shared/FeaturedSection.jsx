@@ -1,28 +1,33 @@
 import { useState, useEffect, useRef } from 'react'
 import OptimizedImage from "../ImageOptimized.jsx";
 
-export default function FeaturedSection() {
+export default function FeaturedSection({ locale = 'sq' }) {
   const [showAll, setShowAll] = useState(false)
   const sectionRef = useRef(null)
   const prevShowAllRef = useRef(showAll)
 
+  const prefix = locale === 'en' ? '/en' : '';
+  const sectionTitle = locale === 'en' ? 'Shop our latest products' : 'Bli produktet më të reja';
+  const showMoreLabel = locale === 'en' ? 'Show more' : 'Shfaq më shumë';
+  const showLessLabel = locale === 'en' ? 'Show less' : 'Shfaq më pak';
+
   const products = [
     {
       src: '/landing_page/lulu/DSCF6753.jpg',
-      title: 'Chiffon me gurë',
-      link:"/chiffon/shall-ch-gur",
+      title: locale === 'en' ? 'Chiffon with Stones' : 'Chiffon me gurë',
+      link: `${prefix}/chiffon/shall-ch-gur`,
       price: '1100 Lekë',
     },
     {
       src: '/landing_page/lulu/DSCF6736.jpg',
-      title: 'Shami me shkëlqim',
-      link:"/shkelqim",
+      title: locale === 'en' ? 'Shimmer Hijab' : 'Shami me shkëlqim',
+      link: `${prefix}/shkelqim`,
       price: '1000 Lekë',
     },
     {
       src: '/landing_page/lulu/DSCF6812.jpg',
-      title: 'Saten',
-      link:"/saten",
+      title: locale === 'en' ? 'Satin' : 'Saten',
+      link: `${prefix}/saten`,
       price: '900 Lekë',
     },
   ]
@@ -58,7 +63,7 @@ export default function FeaturedSection() {
                .375.375 0 0 1 .75 0Z"
           />
         </svg>
-        <span className="pl-3 text-2xl sm:text-3xl">Bli produktet më të reja</span>
+        <span className="pl-3 text-2xl sm:text-3xl">{sectionTitle}</span>
       </h2>
 
       {/* 👇 Desktop view (always show all) */}
@@ -119,7 +124,7 @@ export default function FeaturedSection() {
             onClick={() => setShowAll(!showAll)}
             className="text-[#6F678E] underline font-medium"
           >
-            {showAll ? 'Shfaq më pak' : 'Shfaq më shumë'}
+            {showAll ? showLessLabel : showMoreLabel}
           </button>
         </div>
       </div>

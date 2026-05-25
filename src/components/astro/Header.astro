@@ -1,0 +1,68 @@
+---
+import { getNavItems } from '../../lib/navItems.js';
+import { getLocale, T } from '../../lib/i18n.js';
+import MobileDrawer from './MobileDrawer.jsx';
+import LanguageToggle from './LanguageToggle.astro';
+
+const pathname = Astro.url.pathname;
+const locale = getLocale(pathname);
+const navItems = getNavItems(locale);
+const tx = T[locale];
+const isActive = (href) => pathname === href || (href !== '/' && href !== `/${locale}` && pathname.startsWith(href));
+const homeHref = locale === 'sq' ? '/' : `/${locale}`;
+---
+<header class="sticky top-0 z-50 w-full flex justify-between items-center gap-2 px-4 py-3 bg-[#F3F1FA]">
+  <a href={homeHref} class="flex flex-col items-center cursor-pointer shrink-0" aria-label={`Hijab Throne – ${locale === 'en' ? 'Home' : 'Faqja kryesore'}`}>
+    <img class="w-auto h-8" alt="Hijab Throne" src="/assets/desktop/icons/main-logo.svg" width="80" height="32" />
+  </a>
+
+  <nav class="hidden md:flex space-x-2 lg:space-x-4 uppercase text-[#222222] relative" aria-label={locale === 'en' ? 'Main navigation' : 'Navigimi kryesor'}>
+    {navItems.map((item) => (
+      <div class="inline-block relative py-1 group">
+        {item.isClickable ? (
+          <a href={item.href}>
+            <span class={`lg:text-sm text-xs font-bold font-sans whitespace-nowrap border-b-2 transition-all duration-300 ${
+              isActive(item.href)
+                ? 'border-[#8F89A9] text-[#8F89A9]'
+                : 'text-[#6F678E] border-transparent hover:text-[#8F89A9] hover:border-[#8F89A9]'
+            }`}>{item.label}</span>
+          </a>
+        ) : (
+          <span class={`lg:text-sm text-xs font-bold font-sans whitespace-nowrap border-b-2 transition-all duration-300 cursor-pointer ${
+            isActive(item.href) ? 'border-[#8F89A9] text-[#8F89A9]' : 'text-[#6F678E] border-transparent'
+          }`}>{item.label}</span>
+        )}
+
+        {item.dropdown && (
+          <div class="absolute left-0 top-full bg-white shadow-lg rounded-md z-20 hidden group-hover:block">
+            {item.dropdown.map((d) => (
+              d.subdropdown ? (
+                <div class="relative group/sub">
+                  <div class="cursor-pointer block px-4 py-2 text-sm text-[#6F678E] hover:bg-[#8F89A9] hover:text-white whitespace-nowrap transition-all">
+                    {d.label}<span class="ml-2">›</span>
+                  </div>
+                  <div class="absolute left-full top-0 bg-white shadow-lg rounded-md z-20 hidden group-hover/sub:block">
+                    {d.subdropdown.map((s) => (
+                      <a href={s.href} class="block px-4 py-2 text-xs text-[#6F678E] hover:bg-[#8F89A9] hover:text-white whitespace-nowrap transition-all">{s.label}</a>
+                    ))}
+                  </div>
+                </div>
+              ) : (
+                <a href={d.href} class="block px-4 py-2 text-sm text-[#6F678E] hover:bg-[#8F89A9] hover:text-white whitespace-nowrap transition-all">{d.label}</a>
+              )
+            ))}
+          </div>
+        )}
+      </div>
+    ))}
+  </nav>
+
+  <div class="hidden md:block shrink-0">
+    <LanguageToggle />
+  </div>
+
+  <div class="flex items-center gap-2 md:hidden">
+    <LanguageToggle />
+    <MobileDrawer client:load navItems={navItems} pathname={pathname} locale={locale} openLabel={tx.common.openMenu} closeLabel={tx.common.closeMenu} />
+  </div>
+</header>

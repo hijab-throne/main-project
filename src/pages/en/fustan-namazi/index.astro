@@ -1,0 +1,33 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import { breadcrumbsJsonLd } from '../../../lib/structuredData.js';
+
+const products = [
+  { name: 'Prayer Dress for Adults', href: '/en/fustan-namazi/per-te-rritur', description: 'Premium prayer dress for adults.', image: '/fustane-namazi/femije/2.jpg' },
+  { name: 'Prayer Dress for Kids', href: '/en/fustan-namazi/per-femije', description: 'Special designs for children.', image: '/fustane-namazi/femije/2.jpg' },
+];
+
+const breadcrumbs = breadcrumbsJsonLd([
+  { name: 'Home', url: '/en' },
+  { name: 'Prayer Dress', url: '/en/fustan-namazi' },
+]);
+---
+<Layout jsonLd={[breadcrumbs]}>
+  <section class="max-w-6xl mx-auto px-6 py-12">
+    <h1 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Prayer Dress</h1>
+    <p class="text-gray-600 mb-8 text-base md:text-lg">
+      Prayer dresses provide the full coverage needed during prayer, while staying comfortable and premium-quality. At Hijab Throne we offer prayer dresses for both adults and children in a range of designs.
+    </p>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+      {products.map((p) => (
+        <a href={p.href} class="group block">
+          <div class="aspect-square overflow-hidden rounded-lg shadow-md bg-white">
+            <img src={p.image} alt={`${p.name} – Hijab Throne`} loading="lazy" width="600" height="600" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+          </div>
+          <h2 class="mt-3 text-lg font-semibold text-gray-900">{p.name}</h2>
+          <p class="text-sm text-gray-600 mt-1">{p.description}</p>
+        </a>
+      ))}
+    </div>
+  </section>
+</Layout>

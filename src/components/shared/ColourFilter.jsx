@@ -1,7 +1,10 @@
 import OptimizedImage from "../ImageOptimized";
 
 
-const ColorFilter = ({ selectedPalette, setSelectedPalette, uniquePalettes, productCount, arrayWithPalettes }) =>{
+const ColorFilter = ({ selectedPalette, setSelectedPalette, uniquePalettes, productCount, arrayWithPalettes, locale = 'sq' }) =>{
+    const labels = locale === 'en'
+        ? { all: 'All', products: 'products', product: 'product' }
+        : { all: 'Të gjitha', products: 'produkte', product: 'produkt' };
     return (
         <div className="flex justify-between items-center mb-4">
             <div className="flex space-x-2 items-center">
@@ -11,7 +14,7 @@ const ColorFilter = ({ selectedPalette, setSelectedPalette, uniquePalettes, prod
                         !selectedPalette ? "bg-gray-200 border-black" : "hover:bg-gray-100 border-gray-300"
                     }`}
                 >
-                    Të gjitha
+                    {labels.all}
                 </button>
 
                 {uniquePalettes.map((paletteKey) => (
@@ -28,7 +31,7 @@ const ColorFilter = ({ selectedPalette, setSelectedPalette, uniquePalettes, prod
                 ))}
             </div>
             <p className="text-gray-600 md:flex hidden">
-                {productCount} {productCount === 1 ? "produkt" : "produkte"}
+                {productCount} {productCount === 1 ? labels.product : labels.products}
             </p>
         </div>
     );

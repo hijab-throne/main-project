@@ -1,9 +1,15 @@
 import React, { useState } from 'react';
 
-const WhatsAppWidget = () => {
+const WHATSAPP_T = {
+  sq: { contact: 'Kontakt', placeholder: 'Shkruaj mesazhin tënd..', send: 'Dërgo' },
+  en: { contact: 'Contact', placeholder: 'Write your message..', send: 'Send' },
+};
+
+const WhatsAppWidget = ({ locale = 'sq' }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [message, setMessage] = useState('');
   const phoneNumber = '+355682063377';
+  const t = WHATSAPP_T[locale] || WHATSAPP_T.sq;
 
   const handleSendMessage = () => {
     const encodedMessage = encodeURIComponent(message);
@@ -25,7 +31,7 @@ const WhatsAppWidget = () => {
         <div className="absolute bottom-16 right-0 w-72 bg-white rounded-lg shadow-lg overflow-hidden flex flex-col">
           {/* Chat Header */}
           <div className="bg-green-500 text-white p-3 flex justify-between items-center">
-            <span className="font-semibold">Kontakt</span>
+            <span className="font-semibold">{t.contact}</span>
             <button
               onClick={() => setIsOpen(false)}
               className="text-white text-xl hover:text-gray-200"
@@ -38,7 +44,7 @@ const WhatsAppWidget = () => {
           <textarea
             value={message}
             onChange={(e) => setMessage(e.target.value)}
-            placeholder="Shkruaj mesazhin tënd.."
+            placeholder={t.placeholder}
             className="flex-1 p-3 border-none resize-none outline-none text-sm"
             rows="4"
           />
@@ -48,7 +54,7 @@ const WhatsAppWidget = () => {
             onClick={handleSendMessage}
             className="bg-green-500 text-white p-2 hover:bg-green-600 transition-colors"
           >
-            Dërgo
+            {t.send}
           </button>
         </div>
       )}
