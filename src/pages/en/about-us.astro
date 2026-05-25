@@ -9,7 +9,7 @@ const breadcrumbs = breadcrumbsJsonLd([
   { name: 'About Us', url: '/en/about-us' },
 ]);
 ---
-<Layout jsonLd={[breadcrumbs]}>
+<Layout jsonLd={[breadcrumbs]} locale="en">
   <WhatsAppWidget client:idle />
   <AboutUs client:load locale="en" />
 </Layout>

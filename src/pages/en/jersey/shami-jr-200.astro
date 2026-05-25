@@ -11,7 +11,7 @@ const jsonLd = buildProductPageJsonLd(pathname, [
   { name: 'Jersey Square 200x100', url: pathname },
 ]);
 ---
-<Layout ogType="product" jsonLd={jsonLd}>
+<Layout ogType="product" jsonLd={jsonLd} locale="en">
   <WhatsAppWidget client:idle />
   <Page client:load pathname="/jersey/shami-jr-200" locale="en" />
 </Layout>

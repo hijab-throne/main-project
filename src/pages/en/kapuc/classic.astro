@@ -11,7 +11,7 @@ const jsonLd = buildProductPageJsonLd(pathname, [
   { name: 'Classic Ecardin Ninja', url: pathname },
 ]);
 ---
-<Layout ogType="product" jsonLd={jsonLd}>
+<Layout ogType="product" jsonLd={jsonLd} locale="en">
   <WhatsAppWidget client:idle />
   <Page client:load pathname="/kapuc/classic" locale="en" />
 </Layout>

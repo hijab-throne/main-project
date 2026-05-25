@@ -25,7 +25,7 @@ const homeFaq = faqJsonLd([
 
 const breadcrumbs = breadcrumbsJsonLd([{ name: 'Home', url: '/en' }]);
 ---
-<Layout jsonLd={[homeFaq, breadcrumbs]}>
+<Layout jsonLd={[homeFaq, breadcrumbs]} locale="en">
   <h1 class="sr-only">Hijab Throne – Hijab Scarves & Accessories in Albania</h1>
   <WhatsAppWidget client:idle />
   <Home client:load locale="en" />

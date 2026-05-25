@@ -9,7 +9,7 @@ import {
   localBusinessJsonLd,
   websiteJsonLd,
 } from '../lib/structuredData.js';
-import { T } from '../lib/i18n.js';
+import { T, stripLocale, withLocale } from '../lib/i18n.js';
 
 const {
   title: titleOverride,
@@ -20,11 +20,17 @@ const {
   noindex = false,
   jsonLd = [],
   hideChrome = false,
+  locale: localeOverride,
 } = Astro.props;
 
+// Astro.url.pathname is unreliable inside /en/index.astro at build time
+// (Astro's i18n routing strips the prefix). We prefer the explicit prop,
+// then Astro.currentLocale, then pathname fallback.
 const pathname = Astro.url.pathname;
-const seo = getSeo(pathname);
-const locale = seo.locale;
+const locale = localeOverride || Astro.currentLocale || (pathname.startsWith('/en') ? 'en' : 'sq');
+// Build a synthetic locale-prefixed path so getSeo returns the right alternates.
+const sqPath = stripLocale(pathname);
+const seo = getSeo(withLocale(sqPath, locale));
 const lang = T[locale]?.htmlLang || 'sq';
 const ogLocale = T[locale]?.ogLocale || 'sq_AL';
 const title = titleOverride || seo.title;
