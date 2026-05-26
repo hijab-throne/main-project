@@ -2,8 +2,11 @@
 import { stripLocale, getLocale, withLocale } from '../../lib/i18n.js';
 
 const pathname = Astro.url.pathname;
+// Astro.currentLocale is set by Astro's i18n routing and is reliable across
+// dev + prod (Astro.url.pathname is stripped to '/' inside /en/index.astro
+// at build time, so we can't trust it as the sole source of truth).
+const currentLocale = Astro.currentLocale || getLocale(pathname);
 const sqPath = stripLocale(pathname);
-const currentLocale = getLocale(pathname);
 const sqUrl = withLocale(sqPath, 'sq');
 const enUrl = withLocale(sqPath, 'en');
 ---

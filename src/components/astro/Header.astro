@@ -5,7 +5,7 @@ import MobileDrawer from './MobileDrawer.jsx';
 import LanguageToggle from './LanguageToggle.astro';
 
 const pathname = Astro.url.pathname;
-const locale = getLocale(pathname);
+const locale = Astro.currentLocale || getLocale(pathname);
 const navItems = getNavItems(locale);
 const tx = T[locale];
 const isActive = (href) => pathname === href || (href !== '/' && href !== `/${locale}` && pathname.startsWith(href));
