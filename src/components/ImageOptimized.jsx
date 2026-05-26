@@ -38,6 +38,8 @@ const OptimizedImage = ({
   fallbackAspectRatio = 16 / 9,
   variant = 'desktop',
   style = {},
+  priority = false,
+  fetchpriority,
   ...props
 }) => {
   const isLayoutFill = layout === 'fill';
@@ -45,7 +47,10 @@ const OptimizedImage = ({
   const [naturalSize, setNaturalSize] = useState({ width: 0, height: 0 });
   const [isLoaded, setIsLoaded] = useState(false);
   const [hasError, setHasError] = useState(false);
-  const [shouldLoad, setShouldLoad] = useState(false);
+  // Priority images skip the IntersectionObserver gate and load immediately.
+  const [shouldLoad, setShouldLoad] = useState(priority);
+  const effectiveLoading = priority ? 'eager' : loading;
+  const effectiveFetchPriority = fetchpriority || (priority ? 'high' : undefined);
 
   const isMobile = useMemo(() => isMobileDevice(), []);
   const shouldUseDirect = useMemo(() => isFullUrl(src) || isSvg(src), [src]);
@@ -68,8 +73,9 @@ const OptimizedImage = ({
     ? finalHeight / finalWidth
     : 1 / fallbackAspectRatio;
 
-  // IntersectionObserver to lazy-load
+  // IntersectionObserver to lazy-load (skipped for priority images)
   useEffect(() => {
+    if (priority) return;
     if (!wrapperRef.current) return;
     if (!('IntersectionObserver' in window)) {
       setShouldLoad(true);
@@ -86,7 +92,7 @@ const OptimizedImage = ({
     );
     observer.observe(wrapperRef.current);
     return () => observer.disconnect();
-  }, []);
+  }, [priority]);
 
   const handleLoad = (e) => {
     props?.onLoad?.();
@@ -150,7 +156,8 @@ const OptimizedImage = ({
   const sharedImgProps = {
     alt,
     title: title || alt,
-    loading,
+    loading: effectiveLoading,
+    fetchpriority: effectiveFetchPriority,
     onError: handleError,
     className: finalImageClassName,
     ...props,

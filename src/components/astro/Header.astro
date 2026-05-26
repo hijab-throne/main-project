@@ -23,13 +23,13 @@ const homeHref = locale === 'sq' ? '/' : `/${locale}`;
           <a href={item.href}>
             <span class={`lg:text-sm text-xs font-bold font-sans whitespace-nowrap border-b-2 transition-all duration-300 ${
               isActive(item.href)
-                ? 'border-[#8F89A9] text-[#8F89A9]'
+                ? 'border-[#5A547A] text-[#4D4870]'
                 : 'text-[#6F678E] border-transparent hover:text-[#8F89A9] hover:border-[#8F89A9]'
             }`}>{item.label}</span>
           </a>
         ) : (
           <span class={`lg:text-sm text-xs font-bold font-sans whitespace-nowrap border-b-2 transition-all duration-300 cursor-pointer ${
-            isActive(item.href) ? 'border-[#8F89A9] text-[#8F89A9]' : 'text-[#6F678E] border-transparent'
+            isActive(item.href) ? 'border-[#5A547A] text-[#4D4870]' : 'text-[#6F678E] border-transparent'
           }`}>{item.label}</span>
         )}
 

@@ -17,6 +17,7 @@ const ProductDescription = props => {
       <OptimizedImage
         src={imageSrc}
         alt={imageAlt}
+        priority
         imageClassName='md:object-cover object-contain'
         className="md:min-h-[300px] md:h-full h-[250px] mx-auto rounded-lg md:w-64 w-full"
       />

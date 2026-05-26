@@ -1,5 +1,19 @@
 import { useEffect, useState } from 'react';
-import { Menu, X } from 'lucide-react';
+
+// Inline SVGs (avoids shipping lucide-react chunk on every page)
+const MenuIcon = (props) => (
+  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" {...props}>
+    <line x1="4" y1="6" x2="20" y2="6" />
+    <line x1="4" y1="12" x2="20" y2="12" />
+    <line x1="4" y1="18" x2="20" y2="18" />
+  </svg>
+);
+const XIcon = (props) => (
+  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" {...props}>
+    <line x1="18" y1="6" x2="6" y2="18" />
+    <line x1="6" y1="6" x2="18" y2="18" />
+  </svg>
+);
 
 export default function MobileDrawer({ navItems, pathname, locale = 'sq', openLabel = 'Open menu', closeLabel = 'Close menu' }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -17,7 +31,7 @@ export default function MobileDrawer({ navItems, pathname, locale = 'sq', openLa
         onClick={() => setIsOpen(true)}
         aria-label={openLabel}
       >
-        <Menu size={28} />
+        <MenuIcon />
       </button>
 
       <div
@@ -30,7 +44,7 @@ export default function MobileDrawer({ navItems, pathname, locale = 'sq', openLa
           onClick={() => setIsOpen(false)}
           aria-label={closeLabel}
         >
-          <X size={28} />
+          <XIcon />
         </button>
 
         <div className="pt-6 p-6 pb-104">
@@ -40,7 +54,7 @@ export default function MobileDrawer({ navItems, pathname, locale = 'sq', openLa
                 <a
                   href={item.href}
                   className={`block font-bold text-sm ${item.isClickable ? '' : 'pointer-events-none'} ${
-                    isActive(item.href) ? 'bg-[#8F89A9] text-[#ffffff] p-2' : 'text-[#6F678E] hover:text-[#8F89A9]'
+                    isActive(item.href) ? 'bg-[#4D4870] text-white p-2 rounded' : 'text-[#6F678E] hover:text-[#8F89A9]'
                   } transition-all`}
                   onClick={() => setIsOpen(false)}
                 >

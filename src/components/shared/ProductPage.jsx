@@ -54,7 +54,7 @@ export default function ProductPage(props) {
           showMainImage={showMainImage}
           imageAlt={mainAlt}
         />
-        <Features title={featuresTitle || charsTitle} features={features} />
+        <Features title={featuresTitle || charsTitle} features={features} locale={locale} />
         <div className="mt-8">
           <ColorFilter
             selectedPalette={selectedPalette}

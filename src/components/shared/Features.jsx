@@ -1,8 +1,10 @@
 import { useState } from 'react'
 
-const Features = ({ title, features }) => {
+const Features = ({ title, features, locale = 'sq' }) => {
   const [open, setOpen] = useState(false)
   const [first, ...rest] = features
+  const showMore = locale === 'en' ? 'Show more features' : 'Trego më shumë karakteristika';
+  const showLess = locale === 'en' ? 'Show fewer features' : 'Trego më pak karakteristika';
 
   return (
     <div className="md:my-8 my-4 text-center bg-white rounded-lg p-4">
@@ -12,6 +14,7 @@ const Features = ({ title, features }) => {
         <button
           onClick={() => setOpen(o => !o)}
           aria-expanded={open}
+          aria-label={open ? showLess : showMore}
           className="p-1 hover:bg-gray-100 rounded"
         >
           {open ? (

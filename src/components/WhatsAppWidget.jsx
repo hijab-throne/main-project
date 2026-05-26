@@ -65,8 +65,12 @@ const WhatsAppWidget = ({ locale = 'sq' }) => {
         className="bg-green-500 rounded-full w-14 h-14 flex items-center justify-center shadow-lg hover:bg-green-600 transition-colors"
       >
         <img
-          src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
+          src="/whatsapp.svg"
           alt="Chat on WhatsApp"
+          width="32"
+          height="32"
+          loading="lazy"
+          decoding="async"
           className="w-8 h-8"
         />
       </button>

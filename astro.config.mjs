@@ -13,7 +13,15 @@ export default defineConfig({
   },
   build: {
     format: 'file',
-    inlineStylesheets: 'auto',
+    // Inline every stylesheet — eliminates render-blocking CSS requests
+    // and improves FCP/LCP on slow connections.
+    inlineStylesheets: 'always',
+  },
+  compressHTML: true,
+  prefetch: {
+    // Prefetch links on hover so navigations feel instant on weak networks
+    prefetchAll: false,
+    defaultStrategy: 'hover',
   },
   integrations: [
     react(),
