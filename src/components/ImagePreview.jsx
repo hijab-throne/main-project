@@ -81,7 +81,7 @@ const ImagePreviewModal = ({ imageUrl, onClose }) => {
 
         {/* Loading background */}
         {!isLoaded && !hasError && (
-          <div className="absolute inset-0 bg-gray-200 animate-pulse rounded-lg"></div>
+          <div className="absolute inset-0 ht-skeleton rounded-lg" aria-hidden="true"></div>
         )}
 
         {/* Error fallback */}

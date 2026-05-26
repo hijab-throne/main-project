@@ -199,7 +199,7 @@ const OptimizedImage = ({
       {!isLayoutFill && <div style={wrapperStyle}></div>}
 
       {!isLoaded && (
-        <div className={buildClassName('absolute inset-0 bg-gray-200 animate-pulse', roundedClasses)} />
+        <div className={buildClassName('absolute inset-0 ht-skeleton', roundedClasses)} aria-hidden="true" />
       )}
 
       {shouldLoad && (
