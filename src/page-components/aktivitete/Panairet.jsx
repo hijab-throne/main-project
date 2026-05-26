@@ -2,49 +2,61 @@ import React from "react";
 import OptimizedImage from "../../components/ImageOptimized.jsx";
 
 const panair_photos = [
-      { id: 1, image: "/aktivitetet/panairet/2025/panair1.jpg" },
-      { id: 1, image: "/aktivitetet/panairet/2025/panair2.jpg" },
-      { id: 1, image: "/aktivitetet/panairet/2025/panair4.jpeg" },
-      { id: 1, image: "/aktivitetet/panairet/2025/panair5.jpg" },
-      { id: 1, image: "/aktivitetet/panairet/2025/panair6.jpg" },
-      { id: 1, image: "/aktivitetet/panairet/2025/panair7.jpg" },
-      { id: 1, image: "/aktivitetet/panairet/2025/panair8.jpg" },
-      { id: 1, image: "/aktivitetet/panairet/2025/panair9.jpg" },
-      { id: 1, image: "/aktivitetet/panairet/2025/panair10.jpg" },
-    ]
-const Panairet = () => {
+  { id: 1, image: "/aktivitetet/panairet/2025/panair1.jpg" },
+  { id: 2, image: "/aktivitetet/panairet/2025/panair2.jpg" },
+  { id: 3, image: "/aktivitetet/panairet/2025/panair4.jpeg" },
+  { id: 4, image: "/aktivitetet/panairet/2025/panair5.jpg" },
+  { id: 5, image: "/aktivitetet/panairet/2025/panair6.jpg" },
+  { id: 6, image: "/aktivitetet/panairet/2025/panair7.jpg" },
+  { id: 7, image: "/aktivitetet/panairet/2025/panair8.jpg" },
+  { id: 8, image: "/aktivitetet/panairet/2025/panair9.jpg" },
+  { id: 9, image: "/aktivitetet/panairet/2025/panair10.jpg" },
+];
+
+const CONTENT = {
+  sq: {
+    title: "Panairet e Autizmit",
+    p1: "Hijab Throne është gjithashtu e angazhuar në mbështetjen e fëmijëve me autizëm dhe familjeve të tyre përmes pjesëmarrjes në panaire dhe evente të dedikuara. Gjatë këtyre panaireve, ne ofrojmë ndihmë përmes donacioneve dhe krijojmë hapësira ndërgjegjësimi për të promovuar përfshirjen dhe mirëkuptimin për personat me autizëm. Këto aktivitete janë një mundësi për të rritur ndërgjegjësimin mbi sfidat që hasin fëmijët me autizëm dhe për të mbështetur organizatat që punojnë për përmirësimin e jetës së tyre.",
+    p2: "Përmes këtyre iniciativave, ne synojmë jo vetëm të mbledhim fonde, por edhe të rrisim ndërgjegjësimin dhe të nxisim solidaritetin në komunitetin tonë.",
+    photoAlt: "Panair",
+  },
+  en: {
+    title: "Autism Awareness Fairs",
+    p1: "Hijab Throne is committed to supporting children with autism and their families through participation in dedicated fairs and events. At these fairs we contribute through donations and create awareness spaces that promote inclusion and understanding for people on the autism spectrum. These activities raise awareness of the challenges children with autism face and support the organisations working to improve their lives.",
+    p2: "Through these initiatives we aim not only to raise funds but also to build awareness and foster solidarity in our community.",
+    photoAlt: "Fair",
+  },
+};
+
+const Panairet = ({ locale = "sq" }) => {
+  const t = CONTENT[locale] || CONTENT.sq;
   return (
     <div className="py-12">
       <div className="max-w-6xl mx-auto px-6">
         <h1 className="text-xl md:text-4xl font-bold text-center text-gray-800 mb-8">
-         Panairet e Autizmit
+          {t.title}
         </h1>
 
         <section className="mb-12">
-          <p className="text-sm md:text-lg text-center text-gray-600">
-            Hijab Throne është gjithashtu e angazhuar në mbështetjen e fëmijëve me autizëm dhe familjeve të tyre përmes pjesëmarrjes në panaire dhe evente të dedikuara. Gjatë këtyre panaireve, ne ofrojmë ndihmë përmes donacioneve dhe krijojmë hapësira ndërgjegjësimi për të promovuar përfshirjen dhe mirëkuptimin për personat me autizëm. Këto aktivitete janë një mundësi për të rritur ndërgjegjësimin mbi sfidat që hasin fëmijët me autizëm dhe për të mbështetur organizatat që punojnë për përmirësimin e jetës së tyre.
-          </p>
-          <p className="text-sm md:text-lg text-center text-gray-600 mt-4">
-           Përmes këtyre iniciativave, ne synojmë jo vetëm të mbledhim fonde, por edhe të rrisim ndërgjegjësimin dhe të nxisim solidaritetin në komunitetin tonë.
-          </p>
+          <p className="text-sm md:text-lg text-center text-gray-600">{t.p1}</p>
+          <p className="text-sm md:text-lg text-center text-gray-600 mt-4">{t.p2}</p>
         </section>
 
         <section className="flex flex-wrap md:justify-center gap-4">
           {panair_photos.map((item) => (
-              <div className="inline-flex w-max h-max" key={item.id}>
-                  <OptimizedImage
-                      src={item.image}
-                      alt={`Sfilata ${item.id}`}
-                      className="w-40 h-40 rounded-lg"
-                      imageClassName='rounded-lg shadow-md'
-                  />
-              </div>
-                  ))}
-              </section>
+            <div className="inline-flex w-max h-max" key={item.id}>
+              <OptimizedImage
+                src={item.image}
+                alt={`${t.photoAlt} ${item.id}`}
+                className="w-40 h-40 rounded-lg"
+                imageClassName="rounded-lg shadow-md"
+              />
+            </div>
+          ))}
+        </section>
+      </div>
+    </div>
+  );
+};
 
-              </div>
-              </div>
-              );
-          };
-
-            export default Panairet;
+export default Panairet;
