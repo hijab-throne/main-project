@@ -44,6 +44,7 @@ const OptimizedImage = ({
 }) => {
   const isLayoutFill = layout === 'fill';
   const wrapperRef = useRef(null);
+  const imgRef = useRef(null);
   const [naturalSize, setNaturalSize] = useState({ width: 0, height: 0 });
   const [isLoaded, setIsLoaded] = useState(false);
   const [hasError, setHasError] = useState(false);
@@ -97,13 +98,25 @@ const OptimizedImage = ({
   const handleLoad = (e) => {
     props?.onLoad?.();
     if (!isLoaded) {
-      const img = e.currentTarget;
-      if (!width || !height) {
+      const img = e?.currentTarget || imgRef.current;
+      if (img && (!width || !height)) {
         setNaturalSize({ width: img.naturalWidth, height: img.naturalHeight });
       }
       setIsLoaded(true);
     }
   };
+
+  // If the browser finished loading before React hydrated (common when
+  // priority images render server-side), the native 'load' event fired
+  // without our React onLoad listener attached. Catch up by checking
+  // img.complete on mount.
+  useEffect(() => {
+    if (!shouldLoad) return;
+    const img = imgRef.current;
+    if (img && img.complete && img.naturalWidth > 0) {
+      handleLoad();
+    }
+  }, [shouldLoad]);
 
   const handleError = () => {
     setHasError(true);
@@ -154,6 +167,7 @@ const OptimizedImage = ({
   };
 
   const sharedImgProps = {
+    ref: imgRef,
     alt,
     title: title || alt,
     loading: effectiveLoading,
